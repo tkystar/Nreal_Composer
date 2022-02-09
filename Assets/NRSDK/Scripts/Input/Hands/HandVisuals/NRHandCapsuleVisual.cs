@@ -100,26 +100,13 @@ namespace NRKernal
                     m_VisualGO.SetActive(false);
                 }
 
+                //人差し指の先のCapsuleVisualの場合、速度を取得する
                 if(capsuleVisualInfo.endHandJointID == HandJointID.IndexTip)
                 {
-                    //GetHandSpeed();
                     GetHandSpeed_accurate();
                 }
             }
 
-            public void GetHandSpeed()
-            {
-                currentTime += Time.deltaTime;
-
-                if(currentTime > measureSpeed_span)
-                {
-                    currentTime = 0f;
-                    indexfingerSpeed = ((m_VisualGO.transform.position - latestPos) / Time.deltaTime).magnitude;
-                    latestPos = m_VisualGO.transform.position;
-                    m_handSpeedText.text = indexfingerSpeed.ToString("N2");  
-                
-                }
-            }
 
             public void GetHandSpeed_accurate()
             {

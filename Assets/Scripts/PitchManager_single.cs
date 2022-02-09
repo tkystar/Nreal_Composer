@@ -15,16 +15,12 @@ namespace NRKernal
         public float indexfingerSpeed;
         public AudioMixer bgm_audioMixer;
         [SerializeField]public NRHandCapsuleVisual nrHandCapsuleVisual;
-        //[SerializeField]public NRHandCapsuleVisual nrHandCapsuleVisual_L;
-        //[SerializeField]public NRHandCapsuleVisual nrHandCapsuleVisual_R;
-
         [SerializeField]public HandState rightHandState;
         private Text m_leftHandSpeed_text;
         public GameObject leftHandSpeed_text_obj;
         public HandEnum handEnum;
 
-        //private CapsuleVisual capsulevisual;
-        // Start is called before the first frame update
+     
         public class ComposeHands
         {
             
@@ -35,22 +31,20 @@ namespace NRKernal
             pitch_audiosource = 1.0f;
             instrument.pitch = 1.0f;
             bgm_audioMixer.SetFloat("pitch",1.0f);
-            //capsulevisual = NRHandCapsuleVisual.capsulevisual;
-            //capsulevisual = this.gameObject.GetComponent<CapsuleVisual>();
             m_leftHandSpeed_text = leftHandSpeed_text_obj.GetComponent<Text>();
         }
 
         // Update is called once per frame
         void Update()
         {
-            //m_leftHandSpeed_text.text = nrHandCapsuleVisual.indexTip.handSpeed.ToString("N2");
-            
+            //取得した左手人差し指の速度を曲のピッチ調整に適当な値に修正し、ピッチ調整する関数PitchAdjustに渡している
             indexfingerSpeed = Mathf.Lerp(0.3f , 3f , nrHandCapsuleVisual.indexTip.indexfingerSpeed / 55f);
             PitchAdjust(indexfingerSpeed);
 
 
             //VolumeAdjust(instrumentVolume);
             
+            //右手の状態を取得し、特定のジェスチャーに応じて曲の再生・停止を実行
             var rightHandState = NRInput.Hands.GetHandState(handEnum);
             
             if(rightHandState.currentGesture == HandGesture.Grab)
@@ -66,7 +60,9 @@ namespace NRKernal
 
         private void PitchAdjust(float _pitch)
         {
+            //速度確認のためのテキスト表示
             m_leftHandSpeed_text.text = _pitch.ToString("N2");
+
             //入力に合わせてAudioSourceのピッチを調整(ピッチのパラメータを調整するが、変えるのはテンポ)
             instrument.pitch = _pitch;
 

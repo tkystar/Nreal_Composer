@@ -112,3 +112,77 @@ Received Import Request.
   path: Assets/Scripts/PitchManager_single.cs
   artifactKey: Guid(7a8926f8aa1d7413dbafcb06880c2d7a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Start importing Assets/Scripts/PitchManager_single.cs using Guid(7a8926f8aa1d7413dbafcb06880c2d7a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4b72500d196b43321465744f8e6e208a') in 0.006748 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004232 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.55 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.827 seconds
+Platform modules already initialized, skipping
+Switching build target platform(2) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524288) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.43 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2962 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 186.5 MB.
+System memory in use after: 186.7 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 3423.
+Total: 1.628500 ms (FindLiveObjects: 0.184042 ms CreateObjectMapping: 0.059333 ms MarkObjects: 1.339750 ms  DeleteObjects: 0.042792 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 1107.858323 seconds.
+  path: Assets/Scripts/PitchManager_single.cs
+  artifactKey: Guid(7a8926f8aa1d7413dbafcb06880c2d7a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/PitchManager_single.cs using Guid(7a8926f8aa1d7413dbafcb06880c2d7a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c8803220f1da0648057ab9c62f076721') in 0.009237 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 27.402417 seconds.
+  path: Assets/Scripts/HandEffect.cs
+  artifactKey: Guid(73d84a0e3d7bb424282ccc917a3415bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/HandEffect.cs using Guid(73d84a0e3d7bb424282ccc917a3415bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a8c0eca8c20f00b6cc4959e98331b014') in 0.001859 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.003926 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.55 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.822 seconds
+Platform modules already initialized, skipping
+Switching build target platform(2) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524288) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.39 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2962 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 186.8 MB.
+System memory in use after: 187.0 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 3426.
+Total: 1.580375 ms (FindLiveObjects: 0.132584 ms CreateObjectMapping: 0.066166 ms MarkObjects: 1.337417 ms  DeleteObjects: 0.043167 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 108.910022 seconds.
+  path: Assets/Scripts/HandEffect.cs
+  artifactKey: Guid(73d84a0e3d7bb424282ccc917a3415bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/HandEffect.cs using Guid(73d84a0e3d7bb424282ccc917a3415bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '414914623f6d3a0657d4ebe4c6c36338') in 0.005800 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 77.754888 seconds.
+  path: Assets/Scripts/RigidbodyTest.cs
+  artifactKey: Guid(d63ad612822d943e28c757e038e4a90b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/RigidbodyTest.cs using Guid(d63ad612822d943e28c757e038e4a90b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b39356bb6e6570298ce36770a3c94c43') in 0.002272 seconds 
