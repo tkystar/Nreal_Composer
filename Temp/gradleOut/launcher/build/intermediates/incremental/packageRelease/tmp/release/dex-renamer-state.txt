@@ -1,4 +1,0 @@
-#Mon Feb 07 19:46:05 JST 2022
-base.0=/Users/takuya/Nreal Test/Temp/gradleOut/launcher/build/intermediates/dex/release/out/classes.dex
-path.0=classes.dex
-renamed.0=classes.dex

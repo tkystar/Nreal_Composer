@@ -10,61 +10,74 @@ namespace NRKernal
     {
         [SerializeField][Range (0.5f , 2.0f)]public float pitch_audiosource;
         public float pitch_pitchshifter;
-        public AudioSource audioSource_instrument1;
-        public float instrument_vol;
-        public float indexSpeed;
-        public AudioMixer audioMixer;
+        public AudioSource instrument;
+        public float instrumentVolume;
+        public float indexfingerSpeed;
+        public AudioMixer bgm_audioMixer;
         [SerializeField]public NRHandCapsuleVisual nrHandCapsuleVisual;
+        //[SerializeField]public NRHandCapsuleVisual nrHandCapsuleVisual_L;
+        //[SerializeField]public NRHandCapsuleVisual nrHandCapsuleVisual_R;
 
-        [SerializeField]public HandState handState;
-        private Text _handSpeedText;
-        public GameObject handSpeedTextObj;
-        //public Handenum handenum;
+        [SerializeField]public HandState rightHandState;
+        private Text m_leftHandSpeed_text;
+        public GameObject leftHandSpeed_text_obj;
+        public HandEnum handEnum;
 
         //private CapsuleVisual capsulevisual;
         // Start is called before the first frame update
+        public class ComposeHands
+        {
+            
+        }
+
         void Start()
         {
             pitch_audiosource = 1.0f;
-            audioSource_instrument1.pitch = 1.0f;
-            audioMixer.SetFloat("pitch",1.0f);
+            instrument.pitch = 1.0f;
+            bgm_audioMixer.SetFloat("pitch",1.0f);
             //capsulevisual = NRHandCapsuleVisual.capsulevisual;
             //capsulevisual = this.gameObject.GetComponent<CapsuleVisual>();
-            _handSpeedText = handSpeedTextObj.GetComponent<Text>();
+            m_leftHandSpeed_text = leftHandSpeed_text_obj.GetComponent<Text>();
         }
 
         // Update is called once per frame
         void Update()
         {
-            //_handSpeedText.text = nrHandCapsuleVisual.indexTip.handSpeed.ToString("N2");
+            //m_leftHandSpeed_text.text = nrHandCapsuleVisual.indexTip.handSpeed.ToString("N2");
             
-            indexSpeed = Mathf.Lerp(0.3f , 3f , nrHandCapsuleVisual.indexTip.handSpeed / 55f);
-            PitchAdjust(indexSpeed);
-            //VolumeAdjust(instrument_vol);
-            /*
-            var handNRInput.Hands.GetHandState(handenum);
+            indexfingerSpeed = Mathf.Lerp(0.3f , 3f , nrHandCapsuleVisual.indexTip.indexfingerSpeed / 55f);
+            PitchAdjust(indexfingerSpeed);
+
+
+            //VolumeAdjust(instrumentVolume);
             
-            if(handState.currentGesture == HandGesture.Grab)
+            var rightHandState = NRInput.Hands.GetHandState(handEnum);
+            
+            if(rightHandState.currentGesture == HandGesture.Grab)
             {
-                audioSource_instrument1.Pause();
+                instrument.Pause();
             }
-            */
+            else if(rightHandState.currentGesture == HandGesture.OpenHand && !instrument.isPlaying)
+            {
+                instrument.Play();
+            }
+            
         }
 
         private void PitchAdjust(float _pitch)
         {
-            _handSpeedText.text = _pitch.ToString("N2");
+            m_leftHandSpeed_text.text = _pitch.ToString("N2");
             //入力に合わせてAudioSourceのピッチを調整(ピッチのパラメータを調整するが、変えるのはテンポ)
-            audioSource_instrument1.pitch = _pitch;
+            instrument.pitch = _pitch;
 
             //音のPitchSifterのピッチを調整(上記テンポ調整によって変わってしまったピッチを戻す)
             pitch_pitchshifter = 1/_pitch;
-            audioMixer.SetFloat("pitch",pitch_pitchshifter);
+            bgm_audioMixer.SetFloat("pitch",pitch_pitchshifter);
         }
 
         private void VolumeAdjust(float volume)
         {
-            audioSource_instrument1.volume = volume;
+            instrument.volume = volume;
         }
     }
 }

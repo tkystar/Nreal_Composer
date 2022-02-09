@@ -49,16 +49,15 @@ namespace NRKernal
             private Vector3 m_CapsuleScale;
             private MeshRenderer m_Renderer;
             private CapsuleCollider m_Collider;
-            private Rigidbody m_Rigidbody;
-            public float handSpeed;
-            private Text _handSpeedText;
+            public float indexfingerSpeed;
+            private Text m_handSpeedText;
             private GameObject handSpeedTextObj;
             private Vector3 latestPos;
-            public float span = 0.5f;
-            public float span_small = 0.1f;
+            public float measureSpeed_span = 0.5f;
+            public float span_small = 0.1f;         //変数削除
             private float currentTime = 0f;
-            private float currentTime_small = 0f;
-            private float distance;
+            private float currentTime_small = 0f;      //変数削除
+            private float totalDistance_per_span;
 
     
 
@@ -69,11 +68,8 @@ namespace NRKernal
                 m_VisualGO = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
                 m_VisualGO.transform.SetParent(rootGO.transform);
                 m_Collider = m_VisualGO.GetComponent<CapsuleCollider>();
-                //m_VisualGO.AddComponent<Rigidbody>();
-                //m_Rigidbody = m_VisualGO.GetComponent<Rigidbody>();
-                //m_Rigidbody.useGravity = false;
                 handSpeedTextObj = GameObject.Find("HandSpeedText");
-                _handSpeedText = handSpeedTextObj.GetComponent<Text>();
+                m_handSpeedText = handSpeedTextObj.GetComponent<Text>();
         
                 if (m_Collider)
                 {
@@ -115,12 +111,12 @@ namespace NRKernal
             {
                 currentTime += Time.deltaTime;
 
-                if(currentTime > span)
+                if(currentTime > measureSpeed_span)
                 {
                     currentTime = 0f;
-                    handSpeed = ((m_VisualGO.transform.position - latestPos) / Time.deltaTime).magnitude;
+                    indexfingerSpeed = ((m_VisualGO.transform.position - latestPos) / Time.deltaTime).magnitude;
                     latestPos = m_VisualGO.transform.position;
-                    _handSpeedText.text = handSpeed.ToString("N2");  
+                    m_handSpeedText.text = indexfingerSpeed.ToString("N2");  
                 
                 }
             }
@@ -134,14 +130,14 @@ namespace NRKernal
                     if(currentTime_small > span_small)
                     {
                         currentTime_small = 0f;
-                        distance += (m_VisualGO.transform.position - latestPos).magnitude;
+                        totalDistance_per_span += (m_VisualGO.transform.position - latestPos).magnitude;
                         latestPos = m_VisualGO.transform.position;
-                        if(currentTime > span)
+                        if(currentTime > measureSpeed_span)
                         {
                             currentTime = 0f;
-                            handSpeed = distance / Time.deltaTime;
-                            _handSpeedText.text = handSpeed.ToString("N2");  
-                            distance = 0f;
+                            indexfingerSpeed = totalDistance_per_span / Time.deltaTime;
+                            m_handSpeedText.text = indexfingerSpeed.ToString("N2");  
+                            totalDistance_per_span = 0f;
                         }
                     }
                                    
