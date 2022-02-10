@@ -1315,7 +1315,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 952dbfbd45e454ca4acad504c236b01e, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 37ac0c06d84244f0cb2088b128c4279d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b19057ce68fe14880ad29bc7c7ce85f6, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1451,12 +1451,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pitch_audiosource: 0
   pitch_pitchshifter: 0
-  audioSource_instrument1: {fileID: 1612478166}
-  instrument_vol: 1
-  indexSpeed: 0
-  audioMixer: {fileID: 24100000, guid: 952dbfbd45e454ca4acad504c236b01e, type: 2}
+  instrument: {fileID: 0}
+  instrumentVolume: 0
+  indexfingerSpeed: 0
+  bgm_audioMixer: {fileID: 0}
   nrHandCapsuleVisual: {fileID: 1345886042}
-  handSpeedTextObj: {fileID: 1302468380}
+  leftHandSpeed_text_obj: {fileID: 0}
   handEnum: 0
 --- !u!1 &1619591726
 GameObject:
