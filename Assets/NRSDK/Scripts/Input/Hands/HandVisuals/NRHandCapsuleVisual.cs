@@ -18,7 +18,7 @@ namespace NRKernal
     {
         public CapsuleVisual indexTip;
         public  AudioSource directionChangeSound;
-
+        public float noiseDifference;
         
         public class CapsuleVisualInfo
         {
@@ -72,6 +72,8 @@ namespace NRKernal
             private string _latestState_y;
             private string _latestState_x;
             [SerializeField]public NRHandCapsuleVisual nrHandCapsuleVisual;
+            [SerializeField] public HandEffect handeffect;
+            
             
     
 
@@ -88,7 +90,7 @@ namespace NRKernal
                 handDirectionTextObj_y = GameObject.Find("HandDirectionText_y");
                 m_handDirectionText_x = handDirectionTextObj_x.GetComponent<Text>();
                 m_handDirectionText_y = handDirectionTextObj_y.GetComponent<Text>();
-        
+                handeffect = GameObject.Find("HandEffect").GetComponent<HandEffect>();
                 if (m_Collider)
                 {
                     m_Collider.enabled = false;
@@ -156,37 +158,40 @@ namespace NRKernal
 
             public void GetIndexHandDirection(Vector3 difference)
             {
-                if (difference.y > 0)
+                if (difference.y > 0 && difference.y > nrHandCapsuleVisual.noiseDifference)
                 {
                     if (_latestState_y == "Down")
                     {
                         m_handDirectionText_y.text = "Up";
-                        
+                        handeffect.AppearParticle();
                     }
                     _latestState_y = "Up";
                 }
-                else if (difference.y < 0)
+                else if (difference.y < 0 && difference.y > nrHandCapsuleVisual.noiseDifference)
                 {
                     if (_latestState_y == "Up")
                     {
                         m_handDirectionText_y.text = "Down";
+                        handeffect.AppearParticle();
                     }
                     _latestState_y = "Down";
                 }
                 
-                if (difference.x > 0)
+                if (difference.x > 0 && difference.x > nrHandCapsuleVisual.noiseDifference)
                 {
                     if (_latestState_x == "Left")
                     {
                         m_handDirectionText_x.text = "Right";
+                        handeffect.AppearParticle();
                     }
                     _latestState_x = "Left";
                 }
-                else if (difference.x < 0)
+                else if (difference.x < 0 && difference.x > nrHandCapsuleVisual.noiseDifference)
                 {
                     if (_latestState_x == "Right")
                     {
                         m_handDirectionText_x.text = "Left";
+                        handeffect.AppearParticle();
                     }
                     _latestState_x = "Right";
                 }

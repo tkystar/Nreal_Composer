@@ -1,7 +1,6 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
-    - NRKernal.HandEffect
     - NRKernal.PitchManager_single
     - PitchManager
     NRSDK.dll:
@@ -9,7 +8,7 @@ ScriptsOnlyBuild:
     - NRKernal.ControllerAnchorsHelper
     - NRKernal.ControllerTracker
     - NRKernal.GazeTracker
-    - NRKernal.MainThreadDispather
+    - NRKernal.HandEffect
     - NRKernal.MultiScreenController
     - NRKernal.NRButton
     - NRKernal.NREmulatorController
@@ -201,33 +200,33 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 5118}
     - Class: 114
-      Script: {instanceID: 5344}
+      Script: {instanceID: 5346}
     - Class: 114
-      Script: {instanceID: 5506}
+      Script: {instanceID: 5508}
     - Class: 114
-      Script: {instanceID: 5668}
+      Script: {instanceID: 5670}
     - Class: 114
-      Script: {instanceID: 5748}
+      Script: {instanceID: 5750}
     - Class: 114
-      Script: {instanceID: 5820}
+      Script: {instanceID: 5822}
     - Class: 114
-      Script: {instanceID: 6030}
+      Script: {instanceID: 6032}
     - Class: 114
-      Script: {instanceID: 6680}
+      Script: {instanceID: 6684}
     - Class: 114
-      Script: {instanceID: 7010}
+      Script: {instanceID: 7014}
     - Class: 114
-      Script: {instanceID: 7098}
+      Script: {instanceID: 7102}
     - Class: 114
-      Script: {instanceID: 7218}
+      Script: {instanceID: 7222}
     - Class: 114
-      Script: {instanceID: 7296}
+      Script: {instanceID: 7300}
     - Class: 114
-      Script: {instanceID: 7388}
+      Script: {instanceID: 7394}
     - Class: 114
-      Script: {instanceID: 7440}
+      Script: {instanceID: 7446}
     - Class: 114
-      Script: {instanceID: 7454}
+      Script: {instanceID: 7460}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -465,8 +464,8 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
-      Hash: 86b9d6a251ca75f03abfafb5b37168df
-    assemblyName: Assembly-CSharp.dll
+      Hash: 59015ea968e0eaa660f7f0deb675bb43
+    assemblyName: NRSDK.dll
     namespaceName: NRKernal
     className: HandEffect
   - hash:
@@ -1251,6 +1250,12 @@ ScriptsOnlyBuild:
     className: NRNotificationListener
   - hash:
       serializedVersion: 2
+      Hash: 990f2fb298d765124bd4f0c0852a30d5
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: NRKernal
+    className: SquareDetection
+  - hash:
+      serializedVersion: 2
       Hash: 2574ac7d50617d23cdefe4ad22f5e1ad
     assemblyName: Unity.VisualScripting.State.dll
     namespaceName: Unity.VisualScripting
@@ -1717,12 +1722,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: 990f2fb298d765124bd4f0c0852a30d5
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: NRKernal
-    className: SquareDetection
   platform: 13
   scenePathNames:
   - Assets/NRSDK/Demos/HelloMR.unity
