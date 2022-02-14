@@ -21,6 +21,8 @@ public class Metronome : MonoBehaviour
 
         if (nxtRng < AudioSettings.dspTime + _buffer) _ring.PlayScheduled(nxtRng);
         
+        
+        
     }
 
     double NextRingTime() 

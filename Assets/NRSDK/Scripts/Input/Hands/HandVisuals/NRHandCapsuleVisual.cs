@@ -82,7 +82,7 @@ namespace NRKernal
             public CapsuleVisual(GameObject rootGO, CapsuleVisualInfo capsuleVisualInfo)
             {
                 this.capsuleVisualInfo = capsuleVisualInfo;
-
+                nrHandCapsuleVisual = GameObject.Find("NRHandCapsuleVisual_L").GetComponent<NRHandCapsuleVisual>();
                 m_VisualGO = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
                 m_VisualGO.transform.SetParent(rootGO.transform);
                 m_Collider = m_VisualGO.GetComponent<CapsuleCollider>();
@@ -162,7 +162,7 @@ namespace NRKernal
             public void GetIndexHandDirection(Vector3 difference)
             {
                 m_handDifferenceText.text = difference.ToString();
-                if (difference.y > 0 && difference.y > nrHandCapsuleVisual.noiseDifference)
+                if (difference.y > 0 && Mathf.Abs(difference.y) > nrHandCapsuleVisual.noiseDifference)
                 {
                     if (_latestState_y == "Down")
                     {
@@ -171,7 +171,7 @@ namespace NRKernal
                     }
                     _latestState_y = "Up";
                 }
-                else if (difference.y < 0 && difference.y > nrHandCapsuleVisual.noiseDifference)
+                else if (difference.y < 0 && Mathf.Abs(difference.y) > nrHandCapsuleVisual.noiseDifference)
                 {
                     if (_latestState_y == "Up")
                     {
@@ -181,7 +181,7 @@ namespace NRKernal
                     _latestState_y = "Down";
                 }
                 
-                if (difference.x > 0 && difference.x > nrHandCapsuleVisual.noiseDifference)
+                if (difference.x > 0 && Mathf.Abs(difference.x) > nrHandCapsuleVisual.noiseDifference)
                 {
                     if (_latestState_x == "Left")
                     {
@@ -190,7 +190,7 @@ namespace NRKernal
                     }
                     _latestState_x = "Left";
                 }
-                else if (difference.x < 0 && difference.x > nrHandCapsuleVisual.noiseDifference)
+                else if (difference.x < 0 && Mathf.Abs(difference.x) > nrHandCapsuleVisual.noiseDifference)
                 {
                     if (_latestState_x == "Right")
                     {

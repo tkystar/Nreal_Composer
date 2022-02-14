@@ -1,6 +1,7 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - Metronome
     - NRKernal.PitchManager_single
     - PitchManager
     NRSDK.dll:
@@ -9,6 +10,7 @@ ScriptsOnlyBuild:
     - NRKernal.ControllerTracker
     - NRKernal.GazeTracker
     - NRKernal.HandEffect
+    - NRKernal.MainThreadDispather
     - NRKernal.MultiScreenController
     - NRKernal.NRButton
     - NRKernal.NREmulatorController
@@ -147,6 +149,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 2510}
     - Class: 114
       Script: {instanceID: 2582}
+    - Class: 114
+      Script: {instanceID: 2898}
     - Class: 114
       Script: {instanceID: 2942}
     - Class: 114
@@ -464,7 +468,7 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
-      Hash: 59015ea968e0eaa660f7f0deb675bb43
+      Hash: 53cfd88477b4b25944ec338dab5e750d
     assemblyName: NRSDK.dll
     namespaceName: NRKernal
     className: HandEffect
@@ -824,7 +828,7 @@ ScriptsOnlyBuild:
     className: NRPreviewer
   - hash:
       serializedVersion: 2
-      Hash: 88aa4bd37a91792791628e7c344b0094
+      Hash: 96b2d8e0b26da27084ef29d32b25c70b
     assemblyName: NRSDK.dll
     namespaceName: NRKernal
     className: NRHandCapsuleVisual
