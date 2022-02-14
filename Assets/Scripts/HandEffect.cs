@@ -10,6 +10,8 @@ namespace NRKernal
         [SerializeField]public NRHandCapsuleVisual nrHandCapsuleVisual;
         private GameObject _indextip;
         public GameObject _indexparticle;
+        
+        
      
 
         void Start()

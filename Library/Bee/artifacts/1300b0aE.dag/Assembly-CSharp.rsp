@@ -331,6 +331,7 @@
 "Assets/Scripts/PitchManager.cs"
 "Assets/Scripts/PitchManager_single.cs"
 "Assets/Scripts/RigidbodyTest.cs"
+"Assets/Scripts/SquareDetection.cs"
 -langversion:8.0
 
 /deterministic
