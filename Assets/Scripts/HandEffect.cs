@@ -8,8 +8,8 @@ namespace NRKernal
     public class HandEffect : MonoBehaviour
     {
         [SerializeField]public NRHandCapsuleVisual nrHandCapsuleVisual;
-        private GameObject indextip;
-        public GameObject indexparticle;
+        private GameObject _indextip;
+        public GameObject _indexparticle;
      
 
         void Start()
@@ -22,8 +22,8 @@ namespace NRKernal
         {
 
             //指先の位置に動的にエフェクトを表示させる
-            indextip = nrHandCapsuleVisual.indexTip.m_VisualGO;
-            indexparticle.transform.position = indextip.transform.position;
+            _indextip = nrHandCapsuleVisual.indexTip.m_VisualGO;
+            _indexparticle.transform.position = _indextip.transform.position;
         }
     }
 }

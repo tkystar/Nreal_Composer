@@ -6,13 +6,13 @@ public class Metronome : MonoBehaviour
 {
     [SerializeField] private AudioSource _ring;
 
-    private double _bpm = 82d;
+    private double _bpm = 82d;      //一分間あたりの打つ回数
     private double _metronomeStartDspTime;
-    private double _buffer = 2 / 60d;
-
+    private double _buffer = 5 / 60d;
+    [SerializeField] private float _startTiming;
     void Start() 
     {
-        _metronomeStartDspTime = AudioSettings.dspTime;
+        //_metronomeStartDspTime = AudioSettings.dspTime;
     }
 
     void FixedUpdate() 
@@ -25,10 +25,16 @@ public class Metronome : MonoBehaviour
 
     double NextRingTime() 
     {
-        var beatInterval = 60d / _bpm;
+        var beatInterval = 60d / _bpm;       ///音の間隔
         var elapsedDspTime = AudioSettings.dspTime - _metronomeStartDspTime;
-        var beats = System.Math.Floor(elapsedDspTime / beatInterval);
+        var beats = System.Math.Floor(elapsedDspTime / beatInterval);   //打った回数
 
         return _metronomeStartDspTime + (beats + 1d) * beatInterval;
+    }
+
+    IEnumerator StartBeat()
+    {
+        yield return new WaitForSeconds(_startTiming);
+        _metronomeStartDspTime = AudioSettings.dspTime;
     }
 }
