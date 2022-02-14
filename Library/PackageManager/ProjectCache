@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637800262340000000
-    m_Hash: 1696372452
+      ticks: 637803699170000000
+    m_Hash: 2563264447
   m_LockFileStatus:
     m_FilePath: /Users/takuya/Nreal Test/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637800264400000000
-    m_Hash: 62333640
+      ticks: 637803699180000000
+    m_Hash: 1795360106
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -160,12 +160,12 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 
     nextVersion: 
-- packageId: com.unity.ide.rider@3.0.5
+- packageId: com.unity.ide.rider@3.0.12
   testable: 0
   isDirectDependency: 1
-  version: 3.0.5
+  version: 3.0.12
   source: 1
-  resolvedPath: /Users/takuya/Nreal Test/Library/PackageCache/com.unity.ide.rider@3.0.5
+  resolvedPath: /Users/takuya/Nreal Test/Library/PackageCache/com.unity.ide.rider@3.0.12
   assetPath: Packages/com.unity.ide.rider
   name: com.unity.ide.rider
   displayName: JetBrains Rider Editor
@@ -218,8 +218,12 @@ m_ResolvedPackages:
     - 3.0.10
     - 3.0.12
     verified: 3.0.12
-  dependencies: []
-  resolvedDependencies: []
+  dependencies:
+  - name: com.unity.ext.nunit
+    version: 1.0.6
+  resolvedDependencies:
+  - name: com.unity.ext.nunit
+    version: 1.0.6
   keywords: []
   registry:
     id: main
@@ -233,13 +237,13 @@ m_ResolvedPackages:
   entitlements:
     isAllowed: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 637502896060000000
+  datePublishedTicks: 637789697420000000
   documentationUrl: 
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/com.unity.ide.rider.git
-    revision: c84d2b08574326cd1e40dcae5378c556c6aecad8
+    revision: 453b1e1578da65dafbc7ad6fb71a95ca6b8730f7
     path: 
   unityLifecycle:
     version: 
@@ -361,10 +365,12 @@ m_ResolvedPackages:
     - 1.2.2
     - 1.2.3
     - 1.2.4
+    - 1.2.5
     compatible:
     - 1.2.3
     - 1.2.4
-    verified: 1.2.4
+    - 1.2.5
+    verified: 1.2.5
   dependencies: []
   resolvedDependencies: []
   keywords: []

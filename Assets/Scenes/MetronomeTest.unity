@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1186215481}
   - component: {fileID: 1186215480}
+  - component: {fileID: 1186215479}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -140,6 +141,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1186215479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1186215478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d63ad612822d943e28c757e038e4a90b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!82 &1186215480
 AudioSource:
   m_ObjectHideFlags: 0
@@ -152,7 +165,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b19057ce68fe14880ad29bc7c7ce85f6, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.263
+  m_Volume: 0.051
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -553,6 +566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ring: {fileID: 1982976223}
+  _startTiming: 0.1
 --- !u!4 &1982976225
 Transform:
   m_ObjectHideFlags: 0

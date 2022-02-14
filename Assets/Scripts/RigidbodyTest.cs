@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class RigidbodyTest : MonoBehaviour
 {
-    private Rigidbody rb;
-    private float speed;
-    private Vector3 latestPos;
+    private Rigidbody _rb;
+    private float _speed;
+    private Vector3 _latestPos;
     // Start is called before the first frame update
     void Start()
     {
-        rb = this.gameObject.GetComponent<Rigidbody>();
+        _rb = this.gameObject.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -18,10 +18,10 @@ public class RigidbodyTest : MonoBehaviour
     {
         //Debug.Log(rb.velocity.magnitude);
         
-        speed = ((this.gameObject.transform.position -latestPos) / Time.deltaTime).magnitude;
-        latestPos = this.gameObject.transform.position;
+        _speed = ((this.gameObject.transform.position - _latestPos) / Time.deltaTime).magnitude;
+        _latestPos = this.gameObject.transform.position;
 
-        Debug.Log(speed);
+        Debug.Log(_speed);
 
     }
 }
