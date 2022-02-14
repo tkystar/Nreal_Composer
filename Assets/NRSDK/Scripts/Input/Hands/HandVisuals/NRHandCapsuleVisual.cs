@@ -61,6 +61,8 @@ namespace NRKernal
             private GameObject handDirectionTextObj_x;
             private Text m_handDirectionText_y;
             private GameObject handDirectionTextObj_y;
+            private Text m_handDifferenceText;
+            private GameObject m_handDifferenceTextObj;
             private Vector3 latestPos;
             public float measureSpeed_span = 0.5f;
             public float span_small = 0.1f;         //変数削除
@@ -91,6 +93,7 @@ namespace NRKernal
                 m_handDirectionText_x = handDirectionTextObj_x.GetComponent<Text>();
                 m_handDirectionText_y = handDirectionTextObj_y.GetComponent<Text>();
                 handeffect = GameObject.Find("HandEffect").GetComponent<HandEffect>();
+                m_handDifferenceText = GameObject.Find("HandDifferenceText").GetComponent<Text>();
                 if (m_Collider)
                 {
                     m_Collider.enabled = false;
@@ -158,6 +161,7 @@ namespace NRKernal
 
             public void GetIndexHandDirection(Vector3 difference)
             {
+                m_handDifferenceText.text = difference.ToString();
                 if (difference.y > 0 && difference.y > nrHandCapsuleVisual.noiseDifference)
                 {
                     if (_latestState_y == "Down")
