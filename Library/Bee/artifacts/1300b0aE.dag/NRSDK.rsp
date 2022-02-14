@@ -447,6 +447,7 @@
 "Assets/NRSDK/Scripts/Input/EventSystem/Raycasters/EventCameraRaycaster.cs"
 "Assets/NRSDK/Scripts/Input/EventSystem/Raycasters/NRMultScrPointerRaycaster.cs"
 "Assets/NRSDK/Scripts/Input/EventSystem/Raycasters/NRPointerRaycaster.cs"
+"Assets/NRSDK/Scripts/Input/Hands/HandEffect.cs"
 "Assets/NRSDK/Scripts/Input/Hands/HandJointPoseDataUtility.cs"
 "Assets/NRSDK/Scripts/Input/Hands/HandsManager.cs"
 "Assets/NRSDK/Scripts/Input/Hands/HandState.cs"

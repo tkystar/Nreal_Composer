@@ -17,6 +17,9 @@ namespace NRKernal
     public class NRHandCapsuleVisual : MonoBehaviour
     {
         public CapsuleVisual indexTip;
+        public  AudioSource directionChangeSound;
+        public float noiseDifference;
+        
         public class CapsuleVisualInfo
         {
             public bool shouldRender;
@@ -26,6 +29,8 @@ namespace NRKernal
             public Vector3 startPos;
             public Vector3 endPos;
             public Material capsuleMat;
+            
+            
 
             
 
@@ -52,25 +57,43 @@ namespace NRKernal
             public float indexfingerSpeed;
             private Text m_handSpeedText;
             private GameObject handSpeedTextObj;
+            private Text m_handDirectionText_x;
+            private GameObject handDirectionTextObj_x;
+            private Text m_handDirectionText_y;
+            private GameObject handDirectionTextObj_y;
+            private Text m_handDifferenceText;
+            private GameObject m_handDifferenceTextObj;
             private Vector3 latestPos;
             public float measureSpeed_span = 0.5f;
             public float span_small = 0.1f;         //変数削除
             private float currentTime = 0f;
             private float currentTime_small = 0f;      //変数削除
             private float totalDistance_per_span;
-
+            private Vector3 _latestPos;
+            private Vector3 _difference;
+            private string _latestState_y;
+            private string _latestState_x;
+            [SerializeField]public NRHandCapsuleVisual nrHandCapsuleVisual;
+            [SerializeField] public HandEffect handeffect;
+            
+            
     
 
             public CapsuleVisual(GameObject rootGO, CapsuleVisualInfo capsuleVisualInfo)
             {
                 this.capsuleVisualInfo = capsuleVisualInfo;
-
+                nrHandCapsuleVisual = GameObject.Find("NRHandCapsuleVisual_L").GetComponent<NRHandCapsuleVisual>();
                 m_VisualGO = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
                 m_VisualGO.transform.SetParent(rootGO.transform);
                 m_Collider = m_VisualGO.GetComponent<CapsuleCollider>();
                 handSpeedTextObj = GameObject.Find("HandSpeedText");
                 m_handSpeedText = handSpeedTextObj.GetComponent<Text>();
-        
+                handDirectionTextObj_x = GameObject.Find("HandDirectionText_x");
+                handDirectionTextObj_y = GameObject.Find("HandDirectionText_y");
+                m_handDirectionText_x = handDirectionTextObj_x.GetComponent<Text>();
+                m_handDirectionText_y = handDirectionTextObj_y.GetComponent<Text>();
+                handeffect = GameObject.Find("HandEffect").GetComponent<HandEffect>();
+                m_handDifferenceText = GameObject.Find("HandDifferenceText").GetComponent<Text>();
                 if (m_Collider)
                 {
                     m_Collider.enabled = false;
@@ -104,6 +127,7 @@ namespace NRKernal
                 if(capsuleVisualInfo.endHandJointID == HandJointID.IndexTip)
                 {
                     GetHandSpeed_accurate();
+                    //GetIndexHandDirection();
                 }
             }
 
@@ -117,8 +141,11 @@ namespace NRKernal
                     if(currentTime_small > span_small)
                     {
                         currentTime_small = 0f;
-                        totalDistance_per_span += (m_VisualGO.transform.position - latestPos).magnitude;
+                        _difference = m_VisualGO.transform.position - latestPos;
+                        GetIndexHandDirection(_difference);
+                        totalDistance_per_span += _difference.magnitude;
                         latestPos = m_VisualGO.transform.position;
+                        
                         if(currentTime > measureSpeed_span)
                         {
                             currentTime = 0f;
@@ -127,9 +154,58 @@ namespace NRKernal
                             totalDistance_per_span = 0f;
                         }
                     }
+                    
+                    
                                    
             }
- 
+
+            public void GetIndexHandDirection(Vector3 difference)
+            {
+                m_handDifferenceText.text = difference.ToString();
+                if (difference.y > 0 && Mathf.Abs(difference.y) > nrHandCapsuleVisual.noiseDifference)
+                {
+                    if (_latestState_y == "Down")
+                    {
+                        m_handDirectionText_y.text = "Up";
+                        handeffect.AppearParticle();
+                    }
+                    _latestState_y = "Up";
+                }
+                else if (difference.y < 0 && Mathf.Abs(difference.y) > nrHandCapsuleVisual.noiseDifference)
+                {
+                    if (_latestState_y == "Up")
+                    {
+                        m_handDirectionText_y.text = "Down";
+                        handeffect.AppearParticle();
+                    }
+                    _latestState_y = "Down";
+                }
+                
+                if (difference.x > 0 && Mathf.Abs(difference.x) > nrHandCapsuleVisual.noiseDifference)
+                {
+                    if (_latestState_x == "Left")
+                    {
+                        m_handDirectionText_x.text = "Right";
+                        handeffect.AppearParticle();
+                    }
+                    _latestState_x = "Left";
+                }
+                else if (difference.x < 0 && Mathf.Abs(difference.x) > nrHandCapsuleVisual.noiseDifference)
+                {
+                    if (_latestState_x == "Right")
+                    {
+                        m_handDirectionText_x.text = "Left";
+                        handeffect.AppearParticle();
+                    }
+                    _latestState_x = "Right";
+                }
+            }
+
+            public void DirectionChange()
+            {
+                nrHandCapsuleVisual.directionChangeSound.Play();
+            }
+
             private void DrawCapsuleVisual(Vector3 a, Vector3 b, float radius)
             {
                 m_VisualGO.SetActive(true);
