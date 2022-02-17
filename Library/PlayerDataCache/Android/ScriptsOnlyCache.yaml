@@ -473,7 +473,7 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
-      Hash: b1ba5a33ebe081476a3a94f9dbfcae49
+      Hash: 6b2ff18fce6bc08906d7764b88d62778
     assemblyName: NRSDK.dll
     namespaceName: NRKernal
     className: HandEffect
@@ -641,7 +641,7 @@ ScriptsOnlyBuild:
     className: NRInputModule
   - hash:
       serializedVersion: 2
-      Hash: c62165a5887844373f567046b7ae15c1
+      Hash: 7a12d14a00a5d8bb79612d3cb22115e4
     assemblyName: NRSDK.dll
     namespaceName: 
     className: Metronome
@@ -833,7 +833,7 @@ ScriptsOnlyBuild:
     className: NRPreviewer
   - hash:
       serializedVersion: 2
-      Hash: aa325a35bad1a15b69618920f4e16c27
+      Hash: f6e3a141a753b491c1f357cec0087e7c
     assemblyName: NRSDK.dll
     namespaceName: NRKernal
     className: NRHandCapsuleVisual
