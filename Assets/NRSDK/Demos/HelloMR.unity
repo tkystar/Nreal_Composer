@@ -5548,6 +5548,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114376302391035906, guid: 7f0032a8f9796bb418c31cdb8c16b78e, type: 3}
+      propertyPath: Metronome
+      value: 
+      objectReference: {fileID: 1612478164}
+    - target: {fileID: 114376302391035906, guid: 7f0032a8f9796bb418c31cdb8c16b78e, type: 3}
       propertyPath: noiseDifference
       value: 0.075
       objectReference: {fileID: 0}

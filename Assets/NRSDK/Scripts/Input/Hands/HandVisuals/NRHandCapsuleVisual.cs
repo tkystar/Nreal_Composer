@@ -83,6 +83,7 @@ namespace NRKernal
             [SerializeField]public NRHandCapsuleVisual nrHandCapsuleVisual;
             [SerializeField] public HandEffect handeffect;
             [SerializeField] private Metronome metronome;
+            [SerializeField] private CollisionManager collision;
             
             
     
@@ -94,6 +95,7 @@ namespace NRKernal
                 m_VisualGO = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
                 m_VisualGO.transform.SetParent(rootGO.transform);
                 m_Collider = m_VisualGO.GetComponent<CapsuleCollider>();
+                m_VisualGO.AddComponent<CollisionManager>();
                 handSpeedTextObj = GameObject.Find("HandSpeedText");
                 m_handSpeedText = handSpeedTextObj.GetComponent<Text>();
                 handDirectionTextObj_x = GameObject.Find("HandDirectionText_x");
