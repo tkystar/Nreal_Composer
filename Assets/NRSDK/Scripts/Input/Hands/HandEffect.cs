@@ -14,14 +14,17 @@ namespace NRKernal
         private Renderer _indexparticleRenderer;
         private TrailRenderer _indexTrailRenderer;
         public GameObject trail;
-        
-        
-     
+        public GameObject hamon;
+        private bool hamonnow;
+        private GameObject nrCameraRig;
+        private Vector3 nrCameraRigPos;
+        private float hamoninterval;
 
         void Start()
         {
             _indexparticleRenderer = _indexparticle.GetComponent<Renderer>();
             _indexTrailRenderer = trail.GetComponent<TrailRenderer>();
+            nrCameraRigPos = GameObject.Find("NRCameraRig").GetComponent<Transform>().position;
         }
 
 
@@ -32,6 +35,20 @@ namespace NRKernal
             _indextip = nrHandCapsuleVisual.indexTip.m_VisualGO;
             _indexparticle.transform.position = _indextip.transform.position;
             trail.transform.position = _indextip.transform.position;
+
+            if (hamonnow && hamon != null)
+            {
+                hamoninterval += Time.deltaTime;
+                hamon.transform.localScale = Vector3.one * hamoninterval / 10;
+                if (hamoninterval > 2)
+                {
+                    //Destroy(hamon);
+                    hamoninterval = 0;
+                    hamonnow = false;
+                }
+            }
+
+            
             
         }
 
@@ -41,7 +58,10 @@ namespace NRKernal
             Color tempEffectColor = new Color(Random.Range(0, 255)/255f, Random.Range(0, 255)/255f, Random.Range(0, 255)/255f);
             _indexparticleRenderer.material.color = tempEffectColor;
             _indexTrailRenderer.startColor = tempEffectColor;
-
+            
+            //波紋
+            hamon = Instantiate(hamon, new Vector3(nrCameraRigPos.x, -2, nrCameraRigPos.z),Quaternion.Euler(90,0,0));
+            hamonnow = true;
         }
     }
 }
