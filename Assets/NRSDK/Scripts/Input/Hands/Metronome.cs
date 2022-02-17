@@ -67,17 +67,17 @@ public class Metronome : MonoBehaviour
             if(differenceTime < point1_differenceTime) //高得点
             {
                 Debug.Log("高得点");
-                _scoteText.text = "HightScore";
+                _scoteText.text = "Perfect";
             }
             else if(differenceTime < point2_differenceTime)  //中得点
             {
                 Debug.Log("中得点");
-                _scoteText.text = "MiddleScore";
+                _scoteText.text = "Good";
             }
             else　//低得点
             {
                 Debug.Log("低得点");
-                _scoteText.text = "LowScore";
+                _scoteText.text = "Soso";
             }
         }
         else　//遅すぎた
@@ -86,17 +86,17 @@ public class Metronome : MonoBehaviour
             if (differenceTime < point1_differenceTime) //高得点
             {
                 Debug.Log("高得点");
-                _scoteText.text = "HightScore";
+                _scoteText.text = "Perfect";
             }
             else if (differenceTime < point2_differenceTime)  //中得点
             {
                 Debug.Log("中得点");
-                _scoteText.text = "MiddleScore";
+                _scoteText.text = "Good";
             }
             else　//低得点
             {
                 Debug.Log("低得点");
-                _scoteText.text = "LowScore";
+                _scoteText.text = "Soso";
             }
         }
     }

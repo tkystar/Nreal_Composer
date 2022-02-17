@@ -18,6 +18,8 @@ namespace NRKernal.NRExamples
         /// <summary> A model to place when a raycast from a user touch hits a plane. </summary>
         public GameObject AndyPlanePrefab;
 
+        private GameObject _newStage;
+        private GameObject _oldStage;
         /// <summary> Updates this object. </summary>
         void Update()
         {
@@ -50,6 +52,8 @@ namespace NRKernal.NRExamples
             
             if (NRInput.GetButtonDown(ControllerButton.TRIGGER))
             {
+                _oldStage = _newStage;
+                Destroy(_oldStage);
                 // コントローラのレイの原点の取得
                 Transform laserAnchor = NRInput.AnchorsHelper.GetAnchor(NRInput.RaycastMode == RaycastModeEnum.Gaze ?
                     ControllerAnchorEnum.GazePoseTrackerAnchor : ControllerAnchorEnum.RightLaserAnchor);
@@ -65,7 +69,7 @@ namespace NRKernal.NRExamples
                         if (behaviour.Trackable.GetTrackableType() == TrackableType.TRACKABLE_PLANE)
                         {
                             // インスタンスの生成
-                            Instantiate(AndyPlanePrefab, hitResult.point, Quaternion.identity, behaviour.transform);
+                            _newStage = Instantiate(AndyPlanePrefab, hitResult.point, Quaternion.identity, behaviour.transform);
                         }
                     }
                 }

@@ -6638,9 +6638,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ring: {fileID: 1253715410}
-  point1_differenceTime: 0.2
-  point2_differenceTime: 0.6
-  point3_differenceTime: 1
+  point1_differenceTime: 0.4
+  point2_differenceTime: 0.8
+  point3_differenceTime: 2
   _startTiming: 0.1
   scoreTextObj: {fileID: 1149149118}
 --- !u!82 &1612478166
