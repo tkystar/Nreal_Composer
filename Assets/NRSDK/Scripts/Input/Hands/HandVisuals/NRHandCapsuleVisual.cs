@@ -7,6 +7,8 @@
 * 
 *****************************************************************************/
 
+using System;
+
 namespace NRKernal
 {
     using System.Collections;
@@ -19,6 +21,8 @@ namespace NRKernal
         public CapsuleVisual indexTip;
         public  AudioSource directionChangeSound;
         public float noiseDifference;
+        public GameObject detectionTextObj;
+        private Text _detectiontext;
         [SerializeField] private Metronome Metronome;
         
         public class CapsuleVisualInfo
@@ -41,7 +45,9 @@ namespace NRKernal
                 this.endHandJointID = endHandJointID;
             }
         }
+
         
+
         void FixedUpdate()
         {
             //GetHandSpeed();
@@ -100,7 +106,9 @@ namespace NRKernal
                 
                 if (m_Collider)
                 {
-                    m_Collider.enabled = false;
+                    //m_Collider.enabled = false;
+                    
+                    
                 }
                 m_Renderer = m_VisualGO.GetComponent<MeshRenderer>();
                 if (capsuleVisualInfo.capsuleMat)
@@ -308,8 +316,10 @@ namespace NRKernal
         {
             CreateCapsuleVisuals();
             CreateJointVisuals();
-
+            _detectiontext = detectionTextObj.GetComponent<Text>();
         }
+
+        
 
         private void CreateCapsuleVisuals()
         {

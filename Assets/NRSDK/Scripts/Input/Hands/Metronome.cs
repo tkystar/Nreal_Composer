@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,7 @@ public class Metronome : MonoBehaviour
     [SerializeField] private float _startTiming;
     public GameObject scoreTextObj;
     private Text _scoteText;
+    public String latestState;
     void Start() 
     {
         //_metronomeStartDspTime = AudioSettings.dspTime;
@@ -68,16 +70,19 @@ public class Metronome : MonoBehaviour
             {
                 Debug.Log("高得点");
                 _scoteText.text = "Perfect";
+                latestState = "Perfect";
             }
             else if(differenceTime < point2_differenceTime)  //中得点
             {
                 Debug.Log("中得点");
                 _scoteText.text = "Good";
+                latestState = "Good";
             }
             else　//低得点
             {
                 Debug.Log("低得点");
                 _scoteText.text = "Soso";
+                latestState = "Soso";
             }
         }
         else　//遅すぎた
@@ -87,16 +92,19 @@ public class Metronome : MonoBehaviour
             {
                 Debug.Log("高得点");
                 _scoteText.text = "Perfect";
+                latestState = "Perfect";
             }
             else if (differenceTime < point2_differenceTime)  //中得点
             {
                 Debug.Log("中得点");
                 _scoteText.text = "Good";
+                latestState = "Good";
             }
             else　//低得点
             {
                 Debug.Log("低得点");
                 _scoteText.text = "Soso";
+                latestState = "Soso";
             }
         }
     }
