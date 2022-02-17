@@ -7,7 +7,9 @@
 * 
 *****************************************************************************/
 
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace NRKernal.NRExamples
 {
@@ -18,10 +20,24 @@ namespace NRKernal.NRExamples
         /// <summary> A model to place when a raycast from a user touch hits a plane. </summary>
         public GameObject AndyPlanePrefab;
 
+        private GameObject _newStage;
+        private GameObject _oldStage;
+        public GameObject debugTextobj;
+        private Text debugText;
+        private bool _finishPutPlane;
+        public Button ConfirmButton;
+
         /// <summary> Updates this object. </summary>
+        private void Start()
+        {
+            debugText = debugTextobj.GetComponent<Text>();
+            ConfirmButton.onClick.AddListener(FinishPutPlane);
+        }
+
         void Update()
         {
             // If the player doesn't click the trigger button, we are done with this update.
+            /*
             if (!NRInput.GetButtonDown(ControllerButton.TRIGGER))
             {
                 return;
@@ -45,7 +61,42 @@ namespace NRKernal.NRExamples
                     // Instantiate Andy model at the hit point / compensate for the hit point rotation.
                     Instantiate(AndyPlanePrefab, hitResult.point, Quaternion.identity, behaviour.transform);
                 }
+            }*/
+            
+            if (NRInput.GetButtonDown(ControllerButton.TRIGGER)&& !_finishPutPlane)
+            {
+                debugText.text = "Input now";
+                _oldStage = _newStage;
+                Destroy(_oldStage);
+                // コントローラのレイの原点の取得
+                Transform laserAnchor = NRInput.AnchorsHelper.GetAnchor(NRInput.RaycastMode == RaycastModeEnum.Gaze ?
+                    ControllerAnchorEnum.GazePoseTrackerAnchor : ControllerAnchorEnum.RightLaserAnchor);
+
+                // レイと平面の衝突判定
+                RaycastHit hitResult;
+                if (Physics.Raycast(new Ray(laserAnchor.transform.position, laserAnchor.transform.forward), out hitResult, 1000))
+                {
+                    if (hitResult.collider.gameObject != null &&
+                        hitResult.collider.gameObject.GetComponent<NRTrackableBehaviour>() != null)
+                    {
+                        var behaviour = hitResult.collider.gameObject.GetComponent<NRTrackableBehaviour>();
+                        if (behaviour.Trackable.GetTrackableType() == TrackableType.TRACKABLE_PLANE)
+                        {
+                            // インスタンスの生成
+                            _newStage = Instantiate(AndyPlanePrefab, hitResult.point, Quaternion.identity, behaviour.transform);
+                        }
+                    }
+                }
             }
+            else
+            {
+                debugText.text = "...";
+            }
+        }
+
+        public void FinishPutPlane()
+        {
+            _finishPutPlane = true;
         }
     }
 }

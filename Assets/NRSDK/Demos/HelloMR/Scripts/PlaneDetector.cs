@@ -7,6 +7,7 @@
 * 
 *****************************************************************************/
 
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,12 +20,23 @@ namespace NRKernal.NRExamples
         /// <summary> Detected plane prefab. </summary>
         public GameObject DetectedPlanePrefab;
 
+        public GameObject NRCameraRig;
+
+        public GameObject Stage;
+        private GameObject planeObject;
         /// <summary>
         /// A list to hold new planes NRSDK began tracking in the current frame. This object is used
         /// across the application to avoid per-frame allocations. </summary>
         private List<NRTrackablePlane> m_NewPlanes = new List<NRTrackablePlane>();
 
         /// <summary> Updates this object. </summary>
+        ///
+        private void Start()
+        {
+            //Stage.transform.position = new Vector3(NRCameraRig.transform.position.x, 0, NRCameraRig.transform.position.x);
+                
+        }
+
         public void Update()
         {
             NRFrame.GetTrackables<NRTrackablePlane>(m_NewPlanes, NRTrackableQueryFilter.New);
@@ -32,7 +44,7 @@ namespace NRKernal.NRExamples
             {
                 // Instantiate a plane visualization prefab and set it to track the new plane. The transform is set to
                 // the origin with an identity rotation since the mesh for our prefab is updated in Unity World coordinates.
-                GameObject planeObject = Instantiate(DetectedPlanePrefab, Vector3.zero, Quaternion.identity, transform);
+                planeObject = Instantiate(DetectedPlanePrefab, Vector3.zero, Quaternion.identity, transform);
                 planeObject.GetComponent<NRTrackableBehaviour>().Initialize(m_NewPlanes[i]);
             }
         }
