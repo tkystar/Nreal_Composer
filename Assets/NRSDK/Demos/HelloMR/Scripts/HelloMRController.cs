@@ -7,7 +7,9 @@
 * 
 *****************************************************************************/
 
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace NRKernal.NRExamples
 {
@@ -20,7 +22,18 @@ namespace NRKernal.NRExamples
 
         private GameObject _newStage;
         private GameObject _oldStage;
+        public GameObject debugTextobj;
+        private Text debugText;
+        private bool _finishPutPlane;
+        public Button ConfirmButton;
+
         /// <summary> Updates this object. </summary>
+        private void Start()
+        {
+            debugText = debugTextobj.GetComponent<Text>();
+            ConfirmButton.onClick.AddListener(FinishPutPlane);
+        }
+
         void Update()
         {
             // If the player doesn't click the trigger button, we are done with this update.
@@ -50,8 +63,9 @@ namespace NRKernal.NRExamples
                 }
             }*/
             
-            if (NRInput.GetButtonDown(ControllerButton.TRIGGER))
+            if (NRInput.GetButtonDown(ControllerButton.TRIGGER)&& !_finishPutPlane)
             {
+                debugText.text = "Input now";
                 _oldStage = _newStage;
                 Destroy(_oldStage);
                 // コントローラのレイの原点の取得
@@ -60,7 +74,7 @@ namespace NRKernal.NRExamples
 
                 // レイと平面の衝突判定
                 RaycastHit hitResult;
-                if (Physics.Raycast(new Ray(laserAnchor.transform.position, laserAnchor.transform.forward), out hitResult, 10))
+                if (Physics.Raycast(new Ray(laserAnchor.transform.position, laserAnchor.transform.forward), out hitResult, 1000))
                 {
                     if (hitResult.collider.gameObject != null &&
                         hitResult.collider.gameObject.GetComponent<NRTrackableBehaviour>() != null)
@@ -74,6 +88,15 @@ namespace NRKernal.NRExamples
                     }
                 }
             }
+            else
+            {
+                debugText.text = "...";
+            }
+        }
+
+        public void FinishPutPlane()
+        {
+            _finishPutPlane = true;
         }
     }
 }

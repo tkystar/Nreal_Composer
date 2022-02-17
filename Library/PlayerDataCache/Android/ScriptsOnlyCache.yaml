@@ -768,7 +768,7 @@ ScriptsOnlyBuild:
     className: PlayerQuitHandler
   - hash:
       serializedVersion: 2
-      Hash: 4ff03cb82b4ac0a58ccc9441e449fbdb
+      Hash: e1f8bbd02564f6036632adeac75fe8ce
     assemblyName: NRSDK.dll
     namespaceName: NRKernal.NRExamples
     className: HelloMRController
