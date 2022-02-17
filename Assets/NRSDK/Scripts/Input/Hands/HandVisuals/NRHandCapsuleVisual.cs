@@ -19,6 +19,7 @@ namespace NRKernal
         public CapsuleVisual indexTip;
         public  AudioSource directionChangeSound;
         public float noiseDifference;
+        [SerializeField] private Metronome Metronome;
         
         public class CapsuleVisualInfo
         {
@@ -75,6 +76,7 @@ namespace NRKernal
             private string _latestState_x;
             [SerializeField]public NRHandCapsuleVisual nrHandCapsuleVisual;
             [SerializeField] public HandEffect handeffect;
+            [SerializeField] private Metronome metronome;
             
             
     
@@ -94,6 +96,8 @@ namespace NRKernal
                 m_handDirectionText_y = handDirectionTextObj_y.GetComponent<Text>();
                 handeffect = GameObject.Find("HandEffect").GetComponent<HandEffect>();
                 m_handDifferenceText = GameObject.Find("HandDifferenceText").GetComponent<Text>();
+                metronome = GameObject.Find("SoundManager").GetComponent<Metronome>();
+                
                 if (m_Collider)
                 {
                     m_Collider.enabled = false;
@@ -168,6 +172,7 @@ namespace NRKernal
                     {
                         m_handDirectionText_y.text = "Up";
                         handeffect.AppearParticle();
+                        metronome.TimingScoring();
                     }
                     _latestState_y = "Up";
                 }
@@ -180,7 +185,7 @@ namespace NRKernal
                     }
                     _latestState_y = "Down";
                 }
-                
+                /*
                 if (difference.x > 0 && Mathf.Abs(difference.x) > nrHandCapsuleVisual.noiseDifference)
                 {
                     if (_latestState_x == "Left")
@@ -199,6 +204,7 @@ namespace NRKernal
                     }
                     _latestState_x = "Right";
                 }
+                */
             }
 
             public void DirectionChange()

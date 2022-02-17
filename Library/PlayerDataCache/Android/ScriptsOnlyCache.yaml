@@ -1,10 +1,10 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
-    - Metronome
     - NRKernal.PitchManager_single
     - PitchManager
     NRSDK.dll:
+    - Metronome
     - NRKernal.CanvasRaycastTarget
     - NRKernal.ControllerAnchorsHelper
     - NRKernal.ControllerTracker
@@ -148,89 +148,89 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2510}
     - Class: 114
-      Script: {instanceID: 2582}
+      Script: {instanceID: 2580}
     - Class: 114
-      Script: {instanceID: 2898}
+      Script: {instanceID: 2896}
     - Class: 114
-      Script: {instanceID: 2942}
+      Script: {instanceID: 2940}
     - Class: 114
-      Script: {instanceID: 2950}
+      Script: {instanceID: 2948}
     - Class: 114
-      Script: {instanceID: 2974}
+      Script: {instanceID: 2972}
     - Class: 114
-      Script: {instanceID: 3004}
+      Script: {instanceID: 3002}
     - Class: 114
-      Script: {instanceID: 3140}
+      Script: {instanceID: 3138}
     - Class: 114
-      Script: {instanceID: 3278}
+      Script: {instanceID: 3276}
     - Class: 114
-      Script: {instanceID: 3294}
+      Script: {instanceID: 3292}
     - Class: 114
-      Script: {instanceID: 3452}
+      Script: {instanceID: 3450}
     - Class: 114
-      Script: {instanceID: 3462}
+      Script: {instanceID: 3460}
     - Class: 114
-      Script: {instanceID: 3476}
+      Script: {instanceID: 3474}
     - Class: 114
-      Script: {instanceID: 3516}
+      Script: {instanceID: 3514}
     - Class: 114
-      Script: {instanceID: 3864}
+      Script: {instanceID: 3862}
     - Class: 114
-      Script: {instanceID: 3948}
+      Script: {instanceID: 3946}
     - Class: 114
-      Script: {instanceID: 4014}
+      Script: {instanceID: 4012}
     - Class: 114
-      Script: {instanceID: 4160}
+      Script: {instanceID: 4158}
     - Class: 114
-      Script: {instanceID: 4208}
+      Script: {instanceID: 4206}
     - Class: 114
-      Script: {instanceID: 4290}
+      Script: {instanceID: 4288}
     - Class: 114
-      Script: {instanceID: 4356}
+      Script: {instanceID: 4354}
     - Class: 114
-      Script: {instanceID: 4372}
+      Script: {instanceID: 4370}
     - Class: 114
-      Script: {instanceID: 4510}
+      Script: {instanceID: 4508}
     - Class: 114
-      Script: {instanceID: 4578}
+      Script: {instanceID: 4576}
     - Class: 114
-      Script: {instanceID: 4756}
+      Script: {instanceID: 4754}
     - Class: 114
-      Script: {instanceID: 4776}
+      Script: {instanceID: 4774}
     - Class: 114
-      Script: {instanceID: 4868}
+      Script: {instanceID: 4866}
     - Class: 114
-      Script: {instanceID: 5048}
+      Script: {instanceID: 5046}
     - Class: 114
-      Script: {instanceID: 5118}
+      Script: {instanceID: 5116}
     - Class: 114
-      Script: {instanceID: 5346}
+      Script: {instanceID: 5342}
     - Class: 114
-      Script: {instanceID: 5508}
+      Script: {instanceID: 5504}
     - Class: 114
-      Script: {instanceID: 5670}
+      Script: {instanceID: 5666}
     - Class: 114
-      Script: {instanceID: 5750}
+      Script: {instanceID: 5746}
     - Class: 114
-      Script: {instanceID: 5822}
+      Script: {instanceID: 5818}
     - Class: 114
-      Script: {instanceID: 6032}
+      Script: {instanceID: 6028}
     - Class: 114
-      Script: {instanceID: 6684}
+      Script: {instanceID: 6680}
     - Class: 114
-      Script: {instanceID: 7014}
+      Script: {instanceID: 7010}
     - Class: 114
-      Script: {instanceID: 7102}
+      Script: {instanceID: 7098}
     - Class: 114
-      Script: {instanceID: 7222}
+      Script: {instanceID: 7218}
     - Class: 114
-      Script: {instanceID: 7300}
+      Script: {instanceID: 7296}
     - Class: 114
-      Script: {instanceID: 7394}
+      Script: {instanceID: 7390}
     - Class: 114
-      Script: {instanceID: 7446}
+      Script: {instanceID: 7442}
     - Class: 114
-      Script: {instanceID: 7460}
+      Script: {instanceID: 7456}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -636,8 +636,8 @@ ScriptsOnlyBuild:
     className: NRInputModule
   - hash:
       serializedVersion: 2
-      Hash: d36b5cefb06d648eb235d6ebbdca762a
-    assemblyName: Assembly-CSharp.dll
+      Hash: c62165a5887844373f567046b7ae15c1
+    assemblyName: NRSDK.dll
     namespaceName: 
     className: Metronome
   - hash:
@@ -828,7 +828,7 @@ ScriptsOnlyBuild:
     className: NRPreviewer
   - hash:
       serializedVersion: 2
-      Hash: 96b2d8e0b26da27084ef29d32b25c70b
+      Hash: aa325a35bad1a15b69618920f4e16c27
     assemblyName: NRSDK.dll
     namespaceName: NRKernal
     className: NRHandCapsuleVisual
@@ -1254,12 +1254,6 @@ ScriptsOnlyBuild:
     className: NRNotificationListener
   - hash:
       serializedVersion: 2
-      Hash: 990f2fb298d765124bd4f0c0852a30d5
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: NRKernal
-    className: SquareDetection
-  - hash:
-      serializedVersion: 2
       Hash: 2574ac7d50617d23cdefe4ad22f5e1ad
     assemblyName: Unity.VisualScripting.State.dll
     namespaceName: Unity.VisualScripting
@@ -1668,7 +1662,7 @@ ScriptsOnlyBuild:
     className: CanvasRaycastTarget
   - hash:
       serializedVersion: 2
-      Hash: dea189cf620f6ac37dd27d491e1234b1
+      Hash: 38b00d02a96257ba1c6d89c4876a6d8b
     assemblyName: NRSDK.dll
     namespaceName: NRKernal.NRExamples
     className: PlaneDetector
@@ -1726,7 +1720,13 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 990f2fb298d765124bd4f0c0852a30d5
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: NRKernal
+    className: SquareDetection
   platform: 13
   scenePathNames:
   - Assets/NRSDK/Demos/HelloMR.unity
-  playerPath: /Users/takuya/Nreal Test/BeatDetection.apk
+  playerPath: /Users/takuya/Unity/Nreal Test/PlaneDetection.apk

@@ -22,6 +22,7 @@ namespace NRKernal.NRExamples
         void Update()
         {
             // If the player doesn't click the trigger button, we are done with this update.
+            /*
             if (!NRInput.GetButtonDown(ControllerButton.TRIGGER))
             {
                 return;
@@ -44,6 +45,29 @@ namespace NRKernal.NRExamples
 
                     // Instantiate Andy model at the hit point / compensate for the hit point rotation.
                     Instantiate(AndyPlanePrefab, hitResult.point, Quaternion.identity, behaviour.transform);
+                }
+            }*/
+            
+            if (NRInput.GetButtonDown(ControllerButton.TRIGGER))
+            {
+                // コントローラのレイの原点の取得
+                Transform laserAnchor = NRInput.AnchorsHelper.GetAnchor(NRInput.RaycastMode == RaycastModeEnum.Gaze ?
+                    ControllerAnchorEnum.GazePoseTrackerAnchor : ControllerAnchorEnum.RightLaserAnchor);
+
+                // レイと平面の衝突判定
+                RaycastHit hitResult;
+                if (Physics.Raycast(new Ray(laserAnchor.transform.position, laserAnchor.transform.forward), out hitResult, 10))
+                {
+                    if (hitResult.collider.gameObject != null &&
+                        hitResult.collider.gameObject.GetComponent<NRTrackableBehaviour>() != null)
+                    {
+                        var behaviour = hitResult.collider.gameObject.GetComponent<NRTrackableBehaviour>();
+                        if (behaviour.Trackable.GetTrackableType() == TrackableType.TRACKABLE_PLANE)
+                        {
+                            // インスタンスの生成
+                            Instantiate(AndyPlanePrefab, hitResult.point, Quaternion.identity, behaviour.transform);
+                        }
+                    }
                 }
             }
         }
