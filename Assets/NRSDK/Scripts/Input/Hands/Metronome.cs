@@ -8,7 +8,7 @@ public class Metronome : MonoBehaviour
 {
     [SerializeField] private AudioSource _ring;
 
-    private double _bpm = 39d;      //一分間あたりの打つ回数
+    private double _bpm = 82d;      //一分間あたりの打つ回数
     private double _metronomeStartDspTime;
     private double _buffer = 5 / 60d;
     private double _shootDspTime;
@@ -16,6 +16,7 @@ public class Metronome : MonoBehaviour
     [SerializeField] private float point2_differenceTime;
     [SerializeField] private float point3_differenceTime;
     [SerializeField] private float _succesDifferenceTime;
+    [SerializeField] private float _evaluationDifferenceTime;
     [SerializeField] private float _startTiming;
     public GameObject scoreTextObj;
     private Text _scoteText;
@@ -23,8 +24,14 @@ public class Metronome : MonoBehaviour
     public GameObject pointsTextObj;
     private Text _pointsText;
     [SerializeField] private int _totalPoints;
-    void Start() 
+    private bool EvaluationNow;
+    private bool Hitted;
+    private double nxtRng;
+    private double pastRng;
+    private double _evaluationPuaseTime;
+    void Start()
     {
+        EvaluationNow = true;
         //_metronomeStartDspTime = AudioSettings.dspTime;
         _scoteText = scoreTextObj.GetComponent<Text>();
         _pointsText = pointsTextObj.GetComponent<Text>();
@@ -32,12 +39,36 @@ public class Metronome : MonoBehaviour
 
     void FixedUpdate() 
     {
-        var nxtRng = NextRingTime();
+        nxtRng = NextRingTime();
 
         if (nxtRng < AudioSettings.dspTime + _buffer) _ring.PlayScheduled(nxtRng);
         
         
         
+    }
+
+    private void Update()
+    {
+        //評価後は次の拍まで評価停止
+        /*
+        if (Hitted)
+        {
+            if (AudioSettings.dspTime < nxtRng + _evaluationDifferenceTime)
+            {
+                EvaluationNow = false;
+            }
+            else
+            {
+                EvaluationNow = true;
+                Hitted = true;
+            }
+        }
+        */
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            TrueorFalse();
+        }
     }
 
     double NextRingTime() 
@@ -117,12 +148,17 @@ public class Metronome : MonoBehaviour
     
     public void TrueorFalse()
     {
+        if (!EvaluationNow) return;
+        
+        
         Debug.Log("trueorfalse");
         _shootDspTime = AudioSettings.dspTime;
-        var nxtRng = NextRingTime();
-        var pastRng = PastRingTime();
+        nxtRng = NextRingTime();
+        pastRng = PastRingTime();
         if(_shootDspTime - pastRng > nxtRng - _shootDspTime) //打つタイミングが早い場合
         {
+            _evaluationPuaseTime = nxtRng + _evaluationDifferenceTime;
+            StartCoroutine(PauseEvaluation(_evaluationPuaseTime));
             var differenceTime = nxtRng - _shootDspTime;
             if(differenceTime < _succesDifferenceTime)  //成功
             {
@@ -134,6 +170,8 @@ public class Metronome : MonoBehaviour
         }
         else　//打つタイミングが遅い場合
         {
+            _evaluationPuaseTime = pastRng + _evaluationDifferenceTime;
+            StartCoroutine(PauseEvaluation(_evaluationPuaseTime));
             var differenceTime = _shootDspTime - pastRng;
            if (differenceTime < _succesDifferenceTime)  //成功
             {
@@ -142,5 +180,13 @@ public class Metronome : MonoBehaviour
             }
             
         }
+    }
+
+    IEnumerator PauseEvaluation(double _waitTime)
+    {
+        EvaluationNow = false;
+        float _pauseTime = (float) _waitTime;
+        yield return new WaitForSeconds(_pauseTime);
+        EvaluationNow = true;
     }
 }

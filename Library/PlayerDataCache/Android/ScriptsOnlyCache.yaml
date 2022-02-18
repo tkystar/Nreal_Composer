@@ -10,6 +10,7 @@ ScriptsOnlyBuild:
     - NRKernal.ControllerTracker
     - NRKernal.GazeTracker
     - NRKernal.HandEffect
+    - NRKernal.MainThreadDispather
     - NRKernal.MultiScreenController
     - NRKernal.NRButton
     - NRKernal.NREmulatorController
@@ -647,7 +648,7 @@ ScriptsOnlyBuild:
     className: NRInputModule
   - hash:
       serializedVersion: 2
-      Hash: 947ae23b80e5468230b543a2d13c76f9
+      Hash: 9729c18c6bc1453d6589a6bd59601ca2
     assemblyName: NRSDK.dll
     namespaceName: 
     className: Metronome
