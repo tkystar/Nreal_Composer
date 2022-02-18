@@ -96,8 +96,8 @@ namespace NRKernal
                 m_VisualGO.transform.SetParent(rootGO.transform);
                 m_Collider = m_VisualGO.GetComponent<CapsuleCollider>();
                 //NOTE: 遅延による当たり判定されない気持ち悪さを解消するため,コライダーを大きく設定している。
-                m_Collider.height *= 2;
-                m_Collider.radius *= 2;
+                //m_Collider.height *= 1.1f;
+                //m_Collider.radius *= 1.1f;
                 m_VisualGO.AddComponent<CollisionManager>();
                 handSpeedTextObj = GameObject.Find("HandSpeedText");
                 m_handSpeedText = handSpeedTextObj.GetComponent<Text>();

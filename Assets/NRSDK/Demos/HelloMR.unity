@@ -11798,7 +11798,7 @@ MonoBehaviour:
   point1_differenceTime: 0.2
   point2_differenceTime: 0.3
   point3_differenceTime: 2
-  _succesDifferenceTime: 0
+  _succesDifferenceTime: 0.4
   _startTiming: 0.16001
   scoreTextObj: {fileID: 1149149118}
   latestState: 

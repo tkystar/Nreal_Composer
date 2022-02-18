@@ -27,7 +27,7 @@ namespace NRKernal
             _metronome.TrueorFalse();
             _logText.text = "collision ON";
             //NOTE 文字列はなるべく使わない
-           // StartCoroutine(State2());
+            StartCoroutine(State2());
         }
 
 
