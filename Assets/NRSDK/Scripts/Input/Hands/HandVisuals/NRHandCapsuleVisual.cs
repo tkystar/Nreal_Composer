@@ -21,8 +21,8 @@ namespace NRKernal
         public CapsuleVisual indexTip;
         public  AudioSource directionChangeSound;
         public float noiseDifference;
-        public GameObject detectionTextObj;
-        private Text _detectiontext;
+        //public GameObject detectionTextObj;
+        //private Text _detectiontext;
         [SerializeField] private Metronome Metronome;
         
         public class CapsuleVisualInfo
@@ -318,7 +318,7 @@ namespace NRKernal
         {
             CreateCapsuleVisuals();
             CreateJointVisuals();
-            _detectiontext = detectionTextObj.GetComponent<Text>();
+           // _detectiontext = detectionTextObj.GetComponent<Text>();
         }
 
         

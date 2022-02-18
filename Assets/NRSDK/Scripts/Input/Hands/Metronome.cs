@@ -15,14 +15,19 @@ public class Metronome : MonoBehaviour
     [SerializeField] private float point1_differenceTime;
     [SerializeField] private float point2_differenceTime;
     [SerializeField] private float point3_differenceTime;
+    [SerializeField] private float _succesDifferenceTime;
     [SerializeField] private float _startTiming;
     public GameObject scoreTextObj;
     private Text _scoteText;
     public String latestState;
+    public GameObject pointsTextObj;
+    private Text _pointsText;
+    [SerializeField] private int _totalPoints;
     void Start() 
     {
         //_metronomeStartDspTime = AudioSettings.dspTime;
         _scoteText = scoreTextObj.GetComponent<Text>();
+        _pointsText = pointsTextObj.GetComponent<Text>();
     }
 
     void FixedUpdate() 
@@ -106,6 +111,36 @@ public class Metronome : MonoBehaviour
                 _scoteText.text = "Soso";
                 latestState = "Soso";
             }
+        }
+    }
+    
+    
+    public void TrueorFalse()
+    {
+        Debug.Log("trueorfalse");
+        _shootDspTime = AudioSettings.dspTime;
+        var nxtRng = NextRingTime();
+        var pastRng = PastRingTime();
+        if(_shootDspTime - pastRng > nxtRng - _shootDspTime) //打つタイミングが早い場合
+        {
+            var differenceTime = nxtRng - _shootDspTime;
+            if(differenceTime < _succesDifferenceTime)  //成功
+            {
+                _totalPoints++;
+                _pointsText.text = _totalPoints.ToString();
+                
+            }
+            
+        }
+        else　//打つタイミングが遅い場合
+        {
+            var differenceTime = _shootDspTime - pastRng;
+           if (differenceTime < _succesDifferenceTime)  //成功
+            {
+                _totalPoints++;
+                _pointsText.text = _totalPoints.ToString();
+            }
+            
         }
     }
 }

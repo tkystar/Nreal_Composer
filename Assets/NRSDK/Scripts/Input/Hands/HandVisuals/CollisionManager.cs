@@ -11,24 +11,34 @@ namespace NRKernal
     {
         
         private Text _logText;
+        [SerializeField] private Metronome _metronome;
+        public GameObject soundManager;
 
         private void Start()
         {
+            //NOTE:editor上でアタッチできないため、文字列を使用
+            _metronome = GameObject.Find("SoundManager").GetComponent<Metronome>();
             _logText = GameObject.Find("CollisionDetection").GetComponent<Text>();
-
         }
 
 
-        private void OnCollisionEnter(UnityEngine.Collision collision)
+        private void OnCollisionEnter(Collision collision)
         {
+            _metronome.TrueorFalse();
             _logText.text = "collision ON";
-            StartCoroutine("resetState");
+            //NOTE 文字列はなるべく使わない
+           // StartCoroutine(State2());
         }
 
-        IEnumerator resetState()
+
+        
+
+        IEnumerator State2()
         {
             yield return new WaitForSeconds(0.1f);
             _logText.text = "collision OFF";
         }
+        
+        
     }
 }
