@@ -641,7 +641,7 @@ ScriptsOnlyBuild:
     className: NRInputModule
   - hash:
       serializedVersion: 2
-      Hash: 7a12d14a00a5d8bb79612d3cb22115e4
+      Hash: edf68a196902066ca974597ac50cb633
     assemblyName: NRSDK.dll
     namespaceName: 
     className: Metronome
@@ -1739,7 +1739,7 @@ ScriptsOnlyBuild:
     className: TapCircle
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: 75a99745b5e967760951885a2ab75c62
     assemblyName: NRSDK.dll
     namespaceName: NRKernal
     className: CollisionManager
