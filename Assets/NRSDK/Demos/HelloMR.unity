@@ -11799,7 +11799,7 @@ MonoBehaviour:
   point2_differenceTime: 0.3
   point3_differenceTime: 2
   _succesDifferenceTime: 0
-  _startTiming: 0.1
+  _startTiming: 0.16001
   scoreTextObj: {fileID: 1149149118}
   latestState: 
   pointsTextObj: {fileID: 1995182183}
@@ -11813,7 +11813,7 @@ AudioSource:
   m_GameObject: {fileID: 1612478163}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 952dbfbd45e454ca4acad504c236b01e, type: 2}
+  OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b19057ce68fe14880ad29bc7c7ce85f6, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.33

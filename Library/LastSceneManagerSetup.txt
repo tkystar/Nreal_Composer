@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/MetronomeTest.unity
+- path: Assets/NRSDK/Demos/HelloMR.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
