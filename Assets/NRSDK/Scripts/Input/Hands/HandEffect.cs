@@ -48,7 +48,8 @@ namespace NRKernal
             _indextip = nrHandCapsuleVisual.indexTip.m_VisualGO;
             _indexparticle.transform.position = _indextip.transform.position;
             trail.transform.position = _indextip.transform.position;
-
+            
+            /*
             if (hamonnow)
             {
                 
@@ -74,11 +75,12 @@ namespace NRKernal
                 
                 
             }
-
+            */
             
             
         }
 
+        //TODO:01verに変更
         private Color EffectColorSellect()
         {
             /*
@@ -102,7 +104,7 @@ namespace NRKernal
 
         public void AppearParticle()
         {
-            
+            /*
             for (int i = 0; i < hamonarray.Length; i++)
             {
                 if (hamonarray[i] == null)
@@ -114,7 +116,7 @@ namespace NRKernal
                     hamonarray[i].GetComponent<SpriteRenderer>().color = EffectColorSellect();
                 }
             }
-            
+            */
             _indexparticleRenderer.material.color = EffectColorSellect();
             _indexTrailRenderer.startColor = EffectColorSellect();
             //波紋

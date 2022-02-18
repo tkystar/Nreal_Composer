@@ -14,7 +14,7 @@ namespace NRKernal
         [SerializeField] private Metronome _metronome;
         public GameObject soundManager;
 
-        private void Start()
+        private void Awake()
         {
             //NOTE:editor上でアタッチできないため、文字列を使用
             _metronome = GameObject.Find("SoundManager").GetComponent<Metronome>();
