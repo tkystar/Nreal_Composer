@@ -8,7 +8,7 @@ public class Metronome : MonoBehaviour
 {
     [SerializeField] private AudioSource _ring;
 
-    private double _bpm = 82d;      //一分間あたりの打つ回数
+    private double _bpm = 39d;      //一分間あたりの打つ回数
     private double _metronomeStartDspTime;
     private double _buffer = 5 / 60d;
     private double _shootDspTime;
