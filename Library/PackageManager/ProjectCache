@@ -5,7 +5,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637809429950000000
+      ticks: 637809435750000000
     m_Hash: 904704596
   m_LockFileStatus:
     m_FilePath: /Users/takuya/Unity/Nreal Test/Packages/packages-lock.json
@@ -13,7 +13,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637809429960000000
+      ticks: 637809435830000000
     m_Hash: 1162203801
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}

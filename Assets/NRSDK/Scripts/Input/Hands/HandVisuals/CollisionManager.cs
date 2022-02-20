@@ -37,11 +37,15 @@ namespace NRKernal
         private void OnTriggerEnter(Collider other)
         {
             _metronome.TrueorFalse();
-            _logText.text = "collision ON";
+            _logText.text = "当たった";
             //NOTE 文字列はなるべく使わない
-            StartCoroutine(State2());
+            //StartCoroutine(State2());
         }
 
+        private void OnTriggerExit(Collider other)
+        {
+            _logText.text = "離れた";
+        }
 
         IEnumerator State2()
         {
