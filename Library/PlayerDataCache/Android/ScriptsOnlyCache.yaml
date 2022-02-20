@@ -648,7 +648,7 @@ ScriptsOnlyBuild:
     className: NRInputModule
   - hash:
       serializedVersion: 2
-      Hash: 9729c18c6bc1453d6589a6bd59601ca2
+      Hash: c1fc2b06e0cacd885d6f52d180affc38
     assemblyName: NRSDK.dll
     namespaceName: 
     className: Metronome
@@ -846,7 +846,7 @@ ScriptsOnlyBuild:
     className: NRPreviewer
   - hash:
       serializedVersion: 2
-      Hash: aa325a35bad1a15b69618920f4e16c27
+      Hash: 7af665b564fd6338c4ce05a5a2861f64
     assemblyName: NRSDK.dll
     namespaceName: NRKernal
     className: NRHandCapsuleVisual
@@ -1744,7 +1744,19 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: NRSDK.dll
+    namespaceName: 
+    className: ColliderVisualizer
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TriggerDebugger
   platform: 13
   scenePathNames:
   - Assets/NRSDK/Demos/HelloMR.unity
-  playerPath: /Users/takuya/Unity/Nreal Test/PlaneDetection.apk
+  playerPath: /Users/takuya/Unity/Nreal Test/EvaluateCollision.apk

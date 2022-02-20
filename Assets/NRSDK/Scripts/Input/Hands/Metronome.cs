@@ -8,83 +8,72 @@ public class Metronome : MonoBehaviour
 {
     [SerializeField] private AudioSource _ring;
 
-    private double _bpm = 82d;      //一分間あたりの打つ回数
+    private double _bpm = 39d;      //一分間あたりの打つ回数
     private double _metronomeStartDspTime;
     private double _buffer = 5 / 60d;
     private double _shootDspTime;
-    [SerializeField] private float point1_differenceTime;
-    [SerializeField] private float point2_differenceTime;
-    [SerializeField] private float point3_differenceTime;
     [SerializeField] private float _succesDifferenceTime;
     [SerializeField] private float _evaluationDifferenceTime;
     [SerializeField] private float _startTiming;
-    public GameObject scoreTextObj;
-    private Text _scoteText;
     public String latestState;
     public GameObject pointsTextObj;
     private Text _pointsText;
     [SerializeField] private int _totalPoints;
-    private bool EvaluationNow;
-    private bool Hitted;
-    private double nxtRng;
-    private double pastRng;
+    private bool _evaluationNow;
+    private double _nxtRng;
+    private double _pastRng;
+    private double _elapsedTime_Since_pstRng;
+    private double _remainingTime_Until_nxtRng;
     private double _evaluationPuaseTime;
+    public GameObject hanteiTextObj;
+    private Text _hanteiText;
+    public GameObject evaluationStateTextObj;
+    private Text _evaluationStateText;
+    //テスト用
+    public GameObject SE;
+    private AudioSource test;
     void Start()
     {
-        EvaluationNow = true;
-        //_metronomeStartDspTime = AudioSettings.dspTime;
-        _scoteText = scoreTextObj.GetComponent<Text>();
+        _evaluationNow = true;
         _pointsText = pointsTextObj.GetComponent<Text>();
+        _hanteiText = hanteiTextObj.GetComponent<Text>();
+        _evaluationStateText = evaluationStateTextObj.GetComponent<Text>();
+        test = SE.GetComponent<AudioSource>();
     }
 
     void FixedUpdate() 
     {
-        nxtRng = NextRingTime();
+        _nxtRng = NextRingTime();
 
-        if (nxtRng < AudioSettings.dspTime + _buffer) _ring.PlayScheduled(nxtRng);
+        if (_nxtRng < AudioSettings.dspTime + _buffer) _ring.PlayScheduled(_nxtRng);
         
-        
+        _evaluationStateText.text = "判定可能 : " + _evaluationNow.ToString();
         
     }
 
     private void Update()
     {
-        //評価後は次の拍まで評価停止
-        /*
-        if (Hitted)
-        {
-            if (AudioSettings.dspTime < nxtRng + _evaluationDifferenceTime)
-            {
-                EvaluationNow = false;
-            }
-            else
-            {
-                EvaluationNow = true;
-                Hitted = true;
-            }
-        }
-        */
-
         if (Input.GetKeyDown(KeyCode.A))
         {
             TrueorFalse();
+            test.Play();
         }
     }
 
     double NextRingTime() 
     {
-        var beatInterval = 60d / _bpm;       ///音の間隔
+        var beatInterval = 60d / _bpm;       
         var elapsedDspTime = AudioSettings.dspTime - _metronomeStartDspTime;
-        var beats = System.Math.Floor(elapsedDspTime / beatInterval);   //打った回数
+        var beats = System.Math.Floor(elapsedDspTime / beatInterval);   
 
         return _metronomeStartDspTime + (beats + 1d) * beatInterval;
     }
 
     double PastRingTime() 
     {
-        var beatInterval = 60d / _bpm;       ///音の間隔
+        var beatInterval = 60d / _bpm;      
         var elapsedDspTime = AudioSettings.dspTime - _metronomeStartDspTime;
-        var beats = System.Math.Floor(elapsedDspTime / beatInterval) -1;   //打った回数
+        var beats = System.Math.Floor(elapsedDspTime / beatInterval) -1;  
 
         return _metronomeStartDspTime + (beats + 1d) * beatInterval;
     }
@@ -94,99 +83,70 @@ public class Metronome : MonoBehaviour
         _metronomeStartDspTime = AudioSettings.dspTime;
     }
     
-    public void TimingScoring()
-    {
-        _shootDspTime = AudioSettings.dspTime;
-        var nxtRng = NextRingTime();
-        var pastRng = PastRingTime();
-        if(_shootDspTime - pastRng > nxtRng-_shootDspTime) //早すぎた
-        {
-            var differenceTime = nxtRng - _shootDspTime;
-            if(differenceTime < point1_differenceTime) //高得点
-            {
-                Debug.Log("高得点");
-                _scoteText.text = "Perfect";
-                latestState = "Perfect";
-            }
-            else if(differenceTime < point2_differenceTime)  //中得点
-            {
-                Debug.Log("中得点");
-                _scoteText.text = "Good";
-                latestState = "Good";
-            }
-            else　//低得点
-            {
-                Debug.Log("低得点");
-                _scoteText.text = "Soso";
-                latestState = "Soso";
-            }
-        }
-        else　//遅すぎた
-        {
-            var differenceTime = _shootDspTime - pastRng;
-            if (differenceTime < point1_differenceTime) //高得点
-            {
-                Debug.Log("高得点");
-                _scoteText.text = "Perfect";
-                latestState = "Perfect";
-            }
-            else if (differenceTime < point2_differenceTime)  //中得点
-            {
-                Debug.Log("中得点");
-                _scoteText.text = "Good";
-                latestState = "Good";
-            }
-            else　//低得点
-            {
-                Debug.Log("低得点");
-                _scoteText.text = "Soso";
-                latestState = "Soso";
-            }
-        }
-    }
-    
-    
     public void TrueorFalse()
     {
-        if (!EvaluationNow) return;
-        
-        
         Debug.Log("trueorfalse");
+        if (!_evaluationNow) return;
+        
         _shootDspTime = AudioSettings.dspTime;
-        nxtRng = NextRingTime();
-        pastRng = PastRingTime();
-        if(_shootDspTime - pastRng > nxtRng - _shootDspTime) //打つタイミングが早い場合
+        _nxtRng = NextRingTime();
+        _pastRng = PastRingTime();
+        _elapsedTime_Since_pstRng = _shootDspTime - _pastRng;
+        _remainingTime_Until_nxtRng = _nxtRng - _shootDspTime;
+        //打つタイミングが早い場合
+        if(_elapsedTime_Since_pstRng > _remainingTime_Until_nxtRng) 
         {
-            _evaluationPuaseTime = nxtRng + _evaluationDifferenceTime;
+            _evaluationPuaseTime = (_nxtRng + _evaluationDifferenceTime) - _shootDspTime;
             StartCoroutine(PauseEvaluation(_evaluationPuaseTime));
-            var differenceTime = nxtRng - _shootDspTime;
-            if(differenceTime < _succesDifferenceTime)  //成功
+            var differenceTime = _nxtRng - _shootDspTime;
+            
+            //判定処理
+            if(differenceTime < _succesDifferenceTime)  
             {
                 _totalPoints++;
                 _pointsText.text = _totalPoints.ToString();
-                
+                _hanteiText.text = "ナイス";
+                StartCoroutine(DeleteLog());
+            }
+            else
+            {
+                _hanteiText.text = "はやい";
+                StartCoroutine(DeleteLog());
             }
             
         }
         else　//打つタイミングが遅い場合
         {
-            _evaluationPuaseTime = pastRng + _evaluationDifferenceTime;
+            _evaluationPuaseTime = (_pastRng + _evaluationDifferenceTime) - _shootDspTime;
             StartCoroutine(PauseEvaluation(_evaluationPuaseTime));
-            var differenceTime = _shootDspTime - pastRng;
-           if (differenceTime < _succesDifferenceTime)  //成功
+            var differenceTime = _shootDspTime - _pastRng;
+            if (differenceTime < _succesDifferenceTime)  //成功
             {
                 _totalPoints++;
                 _pointsText.text = _totalPoints.ToString();
+                _hanteiText.text = "ナイス";
+                StartCoroutine(DeleteLog());
             }
+           else
+           {
+               _hanteiText.text = "おそい";
+               StartCoroutine(DeleteLog());
+           }
             
         }
     }
 
     IEnumerator PauseEvaluation(double _waitTime)
     {
-        EvaluationNow = false;
+        _evaluationNow = false;
         float _pauseTime = (float) _waitTime;
         yield return new WaitForSeconds(_pauseTime);
-        EvaluationNow = true;
+        _evaluationNow = true;
+    }
+    
+    IEnumerator DeleteLog()
+    {
+        yield return new WaitForSeconds(0.2f);
+        _hanteiText.text = " ";
     }
 }
