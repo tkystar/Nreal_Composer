@@ -22,7 +22,19 @@ namespace NRKernal
         }
 
 
+        /*
         private void OnCollisionEnter(Collision collision)
+        {
+            
+            _metronome.TrueorFalse();
+            _logText.text = "collision ON";
+            //NOTE 文字列はなるべく使わない
+            StartCoroutine(State2());
+            
+        }
+        */
+
+        private void OnTriggerEnter(Collider other)
         {
             _metronome.TrueorFalse();
             _logText.text = "collision ON";
@@ -30,8 +42,6 @@ namespace NRKernal
             StartCoroutine(State2());
         }
 
-
-        
 
         IEnumerator State2()
         {

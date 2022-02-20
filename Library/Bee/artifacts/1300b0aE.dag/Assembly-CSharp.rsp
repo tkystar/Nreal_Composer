@@ -309,6 +309,9 @@
 -r:"Assets/NRSDK/Plugins/LitJSON.dll"
 -r:"Library/Bee/artifacts/1300b0aE.dag/NRSDK.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aE.dag/NRSDKEditor.ref.dll"
+-r:"Library/Bee/artifacts/1300b0aE.dag/Unity.Recorder.Base.ref.dll"
+-r:"Library/Bee/artifacts/1300b0aE.dag/Unity.Recorder.Editor.ref.dll"
+-r:"Library/Bee/artifacts/1300b0aE.dag/Unity.Recorder.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aE.dag/Unity.Rider.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aE.dag/Unity.TextMeshPro.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aE.dag/Unity.TextMeshPro.ref.dll"
@@ -327,11 +330,13 @@
 -r:"Library/Bee/artifacts/1300b0aE.dag/VSSettingsProvider.ref.dll"
 "Assets/ColliderExpansion.cs"
 "Assets/Scripts/HandManager.cs"
+"Assets/Scripts/MetronomeTest.cs"
 "Assets/Scripts/PitchManager.cs"
 "Assets/Scripts/PitchManager_single.cs"
 "Assets/Scripts/RigidbodyTest.cs"
 "Assets/Scripts/SquareDetection.cs"
 "Assets/Scripts/TapCircle.cs"
+"Assets/TriggerDebugger.cs"
 -langversion:8.0
 
 /deterministic

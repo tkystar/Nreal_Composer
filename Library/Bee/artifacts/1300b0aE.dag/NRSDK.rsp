@@ -455,6 +455,7 @@
 "Assets/NRSDK/Scripts/Input/Hands/HandStatesService/NREmulatorHandStatesService.cs"
 "Assets/NRSDK/Scripts/Input/Hands/HandStatesService/NRHandStatesService.cs"
 "Assets/NRSDK/Scripts/Input/Hands/HandStateUtility.cs"
+"Assets/NRSDK/Scripts/Input/Hands/HandVisuals/ColliderVisualizer.cs"
 "Assets/NRSDK/Scripts/Input/Hands/HandVisuals/CollisionManager.cs"
 "Assets/NRSDK/Scripts/Input/Hands/HandVisuals/NRHandCapsuleVisual.cs"
 "Assets/NRSDK/Scripts/Input/Hands/HandVisuals/NRHandSimpleVisual.cs"

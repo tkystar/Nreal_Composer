@@ -21,7 +21,6 @@ public class RigidbodyTest : MonoBehaviour
         _speed = ((this.gameObject.transform.position - _latestPos) / Time.deltaTime).magnitude;
         _latestPos = this.gameObject.transform.position;
 
-        Debug.Log(_speed);
 
     }
 }

@@ -296,6 +296,7 @@
 "Assets/Scripts/RigidbodyTest.cs"
 "Assets/Scripts/SquareDetection.cs"
 "Assets/Scripts/TapCircle.cs"
+"Assets/TriggerDebugger.cs"
 -langversion:8.0
 
 /deterministic

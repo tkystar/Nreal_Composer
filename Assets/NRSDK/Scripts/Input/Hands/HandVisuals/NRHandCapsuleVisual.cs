@@ -83,7 +83,7 @@ namespace NRKernal
             [SerializeField]public NRHandCapsuleVisual nrHandCapsuleVisual;
             [SerializeField] public HandEffect handeffect;
             [SerializeField] private Metronome metronome;
-            [SerializeField] private CollisionManager collision;
+            
             
             
     
@@ -98,9 +98,9 @@ namespace NRKernal
                 //NOTE: 遅延による当たり判定されない気持ち悪さを解消するため,コライダーを大きく設定している。
                 //m_Collider.height *= 1.1f;
                 //m_Collider.radius *= 1.1f;
-                m_VisualGO.AddComponent<CollisionManager>();
+                
                 handSpeedTextObj = GameObject.Find("HandSpeedText");
-                m_handSpeedText = handSpeedTextObj.GetComponent<Text>();
+               // m_handSpeedText = handSpeedTextObj.GetComponent<Text>();
                 handDirectionTextObj_x = GameObject.Find("HandDirectionText_x");
                 handDirectionTextObj_y = GameObject.Find("HandDirectionText_y");
                 m_handDirectionText_x = handDirectionTextObj_x.GetComponent<Text>();
@@ -145,6 +145,9 @@ namespace NRKernal
                 {
                     GetHandSpeed_accurate();
                     //GetIndexHandDirection();
+                    //m_Collider.height *= 1.5f;
+                    //m_Collider.radius *= 1.5f;
+                    //m_VisualGO.AddComponent<CollisionManager>();
                 }
             }
 
@@ -167,7 +170,7 @@ namespace NRKernal
                         {
                             currentTime = 0f;
                             indexfingerSpeed = totalDistance_per_span / Time.deltaTime;
-                            m_handSpeedText.text = indexfingerSpeed.ToString("N2");  
+                            //m_handSpeedText.text = indexfingerSpeed.ToString("N2");  
                             totalDistance_per_span = 0f;
                         }
                     }
@@ -185,7 +188,6 @@ namespace NRKernal
                     {
                         m_handDirectionText_y.text = "Up";
                         handeffect.AppearParticle();
-                        metronome.TimingScoring();
                     }
                     _latestState_y = "Up";
                 }
@@ -245,6 +247,7 @@ namespace NRKernal
             public float jointRadius;
             public Vector3 jointPos;
             public Material jointMat;
+            public Material indexjointMat;
 
             public JointVisualInfo(HandJointID handJointID)
             {
@@ -261,6 +264,9 @@ namespace NRKernal
             private MeshRenderer m_Renderer;
             private SphereCollider m_Collider;
 
+            private Rigidbody _indexRB;
+            //[SerializeField] private CollisionManager collision;
+
             public JointVisual(GameObject rootGO, JointVisualInfo jointVisualInfo)
             {
                 this.jointVisualInfo = jointVisualInfo;
@@ -268,6 +274,8 @@ namespace NRKernal
                 m_VisualGO = GameObject.CreatePrimitive(PrimitiveType.Sphere);
                 m_VisualGO.transform.SetParent(rootGO.transform);
                 m_Collider = m_VisualGO.GetComponent<SphereCollider>();
+                m_VisualGO.AddComponent<ColliderVisualizer>();
+                //m_Collider.radius *= 5;
                 if (m_Collider)
                 {
                     m_Collider.enabled = false;
@@ -279,6 +287,17 @@ namespace NRKernal
                 }
                 m_JointScale = Vector3.zero;
                 m_VisualGO.transform.localScale = m_JointScale;
+                
+                
+                if (jointVisualInfo.handJointID == HandJointID.IndexTip)
+                {
+                    m_Renderer.material = jointVisualInfo.indexjointMat;
+                    m_Collider.radius *= 6;
+                    m_VisualGO.AddComponent<CollisionManager>();
+                    _indexRB = m_VisualGO.AddComponent<Rigidbody>();
+                    _indexRB.useGravity = false;
+                }
+                
             }
 
             public void OnUpdate()
@@ -310,6 +329,7 @@ namespace NRKernal
         public float capsuleRadius = 0.003f;
         public bool showCapsule = true;
         public Material jointMat;
+        public Material indexjointMat;
         public float jointRadius = 0.005f;
         public bool showJoint = true;
         //public GameObject handSpeedTextObj;
@@ -330,6 +350,7 @@ namespace NRKernal
         {
             var capsuleVisualInfoList = new List<CapsuleVisualInfo>()
             {
+                //指は二つの関節から定義
                 new CapsuleVisualInfo(HandJointID.Wrist, HandJointID.ThumbMetacarpal),
                 new CapsuleVisualInfo(HandJointID.Wrist, HandJointID.PinkyMetacarpal),
                 new CapsuleVisualInfo(HandJointID.ThumbMetacarpal, HandJointID.ThumbProximal),
@@ -378,6 +399,7 @@ namespace NRKernal
                 {
                     var jointVisualInfo = new JointVisualInfo(jointID);
                     jointVisualInfo.jointMat = jointMat;
+                    jointVisualInfo.indexjointMat = indexjointMat;
                     m_JointVisuals.Add(new JointVisual(gameObject, jointVisualInfo));
                 }
             }
