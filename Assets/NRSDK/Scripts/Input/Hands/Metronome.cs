@@ -32,6 +32,7 @@ public class Metronome : MonoBehaviour
     //テスト用
     public GameObject SE;
     private AudioSource test;
+    private bool _metronomeValid;
     void Start()
     {
         _evaluationNow = true;
@@ -41,13 +42,23 @@ public class Metronome : MonoBehaviour
         test = SE.GetComponent<AudioSource>();
     }
 
+    public void MetronomeStart()
+    {
+        _metronomeStartDspTime = AudioSettings.dspTime;
+        _metronomeValid = true;
+    }
+
     void FixedUpdate() 
     {
-        _nxtRng = NextRingTime();
-
-        if (_nxtRng < AudioSettings.dspTime + _buffer) _ring.PlayScheduled(_nxtRng);
+        if (_metronomeValid)
+        {
+            _nxtRng = NextRingTime();
+            
+            if (_nxtRng < AudioSettings.dspTime + _buffer) _ring.PlayScheduled(_nxtRng);
+                    
+            _evaluationStateText.text = "判定可能 : " + _evaluationNow.ToString();
+        }
         
-        _evaluationStateText.text = "判定可能 : " + _evaluationNow.ToString();
         
     }
 
