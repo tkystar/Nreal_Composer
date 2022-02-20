@@ -62,14 +62,14 @@ namespace NRKernal
             private MeshRenderer m_Renderer;
             private CapsuleCollider m_Collider;
             public float indexfingerSpeed;
-            private Text m_handSpeedText;
-            private GameObject handSpeedTextObj;
-            private Text m_handDirectionText_x;
-            private GameObject handDirectionTextObj_x;
-            private Text m_handDirectionText_y;
-            private GameObject handDirectionTextObj_y;
-            private Text m_handDifferenceText;
-            private GameObject m_handDifferenceTextObj;
+            //private Text m_handSpeedText;
+            //private GameObject handSpeedTextObj;
+            //private Text m_handDirectionText_x;
+            //private GameObject handDirectionTextObj_x;
+           // private Text m_handDirectionText_y;
+            //private GameObject handDirectionTextObj_y;
+            //private Text m_handDifferenceText;
+            //private GameObject m_handDifferenceTextObj;
             private Vector3 latestPos;
             public float measureSpeed_span = 0.5f;
             public float span_small = 0.1f;         //変数削除
@@ -99,14 +99,14 @@ namespace NRKernal
                 //m_Collider.height *= 1.1f;
                 //m_Collider.radius *= 1.1f;
                 
-                handSpeedTextObj = GameObject.Find("HandSpeedText");
+                //handSpeedTextObj = GameObject.Find("HandSpeedText");
                // m_handSpeedText = handSpeedTextObj.GetComponent<Text>();
-                handDirectionTextObj_x = GameObject.Find("HandDirectionText_x");
-                handDirectionTextObj_y = GameObject.Find("HandDirectionText_y");
-                m_handDirectionText_x = handDirectionTextObj_x.GetComponent<Text>();
-                m_handDirectionText_y = handDirectionTextObj_y.GetComponent<Text>();
+                //handDirectionTextObj_x = GameObject.Find("HandDirectionText_x");
+                //handDirectionTextObj_y = GameObject.Find("HandDirectionText_y");
+                //m_handDirectionText_x = handDirectionTextObj_x.GetComponent<Text>();
+               // m_handDirectionText_y = handDirectionTextObj_y.GetComponent<Text>();
                 handeffect = GameObject.Find("HandEffect").GetComponent<HandEffect>();
-                m_handDifferenceText = GameObject.Find("HandDifferenceText").GetComponent<Text>();
+                //m_handDifferenceText = GameObject.Find("HandDifferenceText").GetComponent<Text>();
                 metronome = GameObject.Find("SoundManager").GetComponent<Metronome>();
                 
                 if (m_Collider)
@@ -181,12 +181,12 @@ namespace NRKernal
 
             public void GetIndexHandDirection(Vector3 difference)
             {
-                m_handDifferenceText.text = difference.ToString();
+                //m_handDifferenceText.text = difference.ToString();
                 if (difference.y > 0 && Mathf.Abs(difference.y) > nrHandCapsuleVisual.noiseDifference)
                 {
                     if (_latestState_y == "Down")
                     {
-                        m_handDirectionText_y.text = "Up";
+                        //m_handDirectionText_y.text = "Up";
                         handeffect.AppearParticle();
                     }
                     _latestState_y = "Up";
@@ -195,7 +195,7 @@ namespace NRKernal
                 {
                     if (_latestState_y == "Up")
                     {
-                        m_handDirectionText_y.text = "Down";
+                        //m_handDirectionText_y.text = "Down";
                         handeffect.AppearParticle();
                     }
                     _latestState_y = "Down";

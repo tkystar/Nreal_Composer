@@ -125,12 +125,12 @@ public class Metronome : MonoBehaviour
                 _totalPoints++;
                 _pointsText.text = _totalPoints.ToString();
                 _hanteiText.text = "ナイス";
-                StartCoroutine(DeleteLog());
+                //StartCoroutine(DeleteLog());
             }
            else
            {
                _hanteiText.text = "おそい";
-               StartCoroutine(DeleteLog());
+               //StartCoroutine(DeleteLog());
            }
             
         }
