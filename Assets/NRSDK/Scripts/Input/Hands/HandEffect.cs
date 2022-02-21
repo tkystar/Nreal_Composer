@@ -104,24 +104,8 @@ namespace NRKernal
 
         public void AppearParticle()
         {
-            /*
-            for (int i = 0; i < hamonarray.Length; i++)
-            {
-                if (hamonarray[i] == null)
-                {
-                    Debug.Log("AppearParticle() is called");
-                    hamonarray[i] = 
-                        Instantiate(hamon, new Vector3(nrCameraRigPos.x, -1.5f, nrCameraRigPos.z),Quaternion.Euler(90, 0, 0));
-                    hamonintervalarray[i] = currentTime;
-                    hamonarray[i].GetComponent<SpriteRenderer>().color = EffectColorSellect();
-                }
-            }
-            */
             _indexparticleRenderer.material.color = EffectColorSellect();
             _indexTrailRenderer.startColor = EffectColorSellect();
-            //波紋
-            
-            
             hamonnow = true;
             
         }

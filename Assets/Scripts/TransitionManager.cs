@@ -17,6 +17,8 @@ public class TransitionManager : MonoBehaviour
     {
         startGameButton.onClick.AddListener(OnClicked);
         _metronome = soundManager.GetComponent<Metronome>();
+        //GameStart();
+        
     }
 
     // Update is called once per frame
@@ -26,7 +28,7 @@ public class TransitionManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space)) GameStart();
         
         if(NRInput.IsTouching()) GameStart();
-        
+        if(NRInput.GetButton(ControllerButton.TRIGGER)) GameStart();
     }
 
     private void OnClicked()

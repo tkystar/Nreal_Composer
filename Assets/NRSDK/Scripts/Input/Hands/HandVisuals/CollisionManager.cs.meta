@@ -3,7 +3,11 @@ guid: 22cf6736963034371954e1613dc25d3b
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _metronome: {instanceID: 0}
+  - soundManager: {instanceID: 0}
+  - sushi: {fileID: 5679363381332261213, guid: d6adf665499c6430780818fa224814f8, type: 3}
+  - explosionParticle: {fileID: 136674, guid: 8d3a7fbc62f810c43b8c42fdb2978ef4, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

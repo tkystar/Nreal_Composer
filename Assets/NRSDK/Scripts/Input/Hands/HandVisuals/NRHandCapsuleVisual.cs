@@ -111,7 +111,7 @@ namespace NRKernal
                 
                 if (m_Collider)
                 {
-                    //m_Collider.enabled = false;
+                    m_Collider.enabled = false;
                     
                     
                 }
@@ -265,15 +265,16 @@ namespace NRKernal
             private SphereCollider m_Collider;
 
             private Rigidbody _indexRB;
-            //[SerializeField] private CollisionManager collision;
-
+            [SerializeField] private CollisionManager collision;
+            private NRHandCapsuleVisual nrHandCapsuleVisual;
             public JointVisual(GameObject rootGO, JointVisualInfo jointVisualInfo)
             {
                 this.jointVisualInfo = jointVisualInfo;
-
+                nrHandCapsuleVisual = this.nrHandCapsuleVisual;
                 m_VisualGO = GameObject.CreatePrimitive(PrimitiveType.Sphere);
                 m_VisualGO.transform.SetParent(rootGO.transform);
                 m_Collider = m_VisualGO.GetComponent<SphereCollider>();
+                m_Collider.isTrigger = true;
                 m_VisualGO.AddComponent<ColliderVisualizer>();
                 //m_Collider.radius *= 5;
                 if (m_Collider)
@@ -289,13 +290,23 @@ namespace NRKernal
                 m_VisualGO.transform.localScale = m_JointScale;
                 
                 
-                if (jointVisualInfo.handJointID == HandJointID.IndexTip)
+                if ((jointVisualInfo.handJointID == HandJointID.IndexTip))
                 {
+                    m_Collider.enabled = true;
                     m_Renderer.material = jointVisualInfo.indexjointMat;
                     m_Collider.radius *= 6;
                     m_VisualGO.AddComponent<CollisionManager>();
                     _indexRB = m_VisualGO.AddComponent<Rigidbody>();
                     _indexRB.useGravity = false;
+                    Debug.Log("Yes");
+                }
+
+                if ((jointVisualInfo.handJointID == HandJointID.MiddleProximal))
+                {
+                    m_Collider.enabled = true;
+                    m_Renderer.material = jointVisualInfo.indexjointMat;
+                    m_Collider.radius *= 4;
+                    Debug.Log("No");
                 }
                 
             }
@@ -333,7 +344,7 @@ namespace NRKernal
         public float jointRadius = 0.005f;
         public bool showJoint = true;
         //public GameObject handSpeedTextObj;
-
+       // [SerializeField] private CollisionManager _collisionManager;
         private List<CapsuleVisual> m_CapsuleVisuals;
         private List<JointVisual> m_JointVisuals;
 
