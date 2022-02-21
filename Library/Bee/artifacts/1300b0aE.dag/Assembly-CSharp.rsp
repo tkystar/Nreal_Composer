@@ -335,6 +335,7 @@
 "Assets/Particlecollection_Free samples/Plugins/Effect/Script/EffectShaderPropertyStr.cs"
 "Assets/Particlecollection_Free samples/Plugins/Effect/Script/RenderEffect.cs"
 "Assets/Particlecollection_Free samples/Plugins/Effect/Script/TransformExtension.cs"
+"Assets/RigidBodyTest.cs"
 "Assets/Scripts/HandManager.cs"
 "Assets/Scripts/MetronomeTest.cs"
 "Assets/Scripts/PitchManager.cs"

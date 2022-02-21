@@ -54,8 +54,9 @@ namespace NRKernal
         {
             
             _sushi = Instantiate(sushiPrefab, _appearPos, Quaternion.Euler(0, 0, 0));
-            Destroy(_sushi, 1);
-            //StartCoroutine(DeleteSushi());
+            Rigidbody sushiRB = _sushi.GetComponent<Rigidbody>();
+            sushiRB.AddForce(Vector3.up * 50);
+            Destroy(_sushi, 2);
             Instantiate(explosionParticle, _appearPos, Quaternion.Euler(0, 0, 0));
         }
         
