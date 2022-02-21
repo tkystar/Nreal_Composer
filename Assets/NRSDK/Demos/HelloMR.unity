@@ -5115,9 +5115,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startGameButton: {fileID: 1976007775}
-  mainSound: {fileID: 0}
+  mainSound: {fileID: 1612478166}
   soundManager: {fileID: 1612478163}
-  _metronome: {fileID: 0}
+  _metronome: {fileID: 1612478164}
 --- !u!4 &252328893
 Transform:
   m_ObjectHideFlags: 0
@@ -12235,7 +12235,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2937872b072894dbe9718bafec7e150e, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.33
   m_Pitch: 1
   Loop: 1
