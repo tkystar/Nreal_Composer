@@ -1,8 +1,8 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
-    - NRKernal.PitchManager_single
     - TapCircle
+    - TransitionManager
     NRSDK.dll:
     - Metronome
     - NRKernal.CanvasRaycastTarget
@@ -118,121 +118,121 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1516}
+      Script: {instanceID: 1556}
     - Class: 114
-      Script: {instanceID: 1518}
+      Script: {instanceID: 1558}
     - Class: 114
-      Script: {instanceID: 1520}
+      Script: {instanceID: 1560}
     - Class: 114
-      Script: {instanceID: 1522}
+      Script: {instanceID: 1562}
     - Class: 114
-      Script: {instanceID: 1572}
+      Script: {instanceID: 1616}
     - Class: 114
-      Script: {instanceID: 1578}
+      Script: {instanceID: 1622}
     - Class: 114
-      Script: {instanceID: 1748}
+      Script: {instanceID: 1804}
     - Class: 114
-      Script: {instanceID: 1818}
+      Script: {instanceID: 1894}
     - Class: 114
-      Script: {instanceID: 1836}
+      Script: {instanceID: 2240}
     - Class: 114
-      Script: {instanceID: 2168}
+      Script: {instanceID: 2316}
     - Class: 114
-      Script: {instanceID: 2242}
+      Script: {instanceID: 2340}
     - Class: 114
-      Script: {instanceID: 2264}
+      Script: {instanceID: 2352}
     - Class: 114
-      Script: {instanceID: 2276}
+      Script: {instanceID: 2504}
     - Class: 114
-      Script: {instanceID: 2422}
+      Script: {instanceID: 2556}
     - Class: 114
-      Script: {instanceID: 2472}
+      Script: {instanceID: 2592}
     - Class: 114
-      Script: {instanceID: 2506}
+      Script: {instanceID: 2604}
     - Class: 114
-      Script: {instanceID: 2518}
+      Script: {instanceID: 2678}
     - Class: 114
-      Script: {instanceID: 2590}
+      Script: {instanceID: 2776}
     - Class: 114
-      Script: {instanceID: 2906}
+      Script: {instanceID: 3006}
     - Class: 114
-      Script: {instanceID: 2950}
+      Script: {instanceID: 3050}
     - Class: 114
-      Script: {instanceID: 2958}
+      Script: {instanceID: 3058}
     - Class: 114
-      Script: {instanceID: 2982}
+      Script: {instanceID: 3082}
     - Class: 114
-      Script: {instanceID: 3012}
+      Script: {instanceID: 3112}
     - Class: 114
-      Script: {instanceID: 3148}
+      Script: {instanceID: 3252}
     - Class: 114
-      Script: {instanceID: 3288}
+      Script: {instanceID: 3396}
     - Class: 114
-      Script: {instanceID: 3304}
+      Script: {instanceID: 3412}
     - Class: 114
-      Script: {instanceID: 3462}
+      Script: {instanceID: 3576}
     - Class: 114
-      Script: {instanceID: 3472}
+      Script: {instanceID: 3588}
     - Class: 114
-      Script: {instanceID: 3486}
+      Script: {instanceID: 3602}
     - Class: 114
-      Script: {instanceID: 3526}
+      Script: {instanceID: 3644}
     - Class: 114
-      Script: {instanceID: 3874}
+      Script: {instanceID: 4010}
     - Class: 114
-      Script: {instanceID: 3958}
+      Script: {instanceID: 4100}
     - Class: 114
-      Script: {instanceID: 4024}
+      Script: {instanceID: 4172}
     - Class: 114
-      Script: {instanceID: 4170}
+      Script: {instanceID: 4326}
     - Class: 114
-      Script: {instanceID: 4218}
+      Script: {instanceID: 4378}
     - Class: 114
-      Script: {instanceID: 4300}
+      Script: {instanceID: 4464}
     - Class: 114
-      Script: {instanceID: 4366}
+      Script: {instanceID: 4534}
     - Class: 114
-      Script: {instanceID: 4382}
+      Script: {instanceID: 4550}
     - Class: 114
-      Script: {instanceID: 4520}
-    - Class: 114
-      Script: {instanceID: 4588}
+      Script: {instanceID: 4692}
     - Class: 114
       Script: {instanceID: 4766}
     - Class: 114
-      Script: {instanceID: 4786}
+      Script: {instanceID: 4946}
     - Class: 114
-      Script: {instanceID: 4878}
+      Script: {instanceID: 4966}
     - Class: 114
-      Script: {instanceID: 5058}
+      Script: {instanceID: 5062}
     - Class: 114
-      Script: {instanceID: 5128}
+      Script: {instanceID: 5252}
     - Class: 114
-      Script: {instanceID: 5356}
+      Script: {instanceID: 5326}
     - Class: 114
-      Script: {instanceID: 5518}
+      Script: {instanceID: 5564}
     - Class: 114
-      Script: {instanceID: 5680}
+      Script: {instanceID: 5746}
     - Class: 114
-      Script: {instanceID: 5760}
+      Script: {instanceID: 5914}
     - Class: 114
-      Script: {instanceID: 6042}
+      Script: {instanceID: 6004}
     - Class: 114
-      Script: {instanceID: 6694}
+      Script: {instanceID: 6304}
     - Class: 114
-      Script: {instanceID: 7024}
+      Script: {instanceID: 6992}
     - Class: 114
-      Script: {instanceID: 7112}
+      Script: {instanceID: 7346}
     - Class: 114
-      Script: {instanceID: 7236}
+      Script: {instanceID: 7436}
     - Class: 114
-      Script: {instanceID: 7310}
+      Script: {instanceID: 7568}
     - Class: 114
-      Script: {instanceID: 7404}
+      Script: {instanceID: 7650}
     - Class: 114
-      Script: {instanceID: 7456}
+      Script: {instanceID: 7748}
     - Class: 114
-      Script: {instanceID: 7470}
+      Script: {instanceID: 7802}
+    - Class: 114
+      Script: {instanceID: 7818}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -256,12 +256,6 @@ ScriptsOnlyBuild:
     - Class: 223
       Script: {instanceID: 0}
     - Class: 224
-      Script: {instanceID: 0}
-    - Class: 241
-      Script: {instanceID: 0}
-    - Class: 243
-      Script: {instanceID: 0}
-    - Class: 245
       Script: {instanceID: 0}
     - Class: 258
       Script: {instanceID: 0}
@@ -310,6 +304,12 @@ ScriptsOnlyBuild:
     assemblyName: NRSDK.dll
     namespaceName: NRKernal.NRExamples
     className: PolygonPlaneVisualizer
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: NRSDK.dll
+    namespaceName: 
+    className: ColliderVisualizer
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -396,7 +396,7 @@ ScriptsOnlyBuild:
     className: HiddenDebugPanel
   - hash:
       serializedVersion: 2
-      Hash: 6163ad9b41e206fa043e9daec6d493ba
+      Hash: 8bcd03ad283f1b32bb662b0f1f183d73
     assemblyName: NRSDK.dll
     namespaceName: NRKernal
     className: CollisionManager
@@ -528,6 +528,12 @@ ScriptsOnlyBuild:
     className: HandManager
   - hash:
       serializedVersion: 2
+      Hash: c5ccd023a93f77de590c7dd45f0e3169
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RenderEffect
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -588,6 +594,12 @@ ScriptsOnlyBuild:
     className: CoroutineRunner
   - hash:
       serializedVersion: 2
+      Hash: ad1c1795db28bf72b671c584c3822168
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TransitionManager
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestRunner.Utils
@@ -636,6 +648,12 @@ ScriptsOnlyBuild:
     className: TestResultRendererCallback
   - hash:
       serializedVersion: 2
+      Hash: 49101319b21043357cb80c5aba043e1d
+    assemblyName: Unity.Recorder.dll
+    namespaceName: UnityEngine.Recorder
+    className: RecorderBindings
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
@@ -648,7 +666,7 @@ ScriptsOnlyBuild:
     className: NRInputModule
   - hash:
       serializedVersion: 2
-      Hash: c1fc2b06e0cacd885d6f52d180affc38
+      Hash: 0e79854e78e15807bbd5f4d56320778d
     assemblyName: NRSDK.dll
     namespaceName: 
     className: Metronome
@@ -709,15 +727,15 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: NRSDK.dll
-    namespaceName: NRKernal
-    className: NRKernalUpdater
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnMouseDownMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: NRSDK.dll
+    namespaceName: NRKernal
+    className: NRKernalUpdater
   - hash:
       serializedVersion: 2
       Hash: f5b625c745f44bd83c5ca7a127e8a9e1
@@ -1032,6 +1050,12 @@ ScriptsOnlyBuild:
     className: ExamplesHub
   - hash:
       serializedVersion: 2
+      Hash: 056d0d7bd5b8416b0b5cc822ef416ead
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MetronomeTest
+  - hash:
+      serializedVersion: 2
       Hash: f5474bd8fede4d176fe5560a5a765c4c
     assemblyName: NRSDK.dll
     namespaceName: NRKernal
@@ -1266,6 +1290,18 @@ ScriptsOnlyBuild:
     className: UnityOnDeselectMessageListener
   - hash:
       serializedVersion: 2
+      Hash: 9313b7e93b483d0d52afa81622439470
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CameraTarget
+  - hash:
+      serializedVersion: 2
+      Hash: ceef08fdc7e16e7e063e4e6c201eb857
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EffectController
+  - hash:
+      serializedVersion: 2
       Hash: e684daaf4c71e7a7098923f0791ab771
     assemblyName: NRSDK.dll
     namespaceName: NRKernal
@@ -1314,6 +1350,12 @@ ScriptsOnlyBuild:
     className: NRGrabbableObject
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TriggerDebugger
+  - hash:
+      serializedVersion: 2
       Hash: 383d822deef3760767c756870826f185
     assemblyName: NRSDK.dll
     namespaceName: NRKernal.NRExamples
@@ -1354,6 +1396,12 @@ ScriptsOnlyBuild:
     assemblyName: NRSDK.dll
     namespaceName: NRKernal
     className: ControllerTracker
+  - hash:
+      serializedVersion: 2
+      Hash: f68f169ba2082b9c7c64dc942218bc9f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EffectDemo
   - hash:
       serializedVersion: 2
       Hash: e72e0fb79f1a998e1769ea68d7c97982
@@ -1744,18 +1792,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: NRSDK.dll
-    namespaceName: 
-    className: ColliderVisualizer
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: TriggerDebugger
   platform: 13
   scenePathNames:
   - Assets/NRSDK/Demos/HelloMR.unity

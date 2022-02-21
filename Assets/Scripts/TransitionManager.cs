@@ -17,6 +17,8 @@ public class TransitionManager : MonoBehaviour
     {
         startGameButton.onClick.AddListener(OnClicked);
         _metronome = soundManager.GetComponent<Metronome>();
+        GameStart();
+        
     }
 
     // Update is called once per frame
