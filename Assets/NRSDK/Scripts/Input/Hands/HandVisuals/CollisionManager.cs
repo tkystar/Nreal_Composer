@@ -30,23 +30,7 @@ namespace NRKernal
             _numText = numTextObj.GetComponent<Text>();
         }
 
-        private void Start()
-        {
-            StartCoroutine(EffectTest());
-        }
-
-        /*
-        private void OnCollisionEnter(Collision collision)
-        {
-            
-            _metronome.TrueorFalse();
-            _logText.text = "collision ON";
-            //NOTE 文字列はなるべく使わない
-            StartCoroutine(State2());
-            
-        }
-        */
-
+        
         private void OnTriggerEnter(Collider other)
         {
             
@@ -56,7 +40,7 @@ namespace NRKernal
             _logText.text = "当たった";
 
             Vector3 _hitPos = other.ClosestPointOnBounds(this.transform.position);
-            //CollisionEffect(_hitPos);
+            CollisionEffect(_hitPos);
             //NOTE 文字列はなるべく使わない
             //StartCoroutine(State2());
         }
@@ -70,22 +54,11 @@ namespace NRKernal
         {
             
             _sushi = Instantiate(sushiPrefab, _appearPos, Quaternion.Euler(0, 0, 0));
-            StartCoroutine(DeleteSushi());
-            //Instantiate(explosionParticle, _appearPos, Quaternion.Euler(0, 0, 0));
+            Destroy(_sushi, 1);
+            //StartCoroutine(DeleteSushi());
+            Instantiate(explosionParticle, _appearPos, Quaternion.Euler(0, 0, 0));
         }
-
-        IEnumerator State2()
-        {
-            yield return new WaitForSeconds(0.1f);
-            _logText.text = "collision OFF";
-        }
-
-        IEnumerator EffectTest()
-        {
-            yield return new WaitForSeconds(3);
-            //CollisionEffect(Vector3.zero);
-        }
-
+        
         IEnumerator DeleteSushi()
         {
             yield return new WaitForSeconds(2);
