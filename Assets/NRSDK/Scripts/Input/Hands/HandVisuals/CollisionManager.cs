@@ -19,6 +19,7 @@ namespace NRKernal
         public GameObject numTextObj;
         private Text _numText;
         private int num;
+        private bool Collidable = true;
         private void Awake()
         {
             //NOTE:editor上でアタッチできないため、文字列を使用
@@ -28,21 +29,21 @@ namespace NRKernal
             explosionParticle = GameObject.Find("Hit_04");
             numTextObj = GameObject.Find("NumText");
             _numText = numTextObj.GetComponent<Text>();
+            Collidable = true;
         }
 
         
         private void OnTriggerEnter(Collider other)
         {
-            
+            //if (!Collidable) return;
             num++;
             _numText.text = num.ToString();
             _metronome.TrueorFalse();
             _logText.text = "当たった";
-
             Vector3 _hitPos = other.ClosestPointOnBounds(this.transform.position);
             CollisionEffect(_hitPos);
             //NOTE 文字列はなるべく使わない
-            //StartCoroutine(State2());
+            //StartCoroutine(PauseCollision());
         }
 
         private void OnTriggerExit(Collider other)
@@ -55,15 +56,16 @@ namespace NRKernal
             
             _sushi = Instantiate(sushiPrefab, _appearPos, Quaternion.Euler(0, 0, 0));
             Rigidbody sushiRB = _sushi.GetComponent<Rigidbody>();
-            sushiRB.AddForce(Vector3.up * 50);
+            sushiRB.AddForce(Vector3.up * 30);
             Destroy(_sushi, 2);
             Instantiate(explosionParticle, _appearPos, Quaternion.Euler(0, 0, 0));
         }
         
-        IEnumerator DeleteSushi()
+        IEnumerator PauseCollision()
         {
-            yield return new WaitForSeconds(2);
-            Destroy(_sushi);
+            Collidable = false;
+            yield return new WaitForSeconds(0.3f);
+            Collidable = true;
         }
         
         

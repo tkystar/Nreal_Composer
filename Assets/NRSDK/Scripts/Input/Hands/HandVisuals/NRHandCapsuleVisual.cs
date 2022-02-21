@@ -305,7 +305,7 @@ namespace NRKernal
                 {
                     m_Collider.enabled = true;
                     m_Renderer.material = jointVisualInfo.indexjointMat;
-                    m_Collider.radius *= 3;
+                    m_Collider.radius *= 4;
                     Debug.Log("No");
                 }
                 
