@@ -329,6 +329,7 @@
 -r:"Library/Bee/artifacts/1300b0aE.dag/UnityEngine.UI.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aE.dag/VSSettingsProvider.ref.dll"
 "Assets/ColliderExpansion.cs"
+"Assets/ExplanationManager.cs"
 "Assets/Particlecollection_Free samples/Plugins/Effect/Script/CameraTarget.cs"
 "Assets/Particlecollection_Free samples/Plugins/Effect/Script/EffectController.cs"
 "Assets/Particlecollection_Free samples/Plugins/Effect/Script/EffectDemo.cs"
@@ -344,6 +345,7 @@
 "Assets/Scripts/SquareDetection.cs"
 "Assets/Scripts/TapCircle.cs"
 "Assets/Scripts/TransitionManager.cs"
+"Assets/StartSceneManager.cs"
 "Assets/TriggerDebugger.cs"
 -langversion:8.0
 
