@@ -41,6 +41,10 @@ namespace NRKernal.NRExamples
             {
                 m_ButtonsRoot.gameObject.SetActive(!m_ButtonsRoot.gameObject.activeInHierarchy);
             }
+            else if (key.Equals("ReturnBtn"))
+            {
+                SceneManager.LoadScene("StartScene");
+            }
             else if (CanSceneLoaded(key))
             {
                 SceneManager.LoadScene(key);
