@@ -248,7 +248,7 @@ namespace NRKernal
             public Vector3 jointPos;
             public Material jointMat;
             public Material indexjointMat;
-
+            public HandEnum m_HandEnum;
             public JointVisualInfo(HandJointID handJointID)
             {
                 this.handJointID = handJointID;
@@ -263,7 +263,7 @@ namespace NRKernal
             private Vector3 m_JointScale;
             private MeshRenderer m_Renderer;
             private SphereCollider m_Collider;
-
+            
             private Rigidbody _indexRB;
             [SerializeField] private CollisionManager collision;
             private NRHandCapsuleVisual nrHandCapsuleVisual;
@@ -288,9 +288,13 @@ namespace NRKernal
                 }
                 m_JointScale = Vector3.zero;
                 m_VisualGO.transform.localScale = m_JointScale;
+
+                bool isIndexTip = (jointVisualInfo.handJointID == HandJointID.IndexTip);
+                bool isMiddleProximal = (jointVisualInfo.handJointID == HandJointID.MiddleProximal);
+                bool isLeftHand = (jointVisualInfo.m_HandEnum == HandEnum.LeftHand);
+                bool isRightHand = (jointVisualInfo.m_HandEnum == HandEnum.RightHand);
                 
-                
-                if ((jointVisualInfo.handJointID == HandJointID.IndexTip))
+                if (isIndexTip && isLeftHand)
                 {
                     m_Collider.enabled = true;
                     m_Renderer.material = jointVisualInfo.indexjointMat;
@@ -301,7 +305,7 @@ namespace NRKernal
                     Debug.Log("Yes");
                 }
 
-                if ((jointVisualInfo.handJointID == HandJointID.MiddleProximal))
+                if (isMiddleProximal && isRightHand)
                 {
                     m_Collider.enabled = true;
                     m_Renderer.material = jointVisualInfo.indexjointMat;
@@ -411,6 +415,7 @@ namespace NRKernal
                     var jointVisualInfo = new JointVisualInfo(jointID);
                     jointVisualInfo.jointMat = jointMat;
                     jointVisualInfo.indexjointMat = indexjointMat;
+                    jointVisualInfo.m_HandEnum = handEnum;
                     m_JointVisuals.Add(new JointVisual(gameObject, jointVisualInfo));
                 }
             }
