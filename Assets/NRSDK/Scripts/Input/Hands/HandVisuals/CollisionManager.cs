@@ -24,11 +24,11 @@ namespace NRKernal
         {
             //NOTE:editor上でアタッチできないため、文字列を使用
             _metronome = GameObject.Find("SoundManager").GetComponent<Metronome>();
-            _logText = GameObject.Find("CollisionDetection").GetComponent<Text>();
+            //_logText = GameObject.Find("CollisionDetection").GetComponent<Text>();
             sushiPrefab = GameObject.Find("Sushi");
             explosionParticle = GameObject.Find("Hit_04");
-            numTextObj = GameObject.Find("NumText");
-            _numText = numTextObj.GetComponent<Text>();
+            //numTextObj = GameObject.Find("NumText");
+            //_numText = numTextObj.GetComponent<Text>();
             Collidable = true;
         }
 
@@ -37,9 +37,9 @@ namespace NRKernal
         {
             //if (!Collidable) return;
             num++;
-            _numText.text = num.ToString();
+            //_numText.text = num.ToString();
             _metronome.TrueorFalse();
-            _logText.text = "当たった";
+            //_logText.text = "当たった";
             Vector3 _hitPos = other.ClosestPointOnBounds(this.transform.position);
             CollisionEffect(_hitPos);
             //NOTE 文字列はなるべく使わない
@@ -48,7 +48,7 @@ namespace NRKernal
 
         private void OnTriggerExit(Collider other)
         {
-            _logText.text = "離れた";
+            //_logText.text = "離れた";
         }
 
         private void CollisionEffect(Vector3 _appearPos)
