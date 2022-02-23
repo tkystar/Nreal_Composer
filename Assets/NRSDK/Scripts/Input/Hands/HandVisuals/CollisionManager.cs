@@ -46,6 +46,16 @@ namespace NRKernal
             //StartCoroutine(PauseCollision());
         }
 
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                num++;
+                _metronome.TrueorFalse();
+
+            }
+        }
+
         private void OnTriggerExit(Collider other)
         {
             //_logText.text = "離れた";
