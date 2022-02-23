@@ -10,7 +10,7 @@ public class Metronome : MonoBehaviour
 
     private double _bpm = 39d;      //一分間あたりの打つ回数
     private double _metronomeStartDspTime;
-    private double _buffer = 5 / 60d;
+    private double _buffer = 3/ 60d;
     private double _shootDspTime;
     [SerializeField] private float _succesDifferenceTime;
     [SerializeField] private float _evaluationDifferenceTime;
@@ -44,8 +44,7 @@ public class Metronome : MonoBehaviour
 
     public void MetronomeStart()
     {
-        _metronomeStartDspTime = AudioSettings.dspTime;
-        _metronomeValid = true;
+        StartCoroutine(StartBeat());
     }
 
     void FixedUpdate() 
@@ -91,6 +90,7 @@ public class Metronome : MonoBehaviour
     IEnumerator StartBeat()
     {
         yield return new WaitForSeconds(_startTiming);
+        _metronomeValid = true;
         _metronomeStartDspTime = AudioSettings.dspTime;
     }
     
