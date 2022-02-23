@@ -7,12 +7,18 @@ using UnityEngine.SceneManagement;
 
 public class TransitionManager : MonoBehaviour
 {
-    public Button startGameButton;
-    public Button finishGameButton;
     public AudioSource mainSound;
     public GameObject soundManager;
+    public AudioClip resultBGM;
+    public AudioClip playBGM;
     public Button[] buttons;
+    public GameObject scoreUI;
+    public GameObject resultTextObj;
+    public GameObject returnBtn;
+    private Text _tesultText;
     [SerializeField] private Metronome _metronome;
+    
+    private bool isGaming;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +29,9 @@ public class TransitionManager : MonoBehaviour
             item.onClick.AddListener(() => OnClicked(name));
         }
         _metronome = soundManager.GetComponent<Metronome>();
+        mainSound = soundManager.GetComponent<AudioSource>();
+        scoreUI.SetActive(false);
+        _tesultText = resultTextObj.GetComponent<Text>();
         //GameStart();
         StartCoroutine(StartDelay());
     }
@@ -34,7 +43,11 @@ public class TransitionManager : MonoBehaviour
         //if(Input.GetKeyDown(KeyCode.Space)) GameStart();
         //if(NRInput.IsTouching()) GameStart();
         //if(NRInput.GetButton(ControllerButton.TRIGGER)) GameStart();
-        
+
+        if (!mainSound.isPlaying && isGaming)
+        {
+            GameFinish();
+        }
     }
 
     private void OnClicked(string key)
@@ -53,6 +66,8 @@ public class TransitionManager : MonoBehaviour
 
     private void GameStart()
     {
+        isGaming = true;
+        mainSound.clip = playBGM;
         mainSound.Play();
         _metronome.MetronomeStart();
     }
@@ -61,5 +76,30 @@ public class TransitionManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         GameStart();
+    }
+
+    private void GameFinish()
+    {
+        isGaming = false;
+        _metronome.enabled = false;
+        StartCoroutine(DisplayResult());
+        
+    }
+    
+    IEnumerator DisplayResult()
+    {
+        yield return new WaitForSeconds(2);
+        mainSound.clip = resultBGM;
+        mainSound.Play();
+        yield return new WaitForSeconds(3);
+        scoreUI.SetActive(true);
+        _tesultText.text = "";
+        returnBtn.SetActive(false);
+        yield return new WaitForSeconds(2);
+        var score = _metronome.totalPoints;
+        _tesultText.text = score.ToString();
+        yield return new WaitForSeconds(3.5f);
+        returnBtn.SetActive(true);
+
     }
 }

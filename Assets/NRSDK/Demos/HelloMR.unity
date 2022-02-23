@@ -5700,9 +5700,13 @@ MonoBehaviour:
   finishGameButton: {fileID: 0}
   mainSound: {fileID: 1612478166}
   soundManager: {fileID: 1612478163}
+  resultBGM: {fileID: 0}
+  playBGM: {fileID: 0}
   buttons:
   - {fileID: 1976007775}
   - {fileID: 1118860121}
+  scoreUI: {fileID: 693360446}
+  resultTextObj: {fileID: 2072517155}
   _metronome: {fileID: 1612478164}
 --- !u!4 &252328893
 Transform:
@@ -6470,6 +6474,11 @@ CanvasRenderer:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 224853266236432714, guid: 0f966eaff65774345a8662b034a7c0e2, type: 3}
   m_PrefabInstance: {fileID: 1512658767}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &693360446 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1040522892672146, guid: 0f966eaff65774345a8662b034a7c0e2, type: 3}
+  m_PrefabInstance: {fileID: 66181922}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &736572256
 PrefabInstance:
@@ -13692,7 +13701,7 @@ MonoBehaviour:
   _startTiming: 0.16001
   latestState: 
   pointsTextObj: {fileID: 1995182183}
-  _totalPoints: 0
+  totalPoints: 0
   hanteiTextObj: {fileID: 296185978}
   evaluationStateTextObj: {fileID: 1101840}
   SE: {fileID: 1213694209}
@@ -13706,11 +13715,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2937872b072894dbe9718bafec7e150e, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c5ab4e89d44e541779ff1c476482aced, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.33
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
