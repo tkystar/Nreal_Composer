@@ -51,7 +51,7 @@ namespace NRKernal
         {
             if (Input.GetKeyDown(KeyCode.A))
             {
-                num += 1000;
+                num ++;
                 _metronome.TrueorFalse();
                 CollisionEffect(Vector3.one);
 

@@ -92,7 +92,6 @@ namespace NRKernal
             startUI.SetActive(false);
             inGameUI.SetActive(true);
             scoreUI.SetActive(false);
-            _collisionManager.num = 0;
             GameStart();
 
         }
@@ -100,8 +99,11 @@ namespace NRKernal
         private void GameStart()
         {
             isGaming = true;
+            _metronome.totalPoints = 0;
+            _metronome._pointsText.text = "";
             mainSound.clip = playBGM;
             mainSound.Play();
+            _metronome.enabled = true;
             _metronome.MetronomeStart();
             inGameUI.SetActive(true);
         }
@@ -133,6 +135,7 @@ namespace NRKernal
 
         IEnumerator DisplayResult()
         {
+            yield return new WaitForSeconds(1);
             inGameUI.SetActive(false);
             yield return new WaitForSeconds(2);
             mainSound.clip = resultBGM;

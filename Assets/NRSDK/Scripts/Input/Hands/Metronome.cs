@@ -17,7 +17,7 @@ public class Metronome : MonoBehaviour
     [SerializeField] private float _startTiming;
     public String latestState;
     public GameObject pointsTextObj;
-    private Text _pointsText;
+    public Text _pointsText;
     public int totalPoints;
     private bool _evaluationNow;
     private double _nxtRng;
@@ -114,7 +114,7 @@ public class Metronome : MonoBehaviour
             //判定処理
             if(differenceTime < _succesDifferenceTime)  
             {
-                totalPoints ++;
+                totalPoints += 1000;
                 _pointsText.text = totalPoints.ToString();
                 _hanteiText.text = "ナイス";
                 StartCoroutine(DeleteLog());
@@ -133,7 +133,7 @@ public class Metronome : MonoBehaviour
             var differenceTime = _shootDspTime - _pastRng;
             if (differenceTime < _succesDifferenceTime)  //成功
             {
-                totalPoints ++;
+                totalPoints += 1000;
                 _pointsText.text = totalPoints.ToString();
                 _hanteiText.text = "ナイス";
                 //StartCoroutine(DeleteLog());
