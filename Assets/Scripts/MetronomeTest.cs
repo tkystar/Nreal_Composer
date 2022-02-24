@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class MetronomeTest : MonoBehaviour
 {
     [SerializeField] AudioSource _ring;
-
     double _bpm = 39d;
     double _metronomeStartDspTime;
     double _buffer = 5 / 60d;

@@ -17,6 +17,7 @@ namespace NRKernal
         [SerializeField] private float _succesDifferenceTime;
         [SerializeField] private float _evaluationDifferenceTime;
         [SerializeField] private float _startTiming;
+        [SerializeField] private SushiDestroy _sushiDestroy;
         public String latestState;
         public GameObject pointsTextObj;
         public Text _pointsText;
@@ -112,6 +113,8 @@ namespace NRKernal
             Debug.Log("trueorfalse");
             if (!_evaluationNow) return;
 
+            _sushiDestroy.isBeat = true;
+            Debug.Log("_sushiDestroy.isBeat" +_sushiDestroy.isBeat);
             _shootDspTime = AudioSettings.dspTime;
             nxtRng = NextRingTime();
             _pastRng = PastRingTime();
