@@ -20,6 +20,9 @@ namespace NRKernal
         public GameObject resultTextObj;
         public GameObject inGameUI;
         public GameObject startUI;
+        public GameObject explainUI;
+        public GameObject explainUI_part1;
+        public GameObject explainUI_part2;
         public GameObject returnBtn;
         public GameObject replayBtn;
         private Text _tesultText;
@@ -28,6 +31,7 @@ namespace NRKernal
         [SerializeField] private CollisionManager _collisionManager;
         public ParticleSystem circleParticle;
         private bool isGaming;
+        
 
         // Start is called before the first frame update
         void Start()
@@ -46,6 +50,7 @@ namespace NRKernal
             inGameUI.SetActive(false);
             startUI.SetActive(true);
             target.SetActive(false);
+            explainUI.SetActive(false);
             _tesultText = resultTextObj.GetComponent<Text>();
             //GameStart();
             StartCoroutine(StartDelay());
@@ -86,7 +91,20 @@ namespace NRKernal
             {
                 PlayMode();
             }
+            else if (key == "ExplainModeBtn")
+            {
+                ExplainMode1();
 
+            }
+            else if (key == "NextBtn")
+            {
+                ExplainMode2();
+            }
+            else if (key == "explainFinBtn")
+            {
+                GoHome();
+
+            }
         }
 
         private void PlayMode()
@@ -96,6 +114,18 @@ namespace NRKernal
             scoreUI.SetActive(false);
             GameStart();
 
+        }
+
+        private void　ExplainMode1()
+        {
+            explainUI.SetActive(true);
+            explainUI_part1.SetActive(true);
+            explainUI_part2.SetActive(false);
+        }
+        private void　ExplainMode2()
+        {
+            explainUI_part1.SetActive(false);
+            explainUI_part2.SetActive(true);
         }
 
         private void GameStart()
