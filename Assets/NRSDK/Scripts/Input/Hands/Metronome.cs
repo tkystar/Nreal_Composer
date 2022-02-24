@@ -17,6 +17,7 @@ namespace NRKernal
         [SerializeField] private float _succesDifferenceTime;
         [SerializeField] private float _evaluationDifferenceTime;
         [SerializeField] private float _startTiming;
+        [SerializeField] private SushiDestroy _sushiDestroy;
         public String latestState;
         public GameObject pointsTextObj;
         public Text _pointsText;
@@ -38,7 +39,9 @@ namespace NRKernal
         public GameObject SE;
         private AudioSource test;
         private bool _metronomeValid;
-
+        public ParticleSystem circleParticle_red;
+        public ParticleSystem circleParticle_blue;
+        private GameObject redeffect;
         void Start()
         {
             _evaluationNow = true;
@@ -46,6 +49,7 @@ namespace NRKernal
             _hanteiText = hanteiTextObj.GetComponent<Text>();
             _evaluationStateText = evaluationStateTextObj.GetComponent<Text>();
             test = SE.GetComponent<AudioSource>();
+            circleParticle_blue.Pause();
         }
 
         public void MetronomeStart()
@@ -112,6 +116,8 @@ namespace NRKernal
             Debug.Log("trueorfalse");
             if (!_evaluationNow) return;
 
+            _sushiDestroy.isBeat = true;
+            Debug.Log("_sushiDestroy.isBeat" +_sushiDestroy.isBeat);
             _shootDspTime = AudioSettings.dspTime;
             nxtRng = NextRingTime();
             _pastRng = PastRingTime();
@@ -131,11 +137,13 @@ namespace NRKernal
                     _pointsText.text = totalPoints.ToString();
                     _hanteiText.text = "ナイス";
                     StartCoroutine(DeleteLog());
+                    CircleEffect(true);
                 }
                 else
                 {
                     _hanteiText.text = "はやい";
                     StartCoroutine(DeleteLog());
+                    CircleEffect(false);
                 }
 
             }
@@ -150,14 +158,29 @@ namespace NRKernal
                     _pointsText.text = totalPoints.ToString();
                     _hanteiText.text = "ナイス";
                     //StartCoroutine(DeleteLog());
+                    CircleEffect(true);
                 }
                 else
                 {
                     _hanteiText.text = "おそい";
                     //StartCoroutine(DeleteLog());
+                    CircleEffect(false);
                 }
 
             }
+        }
+
+        void CircleEffect(bool _success)
+        {
+            if (_success)
+            {
+                circleParticle_blue.Play();
+            }
+            else
+            {
+                circleParticle_blue.Pause();
+            }
+            
         }
 
         IEnumerator PauseEvaluation(double _waitTime)

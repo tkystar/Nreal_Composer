@@ -36,15 +36,12 @@ namespace NRKernal
         
         private void OnTriggerEnter(Collider other)
         {
-            //if (!Collidable) return;
             num++;
-            //_numText.text = num.ToString();
             _metronome.TrueorFalse();
             //_logText.text = "当たった";
             Vector3 _hitPos = other.ClosestPointOnBounds(this.transform.position);
             CollisionEffect(_hitPos);
-            //NOTE 文字列はなるべく使わない
-            //StartCoroutine(PauseCollision());
+            
         }
 
         private void Update()
