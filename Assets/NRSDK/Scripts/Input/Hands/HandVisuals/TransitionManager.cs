@@ -26,7 +26,7 @@ namespace NRKernal
         public GameObject target;
         [SerializeField] private Metronome _metronome;
         [SerializeField] private CollisionManager _collisionManager;
-
+        public ParticleSystem circleParticle;
         private bool isGaming;
 
         // Start is called before the first frame update
@@ -139,6 +139,8 @@ namespace NRKernal
         IEnumerator DisplayResult()
         {
             yield return new WaitForSeconds(1);
+            circleParticle.Clear();
+            circleParticle.Pause();
             target.SetActive(false);
             inGameUI.SetActive(false);
             yield return new WaitForSeconds(2);
