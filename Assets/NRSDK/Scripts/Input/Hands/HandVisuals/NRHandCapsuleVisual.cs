@@ -19,7 +19,7 @@ namespace NRKernal
     public class NRHandCapsuleVisual : MonoBehaviour
     {
         public CapsuleVisual indexTip;
-        public  AudioSource directionChangeSound;
+        //public  AudioSource directionChangeSound;
         public float noiseDifference;
         //public GameObject detectionTextObj;
         //private Text _detectiontext;
@@ -222,10 +222,12 @@ namespace NRKernal
                 */
             }
 
+            /*
             public void DirectionChange()
             {
                 nrHandCapsuleVisual.directionChangeSound.Play();
             }
+            */
 
             private void DrawCapsuleVisual(Vector3 a, Vector3 b, float radius)
             {
@@ -294,7 +296,7 @@ namespace NRKernal
                 bool isLeftHand = (jointVisualInfo.m_HandEnum == HandEnum.LeftHand);
                 bool isRightHand = (jointVisualInfo.m_HandEnum == HandEnum.RightHand);
                 
-                if (isIndexTip && isLeftHand)
+                if (isIndexTip && isRightHand)
                 {
                     m_Collider.enabled = true;
                     m_Renderer.material = jointVisualInfo.indexjointMat;
@@ -305,7 +307,7 @@ namespace NRKernal
                     Debug.Log("Yes");
                 }
 
-                if (isMiddleProximal && isRightHand)
+                if (isMiddleProximal && isLeftHand)
                 {
                     m_Collider.enabled = true;
                     m_Renderer.material = jointVisualInfo.indexjointMat;

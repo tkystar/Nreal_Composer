@@ -9,11 +9,14 @@ public class TransitionManager : MonoBehaviour
 {
     public AudioSource mainSound;
     public GameObject soundManager;
+    public AudioClip startBGM;
     public AudioClip resultBGM;
     public AudioClip playBGM;
     public Button[] buttons;
     public GameObject scoreUI;
     public GameObject resultTextObj;
+    public GameObject inGameUI;
+    public GameObject startUI;
     public GameObject returnBtn;
     private Text _tesultText;
     [SerializeField] private Metronome _metronome;
@@ -30,17 +33,23 @@ public class TransitionManager : MonoBehaviour
         }
         _metronome = soundManager.GetComponent<Metronome>();
         mainSound = soundManager.GetComponent<AudioSource>();
+        mainSound.clip = startBGM;
         scoreUI.SetActive(false);
+        inGameUI.SetActive(false);
+        startUI.SetActive(true);
         _tesultText = resultTextObj.GetComponent<Text>();
         //GameStart();
         StartCoroutine(StartDelay());
+        StartCoroutine(GameStartBGM());
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         //Editrでのテスト用
-        //if(Input.GetKeyDown(KeyCode.Space)) GameStart();
+        if(Input.GetKeyDown(KeyCode.A)) PlayMode();
+        if(Input.GetKeyDown(KeyCode.Space)) GameStart();
+        if (Input.GetKeyDown(KeyCode.G)) GoHome();
         //if(NRInput.IsTouching()) GameStart();
         //if(NRInput.GetButton(ControllerButton.TRIGGER)) GameStart();
 
@@ -54,15 +63,25 @@ public class TransitionManager : MonoBehaviour
     {
         if (key == "StartBtn")
         {
-            
+            GameStart();
         }
         else if (key == "ReturnBtn")
         {
-            SceneManager.LoadScene("StartScene");
+            GoHome();
+        }
+        else if (key == "GotoPlayModeBtn")
+        {
+            PlayMode();
         }
         
     }
-    
+    private void PlayMode()
+    {
+        startUI.SetActive(false);
+        inGameUI.SetActive(true);
+        GameStart();
+
+    }
 
     private void GameStart()
     {
@@ -75,7 +94,7 @@ public class TransitionManager : MonoBehaviour
     IEnumerator StartDelay()
     {
         yield return new WaitForSeconds(2);
-        GameStart();
+        //GameStart();
     }
 
     private void GameFinish()
@@ -85,9 +104,21 @@ public class TransitionManager : MonoBehaviour
         StartCoroutine(DisplayResult());
         
     }
+
+    private void GoHome()
+    {
+        /*
+        startUI.SetActive(true);
+        scoreUI.SetActive(false);
+        mainSound.Pause();
+        StartCoroutine(GameStartBGM());
+        */
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
     
     IEnumerator DisplayResult()
     {
+        inGameUI.SetActive(false);
         yield return new WaitForSeconds(2);
         mainSound.clip = resultBGM;
         mainSound.Play();
@@ -102,4 +133,12 @@ public class TransitionManager : MonoBehaviour
         returnBtn.SetActive(true);
 
     }
+
+    IEnumerator GameStartBGM()
+    {
+        yield return new WaitForSeconds(1.5f);
+        mainSound.clip = startBGM;
+        mainSound.Play();
+    }
+
 }

@@ -7,7 +7,7 @@ namespace NRKernal
 
     public class HandEffect : MonoBehaviour
     {
-        [SerializeField]public NRHandCapsuleVisual nrHandCapsuleVisual;
+        [SerializeField] NRHandCapsuleVisual nrHandCapsuleVisual;
         private GameObject _indextip;
         public GameObject _indexparticle;
         public GameObject tempParticle;
