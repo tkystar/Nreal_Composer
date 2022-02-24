@@ -33,7 +33,7 @@ namespace NRKernal
         public double beatInterval;
         [SerializeField] private TimingVisualize _timingVisualize;
         private Text _evaluationStateText;
-
+        public double elapsedDspTime;
         //テスト用
         public GameObject SE;
         private AudioSource test;
@@ -62,6 +62,7 @@ namespace NRKernal
                 if (nxtRng < AudioSettings.dspTime + _buffer)
                 {
                     _ring.PlayScheduled(nxtRng);
+                    if(elapsedDspTime > 16)
                     _timingVisualize.CreateNoots();
                 }
 
@@ -84,7 +85,7 @@ namespace NRKernal
         double NextRingTime()
         {
             beatInterval = 60d / bpm;
-            var elapsedDspTime = AudioSettings.dspTime - _metronomeStartDspTime;
+            elapsedDspTime = AudioSettings.dspTime - _metronomeStartDspTime;
             var beats = System.Math.Floor(elapsedDspTime / beatInterval);
 
             return _metronomeStartDspTime + (beats + 1d) * beatInterval;
@@ -93,7 +94,7 @@ namespace NRKernal
         double PastRingTime()
         {
             var beatInterval = 60d / bpm;
-            var elapsedDspTime = AudioSettings.dspTime - _metronomeStartDspTime;
+            elapsedDspTime = AudioSettings.dspTime - _metronomeStartDspTime;
             var beats = System.Math.Floor(elapsedDspTime / beatInterval) - 1;
 
             return _metronomeStartDspTime + (beats + 1d) * beatInterval;

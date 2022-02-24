@@ -10,17 +10,13 @@ namespace NRKernal
     public class MoveSushi : MonoBehaviour
     {
         private float _speed;
-        private Rigidbody _rb;
-        [SerializeField] TimingVisualize _timingVisualize;
-
         private double deltaDistance;
+
+        private bool isMove;
         // Start is called before the first frame update
         void Start()
         {
-            //deltaDistance = _timingVisualize._divided_dis;
-            _speed = (float)_timingVisualize._distance_per_sec;
-            Debug.Log("deltaDistance" + deltaDistance);
-            _rb = this.gameObject.GetComponent<Rigidbody>();
+            
         }
 
         // Update is called once per frame
@@ -32,10 +28,19 @@ namespace NRKernal
 
         private void FixedUpdate()
         {
-            //_rb.velocity = new Vector3(1, 0, 0) * _speed;
-            //deltaDistance = _timingVisualize._divided_dis;
+            if(isMove)
             this.transform.position += Vector3.right * (float)deltaDistance;
+            
+            if(this.transform.position.x > 3) Destroy(this.gameObject);
         }
+
+        public void GetDeltaDistance(double _deltadistance)
+        {
+            deltaDistance = _deltadistance;
+            isMove = true;
+        }
+        
+        
     }
     
 }

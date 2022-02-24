@@ -23,6 +23,7 @@ namespace NRKernal
         public GameObject returnBtn;
         public GameObject replayBtn;
         private Text _tesultText;
+        public GameObject target;
         [SerializeField] private Metronome _metronome;
         [SerializeField] private CollisionManager _collisionManager;
 
@@ -44,6 +45,7 @@ namespace NRKernal
             scoreUI.SetActive(false);
             inGameUI.SetActive(false);
             startUI.SetActive(true);
+            target.SetActive(false);
             _tesultText = resultTextObj.GetComponent<Text>();
             //GameStart();
             StartCoroutine(StartDelay());
@@ -54,7 +56,7 @@ namespace NRKernal
         void FixedUpdate()
         {
             //Editrでのテスト用
-            if (Input.GetKeyDown(KeyCode.A)) PlayMode();
+            if (Input.GetKeyDown(KeyCode.P)) PlayMode();
             if (Input.GetKeyDown(KeyCode.Space)) GameStart();
             if (Input.GetKeyDown(KeyCode.G)) GoHome();
             //if(NRInput.IsTouching()) GameStart();
@@ -106,6 +108,7 @@ namespace NRKernal
             _metronome.enabled = true;
             _metronome.MetronomeStart();
             inGameUI.SetActive(true);
+            target.SetActive(true);
         }
 
         IEnumerator StartDelay()
@@ -136,6 +139,7 @@ namespace NRKernal
         IEnumerator DisplayResult()
         {
             yield return new WaitForSeconds(1);
+            target.SetActive(false);
             inGameUI.SetActive(false);
             yield return new WaitForSeconds(2);
             mainSound.clip = resultBGM;

@@ -24,6 +24,8 @@ namespace NRKernal
         private double _divided_dis;
         private GameObject _noot;
         public double _distance_per_sec;
+
+        [SerializeField] private MoveSushi _moveSushi;
         // Start is called before the first frame update
         void Awake()
         {
@@ -43,7 +45,7 @@ namespace NRKernal
             Debug.Log("_divided_dis : "+_divided_dis);
             //_spawnPos = _hitPos;
             //_spawnPos.x = _hitPos.x - (float)_distance;
-
+            
         }
 
         // Update is called once per frame
@@ -54,31 +56,14 @@ namespace NRKernal
 
         public void CreateNoots()
         {
-            /*
-            GameObject _noot = Instantiate(noot,_spawnPos,Quaternion.identity);
-            _nootRB = _noot.GetComponent<Rigidbody>();
-            Debug.Log("Speed"+_speed);
-            Debug.Log("Distance"+_distance);
-            Debug.Log("Time"+ _time);
-            */
-            
             _noot = Instantiate(noot,_spawnPos,Quaternion.identity);
-                    //_nootRB = _noot[i].GetComponent<Rigidbody>();
-                
-            
-            
-            
-            Vector3 _force = new Vector3(1,0,0) * (float)_speed;
-            //_nootRB.velocity;
-            
+            _moveSushi = _noot.AddComponent<MoveSushi>();
+            _moveSushi.GetDeltaDistance(_divided_dis);
+
         }
 
         private void FixedUpdate()
         {
-            if(_noot != null)
-            _noot.transform.position += Vector3.right * (float)_divided_dis;
-                
-            
             
         }
     }
