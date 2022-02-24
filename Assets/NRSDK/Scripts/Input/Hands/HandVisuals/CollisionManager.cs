@@ -16,9 +16,9 @@ namespace NRKernal
         public GameObject[] sushiPrefab;
         private GameObject _sushi;
         public GameObject explosionParticle;
-        public GameObject numTextObj;
+        //public GameObject numTextObj;
         private Text _numText;
-        private int num;
+        public int num;
         private bool Collidable = true;
         private void Awake()
         {
@@ -51,7 +51,7 @@ namespace NRKernal
         {
             if (Input.GetKeyDown(KeyCode.A))
             {
-                num++;
+                num ++;
                 _metronome.TrueorFalse();
                 CollisionEffect(Vector3.one);
 
