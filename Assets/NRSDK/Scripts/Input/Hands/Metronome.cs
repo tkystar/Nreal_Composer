@@ -198,7 +198,7 @@ namespace NRKernal
         {
             if (_success)
             {
-                
+                /*
                 switch (_combo % 6)
                 {
                     case 1 :
@@ -236,6 +236,9 @@ namespace NRKernal
                         _currentParticle = circleParticle_red;
                         break;
                 }
+                */
+                circleParticle_blue.Play();
+                _currentParticle = circleParticle_blue;
             }
             else
             {
