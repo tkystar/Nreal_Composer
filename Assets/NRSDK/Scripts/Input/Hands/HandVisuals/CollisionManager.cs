@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace NRKernal
 {
 
@@ -65,7 +67,15 @@ namespace NRKernal
             Debug.Log("CollisionEffect");
             var sushi_num = UnityEngine.Random.Range(0, sushiPrefab.Length);
             if(sushiPrefab[sushi_num] == null) Debug.Log("ない");
-            _sushi = Instantiate(sushiPrefab[sushi_num], _appearPos, Quaternion.Euler(0, 0, 0));
+            if (sushiPrefab[sushi_num].name.Contains("Uni") || sushiPrefab[sushi_num].name.Contains("Negitoro"))
+            {
+                _sushi = Instantiate(sushiPrefab[sushi_num], _appearPos, Quaternion.Euler(0,-90,0));
+            }
+            else
+            {
+                _sushi = Instantiate(sushiPrefab[sushi_num], _appearPos, Quaternion.identity);
+            }
+            
             Rigidbody sushiRB = _sushi.GetComponent<Rigidbody>();
             sushiRB.AddForce(Vector3.up * 30);
             //Destroy(_sushi, 2);
