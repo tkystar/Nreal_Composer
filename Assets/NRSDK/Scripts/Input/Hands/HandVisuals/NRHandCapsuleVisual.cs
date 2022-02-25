@@ -277,7 +277,7 @@ namespace NRKernal
                 m_VisualGO.transform.SetParent(rootGO.transform);
                 m_Collider = m_VisualGO.GetComponent<SphereCollider>();
                 m_Collider.isTrigger = true;
-                m_VisualGO.AddComponent<ColliderVisualizer>();
+                //m_VisualGO.AddComponent<ColliderVisualizer>();
                 //m_Collider.radius *= 5;
                 if (m_Collider)
                 {
@@ -299,8 +299,8 @@ namespace NRKernal
                 if (isIndexTip && isRightHand)
                 {
                     m_Collider.enabled = true;
-                    m_Renderer.material = jointVisualInfo.indexjointMat;
-                    m_Collider.radius *= 4;
+                    //m_Renderer.material = jointVisualInfo.indexjointMat;
+                    m_Collider.radius *= 6;
                     m_VisualGO.AddComponent<CollisionManager>();
                     _indexRB = m_VisualGO.AddComponent<Rigidbody>();
                     _indexRB.useGravity = false;
@@ -310,7 +310,7 @@ namespace NRKernal
                 if (isMiddleProximal && isLeftHand)
                 {
                     m_Collider.enabled = true;
-                    m_Renderer.material = jointVisualInfo.indexjointMat;
+                    //m_Renderer.material = jointVisualInfo.indexjointMat;
                     m_Collider.radius *= 8;
                     Debug.Log("No");
                 }
