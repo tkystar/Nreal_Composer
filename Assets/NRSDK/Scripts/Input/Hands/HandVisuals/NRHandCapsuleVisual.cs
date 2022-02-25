@@ -105,7 +105,7 @@ namespace NRKernal
                 //handDirectionTextObj_y = GameObject.Find("HandDirectionText_y");
                 //m_handDirectionText_x = handDirectionTextObj_x.GetComponent<Text>();
                // m_handDirectionText_y = handDirectionTextObj_y.GetComponent<Text>();
-                handeffect = GameObject.Find("HandEffect").GetComponent<HandEffect>();
+                //handeffect = GameObject.Find("HandEffect").GetComponent<HandEffect>();
                 //m_handDifferenceText = GameObject.Find("HandDifferenceText").GetComponent<Text>();
                 metronome = GameObject.Find("SoundManager").GetComponent<Metronome>();
                 
