@@ -80,7 +80,6 @@ namespace NRKernal.NRExamples
             float t = Time.deltaTime * FollowSpeed;
             float x = Vector3.Lerp(transform.position, CalculatePosition(CenterCamera), t).x;
             float z = Vector3.Lerp(transform.position, CalculatePosition(CenterCamera), t).z;
-
             transform.position = new Vector3(x, 0, z);
             transform.rotation = Quaternion.Slerp(transform.rotation, CalculateRotation(CenterCamera), t);
         }
