@@ -105,7 +105,7 @@ namespace NRKernal
                 //handDirectionTextObj_y = GameObject.Find("HandDirectionText_y");
                 //m_handDirectionText_x = handDirectionTextObj_x.GetComponent<Text>();
                // m_handDirectionText_y = handDirectionTextObj_y.GetComponent<Text>();
-                handeffect = GameObject.Find("HandEffect").GetComponent<HandEffect>();
+                //handeffect = GameObject.Find("HandEffect").GetComponent<HandEffect>();
                 //m_handDifferenceText = GameObject.Find("HandDifferenceText").GetComponent<Text>();
                 metronome = GameObject.Find("SoundManager").GetComponent<Metronome>();
                 
@@ -300,7 +300,7 @@ namespace NRKernal
                 {
                     m_Collider.enabled = true;
                     m_Renderer.material = jointVisualInfo.indexjointMat;
-                    m_Collider.radius *= 6;
+                    m_Collider.radius *= 4;
                     m_VisualGO.AddComponent<CollisionManager>();
                     _indexRB = m_VisualGO.AddComponent<Rigidbody>();
                     _indexRB.useGravity = false;
@@ -311,7 +311,7 @@ namespace NRKernal
                 {
                     m_Collider.enabled = true;
                     m_Renderer.material = jointVisualInfo.indexjointMat;
-                    m_Collider.radius *= 5;
+                    m_Collider.radius *= 7;
                     Debug.Log("No");
                 }
                 

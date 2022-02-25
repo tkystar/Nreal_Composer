@@ -20,14 +20,21 @@ namespace NRKernal
         public GameObject resultTextObj;
         public GameObject inGameUI;
         public GameObject startUI;
+        public GameObject startMainUI;
+        public GameObject bothHandsUI;
+        public GameObject pintchUI;
+        public GameObject explainUI;
+        public GameObject explainUI_part1;
+        public GameObject explainUI_part2;
         public GameObject returnBtn;
         public GameObject replayBtn;
         private Text _tesultText;
         public GameObject target;
         [SerializeField] private Metronome _metronome;
         [SerializeField] private CollisionManager _collisionManager;
-
+        public ParticleSystem circleParticle;
         private bool isGaming;
+        
 
         // Start is called before the first frame update
         void Start()
@@ -42,9 +49,15 @@ namespace NRKernal
             _metronome = soundManager.GetComponent<Metronome>();
             mainSound = soundManager.GetComponent<AudioSource>();
             mainSound.clip = startBGM;
+            pintchUI.SetActive(true);
+            bothHandsUI.SetActive(false);
             scoreUI.SetActive(false);
             inGameUI.SetActive(false);
             startUI.SetActive(true);
+            startMainUI.SetActive(false);
+            target.SetActive(false);
+            explainUI.SetActive(false);
+            mainSound.loop = true;
             target.SetActive(false);
             _tesultText = resultTextObj.GetComponent<Text>();
             //GameStart();
@@ -56,9 +69,14 @@ namespace NRKernal
         void FixedUpdate()
         {
             //Editrでのテスト用
+            if (Input.GetKeyDown(KeyCode.B)) DisplayPrepareInfo();
             if (Input.GetKeyDown(KeyCode.P)) PlayMode();
             if (Input.GetKeyDown(KeyCode.Space)) GameStart();
-            if (Input.GetKeyDown(KeyCode.G)) GoHome();
+            if (Input.GetKeyDown(KeyCode.R)) ReLoad();
+            if (Input.GetKeyDown(KeyCode.S)) StartMain();
+            if (Input.GetKeyDown(KeyCode.E)) ExplainMode1();
+            if (Input.GetKeyDown(KeyCode.N)) ExplainMode2();
+
             //if(NRInput.IsTouching()) GameStart();
             //if(NRInput.GetButton(ControllerButton.TRIGGER)) GameStart();
 
@@ -74,9 +92,9 @@ namespace NRKernal
             {
                 GameStart();
             }
-            else if (key == "ReturnBtn")
+            else if (key == "EndGameBtn")
             {
-                GoHome();
+                ReLoad();
             }
             else if (key == "GotoPlayModeBtn")
             {
@@ -86,16 +104,60 @@ namespace NRKernal
             {
                 PlayMode();
             }
+            else if (key == "ExplainModeBtn")
+            {
+                ExplainMode1();
 
+            }
+            else if (key == "NextExplainBtn")
+            {
+                ExplainMode2();
+            }
+            else if (key == "explainFinBtn")
+            {
+                StartMain();
+            }
+            else if (key == "PinchConfirmBtn")
+            {
+                DisplayPrepareInfo();
+            }
+            else if (key == "BothHandsBtn")
+            {
+                StartMain();
+            }
         }
 
         private void PlayMode()
         {
             startUI.SetActive(false);
+            startMainUI.SetActive(false);
             inGameUI.SetActive(true);
             scoreUI.SetActive(false);
+            target.SetActive(true);
             GameStart();
 
+        }
+
+        private void DisplayPrepareInfo()
+        {
+            pintchUI.SetActive(false);
+            bothHandsUI.SetActive(true);
+        }
+        private void DisplayPrepareInfo2()
+        {
+            
+        }
+        private void　ExplainMode1()
+        {
+            startUI.SetActive(false);
+            explainUI.SetActive(true);
+            explainUI_part1.SetActive(true);
+            explainUI_part2.SetActive(false);
+        }
+        private void　ExplainMode2()
+        {
+            explainUI_part1.SetActive(false);
+            explainUI_part2.SetActive(true);
         }
 
         private void GameStart()
@@ -109,6 +171,7 @@ namespace NRKernal
             _metronome.MetronomeStart();
             inGameUI.SetActive(true);
             target.SetActive(true);
+            mainSound.loop = false;
         }
 
         IEnumerator StartDelay()
@@ -125,7 +188,17 @@ namespace NRKernal
 
         }
 
-        private void GoHome()
+        private void StartMain()
+        {
+            startUI.SetActive(true);
+            pintchUI.SetActive(false);
+            bothHandsUI.SetActive(false);
+            explainUI.SetActive(false);
+            startMainUI.SetActive(true);
+
+        }
+
+        private void ReLoad()
         {
             /*
             startUI.SetActive(true);
@@ -139,6 +212,8 @@ namespace NRKernal
         IEnumerator DisplayResult()
         {
             yield return new WaitForSeconds(1);
+            circleParticle.Clear();
+            circleParticle.Pause();
             target.SetActive(false);
             inGameUI.SetActive(false);
             yield return new WaitForSeconds(2);

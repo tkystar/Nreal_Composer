@@ -41,15 +41,26 @@ namespace NRKernal
         private bool _metronomeValid;
         public ParticleSystem circleParticle_red;
         public ParticleSystem circleParticle_blue;
+        public ParticleSystem circleParticle_yellow;
+        public ParticleSystem circleParticle_green;
+        public ParticleSystem circleParticle_pink;
+        public ParticleSystem circleParticle_glay;
+        private ParticleSystem _currentParticle;
         private GameObject redeffect;
+        private int _combo;
         void Start()
         {
-            _evaluationNow = true;
             _pointsText = pointsTextObj.GetComponent<Text>();
             _hanteiText = hanteiTextObj.GetComponent<Text>();
             _evaluationStateText = evaluationStateTextObj.GetComponent<Text>();
             test = SE.GetComponent<AudioSource>();
             circleParticle_blue.Pause();
+            circleParticle_red.Pause();
+            circleParticle_yellow.Pause();
+            circleParticle_green.Pause();
+            circleParticle_pink.Pause();
+            circleParticle_glay.Pause();
+            _currentParticle = circleParticle_glay;
         }
 
         public void MetronomeStart()
@@ -68,6 +79,7 @@ namespace NRKernal
                     _ring.PlayScheduled(nxtRng);
                     if(elapsedDspTime > 16)
                     _timingVisualize.CreateNoots();
+                    _evaluationNow = true;
                 }
 
                 _evaluationStateText.text = "判定可能 : " + _evaluationNow.ToString();
@@ -134,6 +146,7 @@ namespace NRKernal
                 if (differenceTime < _succesDifferenceTime)
                 {
                     totalPoints += 1000;
+                    _combo ++;
                     _pointsText.text = totalPoints.ToString();
                     _hanteiText.text = "ナイス";
                     StartCoroutine(DeleteLog());
@@ -141,6 +154,7 @@ namespace NRKernal
                 }
                 else
                 {
+                    _combo = 0;
                     _hanteiText.text = "はやい";
                     StartCoroutine(DeleteLog());
                     CircleEffect(false);
@@ -155,6 +169,7 @@ namespace NRKernal
                 if (differenceTime < _succesDifferenceTime) //成功
                 {
                     totalPoints += 1000;
+                    _combo ++;
                     _pointsText.text = totalPoints.ToString();
                     _hanteiText.text = "ナイス";
                     //StartCoroutine(DeleteLog());
@@ -162,6 +177,7 @@ namespace NRKernal
                 }
                 else
                 {
+                    _combo = 0;
                     _hanteiText.text = "おそい";
                     //StartCoroutine(DeleteLog());
                     CircleEffect(false);
@@ -174,11 +190,49 @@ namespace NRKernal
         {
             if (_success)
             {
-                circleParticle_blue.Play();
+                
+                switch (_combo % 6)
+                {
+                    case 1 :
+                        circleParticle_glay.Play();
+                        _currentParticle = circleParticle_glay;
+                        break;
+                    case 2:
+                        _currentParticle.Clear();
+                        _currentParticle.Pause();
+                        circleParticle_green.Play();
+                        _currentParticle = circleParticle_green;
+                        break;
+                    case 3 :
+                        _currentParticle.Clear();
+                        _currentParticle.Pause();
+                        circleParticle_yellow.Play();
+                        _currentParticle = circleParticle_yellow;
+                        break;
+                    case 4:
+                        _currentParticle.Clear();
+                        _currentParticle.Pause();
+                        circleParticle_pink.Play();
+                        _currentParticle = circleParticle_pink;
+                        break;
+                    case 5 :
+                        _currentParticle.Clear();
+                        _currentParticle.Pause();
+                        circleParticle_blue.Play();
+                        _currentParticle = circleParticle_blue;
+                        break;
+                    case 0:
+                        _currentParticle.Clear();
+                        _currentParticle.Pause();
+                        circleParticle_red.Play();
+                        _currentParticle = circleParticle_red;
+                        break;
+                }
             }
             else
             {
-                circleParticle_blue.Pause();
+                _currentParticle.Clear();
+                _currentParticle.Pause();
             }
             
         }
