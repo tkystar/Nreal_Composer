@@ -74,6 +74,9 @@ namespace NRKernal
             if (Input.GetKeyDown(KeyCode.Space)) GameStart();
             if (Input.GetKeyDown(KeyCode.R)) ReLoad();
             if (Input.GetKeyDown(KeyCode.S)) StartMain();
+            if (Input.GetKeyDown(KeyCode.E)) ExplainMode1();
+            if (Input.GetKeyDown(KeyCode.N)) ExplainMode2();
+
             //if(NRInput.IsTouching()) GameStart();
             //if(NRInput.GetButton(ControllerButton.TRIGGER)) GameStart();
 
@@ -89,7 +92,7 @@ namespace NRKernal
             {
                 GameStart();
             }
-            else if (key == "ReturnBtn")
+            else if (key == "EndGameBtn")
             {
                 ReLoad();
             }
@@ -146,6 +149,7 @@ namespace NRKernal
         }
         private void　ExplainMode1()
         {
+            startUI.SetActive(false);
             explainUI.SetActive(true);
             explainUI_part1.SetActive(true);
             explainUI_part2.SetActive(false);

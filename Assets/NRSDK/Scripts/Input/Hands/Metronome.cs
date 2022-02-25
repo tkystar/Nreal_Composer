@@ -50,7 +50,6 @@ namespace NRKernal
         private int _combo;
         void Start()
         {
-            _evaluationNow = true;
             _pointsText = pointsTextObj.GetComponent<Text>();
             _hanteiText = hanteiTextObj.GetComponent<Text>();
             _evaluationStateText = evaluationStateTextObj.GetComponent<Text>();
@@ -80,6 +79,7 @@ namespace NRKernal
                     _ring.PlayScheduled(nxtRng);
                     if(elapsedDspTime > 16)
                     _timingVisualize.CreateNoots();
+                    _evaluationNow = true;
                 }
 
                 _evaluationStateText.text = "判定可能 : " + _evaluationNow.ToString();
