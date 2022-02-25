@@ -77,9 +77,16 @@ namespace NRKernal
                 if (nxtRng < AudioSettings.dspTime + _buffer)
                 {
                     _ring.PlayScheduled(nxtRng);
-                    if(elapsedDspTime > 16)
-                    _timingVisualize.CreateNoots();
-                    _evaluationNow = true;
+                    if (elapsedDspTime > 16)
+                    {
+                        _timingVisualize.CreateNoots(); 
+                        _evaluationNow = true;
+                    }
+                    else
+                    {
+                        _evaluationNow = false;
+                    }
+                    
                 }
 
                 _evaluationStateText.text = "判定可能 : " + _evaluationNow.ToString();
@@ -118,6 +125,7 @@ namespace NRKernal
 
         IEnumerator StartBeat()
         {
+            elapsedDspTime = 0;
             yield return new WaitForSeconds(_startTiming);
             _metronomeValid = true;
             _metronomeStartDspTime = AudioSettings.dspTime;

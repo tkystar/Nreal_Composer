@@ -5136,7 +5136,7 @@ MonoBehaviour:
   soundManager: {fileID: 1612478163}
   startBGM: {fileID: 8300000, guid: 1a74c14c8f1d94ae79b02580a4a8655b, type: 3}
   resultBGM: {fileID: 8300000, guid: 723788a79b12d4755a5d76ac6d37e254, type: 3}
-  playBGM: {fileID: 8300000, guid: 7a714aac4d4e14e77a05a71fa0aef695, type: 3}
+  playBGM: {fileID: 8300000, guid: d56fb0a5b7ec8478dbc16d8fa73fde6a, type: 3}
   buttons:
   - {fileID: 464414172792825008}
   - {fileID: 1118860121}
