@@ -24,7 +24,7 @@ namespace NRKernal
         private double _divided_dis;
         private GameObject _noot;
         public double _distance_per_sec;
-
+        private GameObject[] sushiPrefab;
         [SerializeField] private MoveSushi _moveSushi;
         // Start is called before the first frame update
         void Awake()
@@ -45,7 +45,7 @@ namespace NRKernal
             Debug.Log("_divided_dis : "+_divided_dis);
             //_spawnPos = _hitPos;
             //_spawnPos.x = _hitPos.x - (float)_distance;
-            
+            sushiPrefab = Resources.LoadAll<GameObject>("Sushi");
         }
 
         // Update is called once per frame
@@ -56,7 +56,8 @@ namespace NRKernal
 
         public void CreateNoots()
         {
-            _noot = Instantiate(noot,_spawnPos,Quaternion.identity);
+            int _sushi_num = UnityEngine.Random.Range(0, sushiPrefab.Length);
+            _noot = Instantiate(sushiPrefab[_sushi_num],_spawnPos,Quaternion.identity);
             _moveSushi = _noot.AddComponent<MoveSushi>();
             _moveSushi.GetDeltaDistance(_divided_dis);
 

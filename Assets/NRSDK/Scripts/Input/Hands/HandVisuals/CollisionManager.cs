@@ -22,6 +22,7 @@ namespace NRKernal
         private Text _numText;
         public int num;
         private bool Collidable = true;
+        private GameObject _triggerObj;
         private void Awake()
         {
             //NOTE:editor上でアタッチできないため、文字列を使用
@@ -42,7 +43,9 @@ namespace NRKernal
             _metronome.TrueorFalse();
             //_logText.text = "当たった";
             Vector3 _hitPos = other.ClosestPointOnBounds(this.transform.position);
-            CollisionEffect(_hitPos);
+            //_triggerObj = GetTriggerObjName(other.gameObject);
+            _triggerObj = other.gameObject;
+            CollisionEffect(_hitPos,_triggerObj);
             
         }
 
@@ -52,7 +55,7 @@ namespace NRKernal
             {
                 num ++;
                 _metronome.TrueorFalse();
-                CollisionEffect(Vector3.one);
+                //CollisionEffect(Vector3.one);
 
             }
         }
@@ -62,9 +65,12 @@ namespace NRKernal
             //_logText.text = "離れた";
         }
 
-        private void CollisionEffect(Vector3 _appearPos)
+      
+
+        private void CollisionEffect(Vector3 _appearPos,GameObject collisionObj)
         {
             Debug.Log("CollisionEffect");
+            /*
             var sushi_num = UnityEngine.Random.Range(0, sushiPrefab.Length);
             if(sushiPrefab[sushi_num] == null) Debug.Log("ない");
             if (sushiPrefab[sushi_num].name.Contains("Uni") || sushiPrefab[sushi_num].name.Contains("Negitoro"))
@@ -75,7 +81,8 @@ namespace NRKernal
             {
                 _sushi = Instantiate(sushiPrefab[sushi_num], _appearPos, Quaternion.identity);
             }
-            
+            */
+            Instantiate(collisionObj, _appearPos, Quaternion.identity);
             Rigidbody sushiRB = _sushi.GetComponent<Rigidbody>();
             sushiRB.AddForce(Vector3.up * 30);
             //Destroy(_sushi, 2);
