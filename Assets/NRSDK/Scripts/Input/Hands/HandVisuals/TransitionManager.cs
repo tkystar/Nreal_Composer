@@ -206,7 +206,10 @@ namespace NRKernal
             mainSound.Pause();
             StartCoroutine(GameStartBGM());
             */
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            startUI.SetActive(true);
+            pintchUI.SetActive(true);
+            scoreUI.SetActive(false);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         IEnumerator DisplayResult()
