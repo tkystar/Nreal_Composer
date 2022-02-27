@@ -53,6 +53,11 @@ namespace NRKernal.NRExamples
             RefreshUIState();
         }
 
+        private void Start()
+        {
+            m_PlayButton.onClick.AddListener(() =>OnClickPlayButton());
+        }
+
         /// <summary> The video capture. </summary>
         NRVideoCapture m_VideoCapture = null;
         void CreateVideoCapture(Action callback)

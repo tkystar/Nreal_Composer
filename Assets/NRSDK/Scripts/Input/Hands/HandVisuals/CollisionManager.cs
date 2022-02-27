@@ -69,7 +69,7 @@ namespace NRKernal
             if(sushiPrefab[sushi_num] == null) Debug.Log("ない");
             if (sushiPrefab[sushi_num].name.Contains("Uni") || sushiPrefab[sushi_num].name.Contains("Negitoro"))
             {
-                _sushi = Instantiate(sushiPrefab[sushi_num], _appearPos, Quaternion.Euler(0,-90,0));
+                _sushi = Instantiate(sushiPrefab[sushi_num], _appearPos, Quaternion.Euler(-90,0,0));
             }
             else
             {
