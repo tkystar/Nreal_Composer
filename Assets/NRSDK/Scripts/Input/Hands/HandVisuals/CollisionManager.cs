@@ -28,24 +28,25 @@ namespace NRKernal
             //NOTE:editor上でアタッチできないため、文字列を使用
             _metronome = GameObject.Find("SoundManager").GetComponent<Metronome>();
             //_logText = GameObject.Find("CollisionDetection").GetComponent<Text>();
-            explosionParticle = GameObject.Find("Hit_04");
+            explosionParticle = Resources.Load<GameObject>("CollisionParticle");
             //numTextObj = GameObject.Find("NumText");
             //_numText = numTextObj.GetComponent<Text>();
             Collidable = true;
 
-            sushiPrefab = Resources.LoadAll<GameObject>("Sushi");
+            sushiPrefab = Resources.LoadAll<GameObject>("SushiNoots");
         }
 
         
         private void OnTriggerEnter(Collider other)
         {
+            
             num++;
             _metronome.TrueorFalse();
             //_logText.text = "当たった";
             Vector3 _hitPos = other.ClosestPointOnBounds(this.transform.position);
             //_triggerObj = GetTriggerObjName(other.gameObject);
             _triggerObj = other.gameObject;
-            CollisionEffect(_hitPos,_triggerObj);
+            CollisionEffect(_hitPos);
             
         }
 
@@ -67,25 +68,20 @@ namespace NRKernal
 
       
 
-        private void CollisionEffect(Vector3 _appearPos,GameObject collisionObj)
+        private void CollisionEffect(Vector3 _appearPos)
         {
             Debug.Log("CollisionEffect");
-            /*
-            var sushi_num = UnityEngine.Random.Range(0, sushiPrefab.Length);
-            if(sushiPrefab[sushi_num] == null) Debug.Log("ない");
-            if (sushiPrefab[sushi_num].name.Contains("Uni") || sushiPrefab[sushi_num].name.Contains("Negitoro"))
+
+            for (int i = 0; i < 1; i++)
             {
-                _sushi = Instantiate(sushiPrefab[sushi_num], _appearPos, Quaternion.Euler(-90,0,0));
+                var sushi_num = UnityEngine.Random.Range(0, sushiPrefab.Length);
+                if(sushiPrefab[sushi_num] == null) Debug.Log("ない");
+                _sushi = Instantiate(sushiPrefab[sushi_num], _appearPos, Quaternion.Euler(0,-60,0));
+                Rigidbody sushiRB = _sushi.GetComponent<Rigidbody>();
+                if(sushiRB == null) return;
+                sushiRB.AddForce(Vector3.up * 30);
             }
-            else
-            {
-                _sushi = Instantiate(sushiPrefab[sushi_num], _appearPos, Quaternion.identity);
-            }
-            */
-            Instantiate(collisionObj, _appearPos, Quaternion.identity);
-            Rigidbody sushiRB = _sushi.GetComponent<Rigidbody>();
-            sushiRB.AddForce(Vector3.up * 30);
-            //Destroy(_sushi, 2);
+            
             Instantiate(explosionParticle, _appearPos, Quaternion.Euler(0, 0, 0));
         }
         

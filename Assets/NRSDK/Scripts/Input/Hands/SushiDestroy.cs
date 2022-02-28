@@ -38,11 +38,13 @@ namespace NRKernal
         {
             if (isBeat)
             {
+                StartCoroutine(ActivateTrigger());
+                
                 if (other.gameObject.tag == "Player") Destroy(other.gameObject);
                 Debug.Log("OnTriggerStay");
-                StartCoroutine(ActivateTrigger());
+                
             }
-
+            
         }
         
         private void OnTriggerExit(Collider other)
@@ -52,8 +54,9 @@ namespace NRKernal
 
         IEnumerator ActivateTrigger()
         {
-            yield return new WaitForSeconds(0.4f);
+            yield return new WaitForSeconds(0.2f);
             isBeat = false;
+            isEnter = false;
         }
     }
 }

@@ -1,3 +1,5 @@
+//using UnityEditor.Search;
+
 namespace NRKernal
 {
 
@@ -15,6 +17,7 @@ namespace NRKernal
         public AudioClip startBGM;
         public AudioClip resultBGM;
         public AudioClip playBGM;
+        public AudioSource applause;
         public Button[] buttons;
         public GameObject scoreUI;
         public GameObject resultTextObj;
@@ -29,6 +32,8 @@ namespace NRKernal
         public GameObject returnBtn;
         public GameObject replayBtn;
         private Text _tesultText;
+        public GameObject lazer_R;
+        public GameObject lazer_L;
         public GameObject target;
         [SerializeField] private Metronome _metronome;
         [SerializeField] private CollisionManager _collisionManager;
@@ -60,6 +65,8 @@ namespace NRKernal
             mainSound.loop = true;
             target.SetActive(false);
             _tesultText = resultTextObj.GetComponent<Text>();
+            lazer_L.SetActive(true);
+            lazer_R.SetActive(true);
             //GameStart();
             StartCoroutine(StartDelay());
             StartCoroutine(GameStartBGM());
@@ -172,6 +179,9 @@ namespace NRKernal
             inGameUI.SetActive(true);
             target.SetActive(true);
             mainSound.loop = false;
+            lazer_L.SetActive(false);
+            lazer_R.SetActive(false);
+
         }
 
         IEnumerator StartDelay()
@@ -184,8 +194,10 @@ namespace NRKernal
         {
             isGaming = false;
             _metronome.enabled = false;
+            lazer_L.SetActive(true);
+            lazer_R.SetActive(true);
             StartCoroutine(DisplayResult());
-
+            
         }
 
         private void StartMain()
@@ -230,6 +242,7 @@ namespace NRKernal
             yield return new WaitForSeconds(2);
             var score = _metronome.totalPoints;
             _tesultText.text = score.ToString();
+            applause.Play();
             yield return new WaitForSeconds(3.5f);
             returnBtn.SetActive(true);
             replayBtn.SetActive(true);
