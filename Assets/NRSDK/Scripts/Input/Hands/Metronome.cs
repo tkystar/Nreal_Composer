@@ -28,8 +28,10 @@ namespace NRKernal
         private double _elapsedTime_Since_pstRng;
         private double _remainingTime_Until_nxtRng;
         private double _evaluationPuaseTime;
-        public GameObject hanteiTextObj;
-        private Text _hanteiText;
+        public GameObject earlyTextObj;
+        private Text _earlyText;
+        public GameObject lateTextObj;
+        private Text _lateText;
         public GameObject evaluationStateTextObj;
         public double beatInterval;
         [SerializeField] private TimingVisualize _timingVisualize;
@@ -51,7 +53,8 @@ namespace NRKernal
         void Start()
         {
             _pointsText = pointsTextObj.GetComponent<Text>();
-            _hanteiText = hanteiTextObj.GetComponent<Text>();
+            _earlyText = earlyTextObj.GetComponent<Text>();
+            _lateText = lateTextObj.GetComponent<Text>();
             _evaluationStateText = evaluationStateTextObj.GetComponent<Text>();
             test = SE.GetComponent<AudioSource>();
             circleParticle_blue.Pause();
@@ -61,11 +64,19 @@ namespace NRKernal
             circleParticle_pink.Pause();
             circleParticle_glay.Pause();
             _currentParticle = circleParticle_glay;
+            _timingVisualize.GetDividedDistance(bpm);
         }
 
         public void MetronomeStart()
         {
             StartCoroutine(StartBeat());
+            ResetUI();
+        }
+
+        void ResetUI()
+        {
+            _earlyText.text = "early";
+            _lateText.text = "late";
         }
 
         void FixedUpdate()
@@ -76,7 +87,7 @@ namespace NRKernal
 
                 if (nxtRng < AudioSettings.dspTime + _buffer)
                 {
-                    _ring.PlayScheduled(nxtRng);
+                    //_ring.PlayScheduled(nxtRng);
                     if (elapsedDspTime > 16)
                     {
                         _timingVisualize.CreateNoots(); 
@@ -101,7 +112,7 @@ namespace NRKernal
             if (Input.GetKeyDown(KeyCode.A))
             {
                 TrueorFalse();
-                test.Play();
+                _ring.Play();
             }
         }
 
@@ -133,10 +144,12 @@ namespace NRKernal
 
         public void TrueorFalse()
         {
+            _ring.Play();
             Debug.Log("trueorfalse");
             if (!_evaluationNow) return;
 
             _sushiDestroy.isBeat = true;
+            StartCoroutine(CollisionReset());
             Debug.Log("_sushiDestroy.isBeat" +_sushiDestroy.isBeat);
             _shootDspTime = AudioSettings.dspTime;
             nxtRng = NextRingTime();
@@ -153,17 +166,19 @@ namespace NRKernal
                 //判定処理
                 if (differenceTime < _succesDifferenceTime)
                 {
-                    totalPoints += 1000;
                     _combo ++;
-                    _pointsText.text = totalPoints.ToString();
-                    _hanteiText.text = "ナイス";
+                    totalPoints += (int)(1000 * (0.9f+(0.1*_combo)));
+                    StartCoroutine(PointTextEffect());
+                    _earlyText.text = "perfect";
+                    _lateText.text = "perfect";
                     StartCoroutine(DeleteLog());
                     CircleEffect(true);
                 }
                 else
                 {
                     _combo = 0;
-                    _hanteiText.text = "はやい";
+                    _earlyText.text = "early";
+                    _lateText.text = "";
                     StartCoroutine(DeleteLog());
                     CircleEffect(false);
                 }
@@ -176,17 +191,19 @@ namespace NRKernal
                 var differenceTime = _shootDspTime - _pastRng;
                 if (differenceTime < _succesDifferenceTime) //成功
                 {
-                    totalPoints += 1000;
                     _combo ++;
-                    _pointsText.text = totalPoints.ToString();
-                    _hanteiText.text = "ナイス";
+                    totalPoints += (int)(1000 * (0.9f+(0.1*_combo)));
+                    StartCoroutine(PointTextEffect());
+                    _earlyText.text = "perfect";
+                    _lateText.text = "perfect";
                     //StartCoroutine(DeleteLog());
                     CircleEffect(true);
                 }
                 else
                 {
                     _combo = 0;
-                    _hanteiText.text = "おそい";
+                    _earlyText.text = "";
+                    _lateText.text = "late";
                     //StartCoroutine(DeleteLog());
                     CircleEffect(false);
                 }
@@ -253,13 +270,37 @@ namespace NRKernal
             _evaluationNow = false;
             float _pauseTime = (float) _waitTime;
             yield return new WaitForSeconds(_pauseTime);
+
             _evaluationNow = true;
+        }
+
+        IEnumerator CollisionReset()
+        {
+            yield return new WaitForSeconds(0.2f);
+
+            _sushiDestroy.isBeat = false;
         }
 
         IEnumerator DeleteLog()
         {
             yield return new WaitForSeconds(0.7f);
-            _hanteiText.text = " ";
+            _earlyText.text = "";
+            _lateText.text = "";
         }
+
+        IEnumerator PointTextEffect()
+        {
+            _pointsText.text = totalPoints.ToString();
+            yield return new WaitForSeconds(0.1f);
+            pointsTextObj.transform.localScale = new Vector3(1.1f,1.1f,1.1f);
+            yield return new WaitForSeconds(0.1f);
+            pointsTextObj.transform.localScale = new Vector3(1f,1f,1f);
+            yield return new WaitForSeconds(0.1f);
+            pointsTextObj.transform.localScale = new Vector3(1.1f,1.1f,1.1f);
+            yield return new WaitForSeconds(0.1f);
+            pointsTextObj.transform.localScale = new Vector3(1f,1f,1f);
+        }
+        
+        
     }
 }

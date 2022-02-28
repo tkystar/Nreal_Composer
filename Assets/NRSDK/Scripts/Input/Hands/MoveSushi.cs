@@ -31,7 +31,7 @@ namespace NRKernal
             if(isMove)
             this.transform.position += Vector3.right * (float)deltaDistance;
             
-            if(this.transform.position.x > 3) Destroy(this.gameObject);
+            if(this.transform.position.x > 5) Destroy(this.gameObject);
         }
 
         public void GetDeltaDistance(double _deltadistance)

@@ -277,7 +277,7 @@ namespace NRKernal
                 m_VisualGO.transform.SetParent(rootGO.transform);
                 m_Collider = m_VisualGO.GetComponent<SphereCollider>();
                 m_Collider.isTrigger = true;
-                m_VisualGO.AddComponent<ColliderVisualizer>();
+                //m_VisualGO.AddComponent<ColliderVisualizer>();
                 //m_Collider.radius *= 5;
                 if (m_Collider)
                 {
