@@ -6,12 +6,14 @@ Nreal_SushiMakerは、NrealLightのハンドトラッキングを用いたハン
 
 # DEMO
 
-https://user-images.githubusercontent.com/71160720/156548105-4008be49-03db-4835-b012-491a0ff66749.gif
+![](https://user-images.githubusercontent.com/71160720/156548105-4008be49-03db-4835-b012-491a0ff66749.gif
+)
 
 # Requirement
 
 * NRSDK for Unity 1.8.0
 * Nreal Ligthと対応android
+
 https://www.au.com/information/topic/mobile/2021-033/
 
 # Installation
