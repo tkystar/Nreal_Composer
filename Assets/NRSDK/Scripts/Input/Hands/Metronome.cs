@@ -82,43 +82,11 @@ namespace NRKernal
 
         void FixedUpdate()
         {
-            if (_metronomeValid)
-            {
-                nxtRng = NextRingTime();
-
-                if (nxtRng < AudioSettings.dspTime + _buffer)
-                {
-                    //_ring.PlayScheduled(nxtRng);
-                    if (elapsedDspTime > 16)
-                    {
-                        _timingVisualize.CreateNoots(); 
-                        _evaluationNow = true;
-                    }
-                    else
-                    {
-                        _evaluationNow = false;
-                    }
-                    
-                }
-
-                _evaluationStateText.text = "判定可能 : " + _evaluationNow.ToString();
-                
-            }
-
+            NootsInstantiateTimig();
             Mistake();
-
-
+            ShootTest();
         }
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                EarlyorLate();
-                _ring.Play();
-            }
-        }
-
+        
         double NextRingTime()
         {
             beatInterval = 60d / bpm;
@@ -222,6 +190,32 @@ namespace NRKernal
             }
         }
 
+        void NootsInstantiateTimig()
+        {
+            if (_metronomeValid)
+            {
+                nxtRng = NextRingTime();
+
+                if (nxtRng < AudioSettings.dspTime + _buffer)
+                {
+                    //_ring.PlayScheduled(nxtRng);
+                    if (elapsedDspTime > 16)
+                    {
+                        _timingVisualize.CreateNoots(); 
+                        _evaluationNow = true;
+                    }
+                    else
+                    {
+                        _evaluationNow = false;
+                    }
+                    
+                }
+
+                _evaluationStateText.text = "判定可能 : " + _evaluationNow.ToString();
+                
+            }
+
+        }
         void CircleEffect(bool _success)
         {
             if (_success)
@@ -279,6 +273,16 @@ namespace NRKernal
             pointsTextObj.transform.localScale = new Vector3(1.1f,1.1f,1.1f);
             yield return new WaitForSeconds(0.1f);
             pointsTextObj.transform.localScale = new Vector3(1f,1f,1f);
+        }
+
+
+        void ShootTest()
+        {
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                EarlyorLate();
+                _ring.Play();
+            }
         }
         
         
