@@ -57,11 +57,6 @@ namespace NRKernal
             _divided_dis = _distance / _divided_num;
         }
 
-        private void FixedUpdate()
-        {
-            
-        }
-
         IEnumerator WaitCreateNootsisCalled()
         {
             isDone = true;

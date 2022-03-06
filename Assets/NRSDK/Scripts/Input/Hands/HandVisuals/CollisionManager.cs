@@ -17,20 +17,19 @@ namespace NRKernal
         public GameObject soundManager;
         public GameObject[] sushiPrefab;
         private GameObject _sushi;
-        public GameObject explosionParticle;
+        private GameObject explosionParticle;
         //public GameObject numTextObj;
         private Text _numText;
         public int num;
         private bool Collidable = true;
         private GameObject _triggerObj;
+        private ICreateCollisionEffect _iCreateCollisionEffect;
         private void Awake()
         {
             //NOTE:editor上でアタッチできないため、文字列を使用
             _metronome = GameObject.Find("SoundManager").GetComponent<Metronome>();
-            //_logText = GameObject.Find("CollisionDetection").GetComponent<Text>();
             explosionParticle = Resources.Load<GameObject>("CollisionParticle");
-            //numTextObj = GameObject.Find("NumText");
-            //_numText = numTextObj.GetComponent<Text>();
+            _iCreateCollisionEffect = GameObject.Find("GameTransitionManager").GetComponent<ICreateCollisionEffect>();
             Collidable = true;
 
             sushiPrefab = Resources.LoadAll<GameObject>("SushiNoots");
@@ -40,34 +39,37 @@ namespace NRKernal
         private void OnTriggerEnter(Collider other)
         {
             
-            num++;
-            _metronome.TrueorFalse();
-            //_logText.text = "当たった";
+            //num++;
+            _metronome.EarlyorLate();
             Vector3 _hitPos = other.ClosestPointOnBounds(this.transform.position);
-            //_triggerObj = GetTriggerObjName(other.gameObject);
-            _triggerObj = other.gameObject;
-            CollisionEffect(_hitPos);
-            
+            //_triggerObj = other.gameObject;
+            //CollisionEffect(_hitPos);
+            CreateCollisionEffect();
         }
 
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.A))
             {
-                num ++;
-                _metronome.TrueorFalse();
+                //num ++;
+                _metronome.EarlyorLate();
                 //CollisionEffect(Vector3.one);
 
             }
         }
 
-        private void OnTriggerExit(Collider other)
+
+        void CreateCollisionEffect()
         {
-            //_logText.text = "離れた";
+            var sushi_num = UnityEngine.Random.Range(0, sushiPrefab.Length);
+            _sushi = Instantiate(sushiPrefab[sushi_num]);
+            Instantiate(explosionParticle);
+            
+            _iCreateCollisionEffect.CreateEffect(Vector3.one);
         }
-
-      
-
+        
+        //NOTE インターフェースを用いてリファクタリングしているため、非アクティブにしている。
+        /*
         private void CollisionEffect(Vector3 _appearPos)
         {
             Debug.Log("CollisionEffect");
@@ -75,7 +77,7 @@ namespace NRKernal
             for (int i = 0; i < 1; i++)
             {
                 var sushi_num = UnityEngine.Random.Range(0, sushiPrefab.Length);
-                if(sushiPrefab[sushi_num] == null) Debug.Log("ない");
+                //if(sushiPrefab[sushi_num] == null) Debug.Log("ない");
                 _sushi = Instantiate(sushiPrefab[sushi_num], _appearPos, Quaternion.Euler(0,-60,0));
                 Rigidbody sushiRB = _sushi.GetComponent<Rigidbody>();
                 if(sushiRB == null) return;
@@ -84,6 +86,7 @@ namespace NRKernal
             
             Instantiate(explosionParticle, _appearPos, Quaternion.Euler(0, 0, 0));
         }
+        */
         
         IEnumerator PauseCollision()
         {

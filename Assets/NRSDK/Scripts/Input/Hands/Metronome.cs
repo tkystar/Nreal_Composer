@@ -17,7 +17,8 @@ namespace NRKernal
         [SerializeField] private float _succesDifferenceTime;
         [SerializeField] private float _evaluationDifferenceTime;
         [SerializeField] private float _startTiming;
-        [SerializeField] private SushiDestroy _sushiDestroy;
+        [SerializeField] private SushiDestroy _sushiManager;
+        [SerializeField]private NootsManager _nootsManager;
         public String latestState;
         public GameObject pointsTextObj;
         public Text _pointsText;
@@ -81,41 +82,11 @@ namespace NRKernal
 
         void FixedUpdate()
         {
-            if (_metronomeValid)
-            {
-                nxtRng = NextRingTime();
-
-                if (nxtRng < AudioSettings.dspTime + _buffer)
-                {
-                    //_ring.PlayScheduled(nxtRng);
-                    if (elapsedDspTime > 16)
-                    {
-                        _timingVisualize.CreateNoots(); 
-                        _evaluationNow = true;
-                    }
-                    else
-                    {
-                        _evaluationNow = false;
-                    }
-                    
-                }
-
-                _evaluationStateText.text = "判定可能 : " + _evaluationNow.ToString();
-                
-            }
-
-
+            NootsInstantiateTimig();
+            Mistake();
+            ShootTest();
         }
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                TrueorFalse();
-                _ring.Play();
-            }
-        }
-
+        
         double NextRingTime()
         {
             beatInterval = 60d / bpm;
@@ -142,118 +113,113 @@ namespace NRKernal
             _metronomeStartDspTime = AudioSettings.dspTime;
         }
 
-        public void TrueorFalse()
+        public void EarlyorLate()
         {
             _ring.Play();
-            Debug.Log("trueorfalse");
             if (!_evaluationNow) return;
 
-            _sushiDestroy.isBeat = true;
+            _sushiManager.isBeat = true;
             StartCoroutine(CollisionReset());
-            Debug.Log("_sushiDestroy.isBeat" +_sushiDestroy.isBeat);
+            Debug.Log("_sushiDestroy.isBeat" +_sushiManager.isBeat);
             _shootDspTime = AudioSettings.dspTime;
             nxtRng = NextRingTime();
             _pastRng = PastRingTime();
             _elapsedTime_Since_pstRng = _shootDspTime - _pastRng;
             _remainingTime_Until_nxtRng = nxtRng - _shootDspTime;
+            
             //打つタイミングが早い場合
             if (_elapsedTime_Since_pstRng > _remainingTime_Until_nxtRng)
             {
-                _evaluationPuaseTime = (nxtRng + _evaluationDifferenceTime) - _shootDspTime;
-                StartCoroutine(PauseEvaluation(_evaluationPuaseTime));
-                var differenceTime = nxtRng - _shootDspTime;
-
-                //判定処理
-                if (differenceTime < _succesDifferenceTime)
-                {
-                    _combo ++;
-                    totalPoints += (int)(1000 * (0.9f+(0.1*_combo)));
-                    StartCoroutine(PointTextEffect());
-                    _earlyText.text = "perfect";
-                    _lateText.text = "perfect";
-                    StartCoroutine(DeleteLog());
-                    CircleEffect(true);
-                }
-                else
-                {
-                    _combo = 0;
-                    _earlyText.text = "early";
-                    _lateText.text = "";
-                    StartCoroutine(DeleteLog());
-                    CircleEffect(false);
-                }
-
+                JudgeMent_early();
             }
             else //打つタイミングが遅い場合
             {
-                _evaluationPuaseTime = (_pastRng + _evaluationDifferenceTime) - _shootDspTime;
-                StartCoroutine(PauseEvaluation(_evaluationPuaseTime));
-                var differenceTime = _shootDspTime - _pastRng;
-                if (differenceTime < _succesDifferenceTime) //成功
-                {
-                    _combo ++;
-                    totalPoints += (int)(1000 * (0.9f+(0.1*_combo)));
-                    StartCoroutine(PointTextEffect());
-                    _earlyText.text = "perfect";
-                    _lateText.text = "perfect";
-                    //StartCoroutine(DeleteLog());
-                    CircleEffect(true);
-                }
-                else
-                {
-                    _combo = 0;
-                    _earlyText.text = "";
-                    _lateText.text = "late";
-                    //StartCoroutine(DeleteLog());
-                    CircleEffect(false);
-                }
-
+                Judgement_late();
             }
         }
 
+        void JudgeMent_early()
+        {
+            _evaluationPuaseTime = (nxtRng + _evaluationDifferenceTime) - _shootDspTime;
+            StartCoroutine(PauseEvaluation(_evaluationPuaseTime));
+            var differenceTime = nxtRng - _shootDspTime;
+
+            //判定処理
+            if (differenceTime < _succesDifferenceTime)
+            {
+                _combo ++;
+                totalPoints += (int)(1000 * (0.9f+(0.1*_combo)));
+                StartCoroutine(PointTextEffect());
+                _earlyText.text = "perfect";
+                _lateText.text = "perfect";
+                StartCoroutine(DeleteLog());
+                CircleEffect(true);
+            }
+            else
+            {
+                _combo = 0;
+                _earlyText.text = "early";
+                _lateText.text = "";
+                StartCoroutine(DeleteLog());
+                CircleEffect(false);
+            }
+        }
+
+        void Judgement_late()
+        {
+            _evaluationPuaseTime = (_pastRng + _evaluationDifferenceTime) - _shootDspTime;
+            StartCoroutine(PauseEvaluation(_evaluationPuaseTime));
+            var differenceTime = _shootDspTime - _pastRng;
+            if (differenceTime < _succesDifferenceTime) //成功
+            {
+                _combo ++;
+                totalPoints += (int)(1000 * (0.9f+(0.1*_combo)));
+                StartCoroutine(PointTextEffect());
+                _earlyText.text = "perfect";
+                _lateText.text = "perfect";
+                //StartCoroutine(DeleteLog());
+                CircleEffect(true);
+            }
+            else
+            {
+                _combo = 0;
+                _earlyText.text = "";
+                _lateText.text = "late";
+                //StartCoroutine(DeleteLog());
+                CircleEffect(false);
+            }
+        }
+
+        void NootsInstantiateTimig()
+        {
+            if (_metronomeValid)
+            {
+                nxtRng = NextRingTime();
+
+                if (nxtRng < AudioSettings.dspTime + _buffer)
+                {
+                    //_ring.PlayScheduled(nxtRng);
+                    if (elapsedDspTime > 16)
+                    {
+                        _timingVisualize.CreateNoots(); 
+                        _evaluationNow = true;
+                    }
+                    else
+                    {
+                        _evaluationNow = false;
+                    }
+                    
+                }
+
+                _evaluationStateText.text = "判定可能 : " + _evaluationNow.ToString();
+                
+            }
+
+        }
         void CircleEffect(bool _success)
         {
             if (_success)
             {
-                /*
-                switch (_combo % 6)
-                {
-                    case 1 :
-                        circleParticle_glay.Play();
-                        _currentParticle = circleParticle_glay;
-                        break;
-                    case 2:
-                        _currentParticle.Clear();
-                        _currentParticle.Pause();
-                        circleParticle_green.Play();
-                        _currentParticle = circleParticle_green;
-                        break;
-                    case 3 :
-                        _currentParticle.Clear();
-                        _currentParticle.Pause();
-                        circleParticle_yellow.Play();
-                        _currentParticle = circleParticle_yellow;
-                        break;
-                    case 4:
-                        _currentParticle.Clear();
-                        _currentParticle.Pause();
-                        circleParticle_pink.Play();
-                        _currentParticle = circleParticle_pink;
-                        break;
-                    case 5 :
-                        _currentParticle.Clear();
-                        _currentParticle.Pause();
-                        circleParticle_blue.Play();
-                        _currentParticle = circleParticle_blue;
-                        break;
-                    case 0:
-                        _currentParticle.Clear();
-                        _currentParticle.Pause();
-                        circleParticle_red.Play();
-                        _currentParticle = circleParticle_red;
-                        break;
-                }
-                */
                 circleParticle_blue.Play();
                 _currentParticle = circleParticle_blue;
             }
@@ -263,6 +229,14 @@ namespace NRKernal
                 _currentParticle.Pause();
             }
             
+        }
+
+        void Mistake()
+        {
+            if (_nootsManager.isMistake)
+            {
+                CircleEffect(false);
+            }
         }
 
         IEnumerator PauseEvaluation(double _waitTime)
@@ -278,7 +252,7 @@ namespace NRKernal
         {
             yield return new WaitForSeconds(0.2f);
 
-            _sushiDestroy.isBeat = false;
+            _sushiManager.isBeat = false;
         }
 
         IEnumerator DeleteLog()
@@ -299,6 +273,16 @@ namespace NRKernal
             pointsTextObj.transform.localScale = new Vector3(1.1f,1.1f,1.1f);
             yield return new WaitForSeconds(0.1f);
             pointsTextObj.transform.localScale = new Vector3(1f,1f,1f);
+        }
+
+
+        void ShootTest()
+        {
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                EarlyorLate();
+                _ring.Play();
+            }
         }
         
         

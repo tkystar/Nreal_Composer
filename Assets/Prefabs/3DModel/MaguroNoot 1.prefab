@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3561752061783803168}
   - component: {fileID: 908149560586005184}
   - component: {fileID: 8689830494654403236}
+  - component: {fileID: 496804337622897740}
   m_Layer: 0
   m_Name: MaguroNoot 1
   m_TagString: Player
@@ -113,3 +114,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.05849515, y: 0.02852321, z: 0.058193706}
   m_Center: {x: -0.0063254926, y: 0.0144787, z: -0.0010215616}
+--- !u!114 &496804337622897740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3197391554426408367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9f20a1ece2a94142ab1d121c9f831f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deadLine: 0.5
+  isMistake: 0
