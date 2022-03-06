@@ -6,11 +6,12 @@ namespace NRKernal
     using System.Collections.Generic;
     using UnityEngine;
 
-    public class SushiManager : MonoBehaviour , ICreateCollisionEffect
+    public class SushiDestroy : MonoBehaviour
     {
+        
         public bool isBeat;
         public bool isEnter;
-        
+        public float deadLine;
         public void CreateEffect(Vector3 _pos)
         {
             this.transform.position = _pos;
@@ -43,5 +44,7 @@ namespace NRKernal
             isBeat = false;
             isEnter = false;
         }
+
+        
     }
 }

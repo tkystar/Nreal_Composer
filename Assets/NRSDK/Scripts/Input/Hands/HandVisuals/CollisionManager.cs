@@ -40,7 +40,7 @@ namespace NRKernal
         {
             
             //num++;
-            _metronome.TrueorFalse();
+            _metronome.EarlyorLate();
             Vector3 _hitPos = other.ClosestPointOnBounds(this.transform.position);
             //_triggerObj = other.gameObject;
             //CollisionEffect(_hitPos);
@@ -52,7 +52,7 @@ namespace NRKernal
             if (Input.GetKeyDown(KeyCode.A))
             {
                 //num ++;
-                _metronome.TrueorFalse();
+                _metronome.EarlyorLate();
                 //CollisionEffect(Vector3.one);
 
             }

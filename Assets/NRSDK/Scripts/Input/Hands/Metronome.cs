@@ -17,7 +17,8 @@ namespace NRKernal
         [SerializeField] private float _succesDifferenceTime;
         [SerializeField] private float _evaluationDifferenceTime;
         [SerializeField] private float _startTiming;
-        [SerializeField] private SushiManager _sushiManager;
+        [SerializeField] private SushiDestroy _sushiManager;
+        [SerializeField]private NootsManager _nootsManager;
         public String latestState;
         public GameObject pointsTextObj;
         public Text _pointsText;
@@ -104,6 +105,8 @@ namespace NRKernal
                 
             }
 
+            Mistake();
+
 
         }
 
@@ -111,7 +114,7 @@ namespace NRKernal
         {
             if (Input.GetKeyDown(KeyCode.A))
             {
-                TrueorFalse();
+                EarlyorLate();
                 _ring.Play();
             }
         }
@@ -142,10 +145,9 @@ namespace NRKernal
             _metronomeStartDspTime = AudioSettings.dspTime;
         }
 
-        public void TrueorFalse()
+        public void EarlyorLate()
         {
             _ring.Play();
-            Debug.Log("trueorfalse");
             if (!_evaluationNow) return;
 
             _sushiManager.isBeat = true;
@@ -156,58 +158,67 @@ namespace NRKernal
             _pastRng = PastRingTime();
             _elapsedTime_Since_pstRng = _shootDspTime - _pastRng;
             _remainingTime_Until_nxtRng = nxtRng - _shootDspTime;
+            
             //打つタイミングが早い場合
             if (_elapsedTime_Since_pstRng > _remainingTime_Until_nxtRng)
             {
-                _evaluationPuaseTime = (nxtRng + _evaluationDifferenceTime) - _shootDspTime;
-                StartCoroutine(PauseEvaluation(_evaluationPuaseTime));
-                var differenceTime = nxtRng - _shootDspTime;
-
-                //判定処理
-                if (differenceTime < _succesDifferenceTime)
-                {
-                    _combo ++;
-                    totalPoints += (int)(1000 * (0.9f+(0.1*_combo)));
-                    StartCoroutine(PointTextEffect());
-                    _earlyText.text = "perfect";
-                    _lateText.text = "perfect";
-                    StartCoroutine(DeleteLog());
-                    CircleEffect(true);
-                }
-                else
-                {
-                    _combo = 0;
-                    _earlyText.text = "early";
-                    _lateText.text = "";
-                    StartCoroutine(DeleteLog());
-                    CircleEffect(false);
-                }
-
+                JudgeMent_early();
             }
             else //打つタイミングが遅い場合
             {
-                _evaluationPuaseTime = (_pastRng + _evaluationDifferenceTime) - _shootDspTime;
-                StartCoroutine(PauseEvaluation(_evaluationPuaseTime));
-                var differenceTime = _shootDspTime - _pastRng;
-                if (differenceTime < _succesDifferenceTime) //成功
-                {
-                    _combo ++;
-                    totalPoints += (int)(1000 * (0.9f+(0.1*_combo)));
-                    StartCoroutine(PointTextEffect());
-                    _earlyText.text = "perfect";
-                    _lateText.text = "perfect";
-                    //StartCoroutine(DeleteLog());
-                    CircleEffect(true);
-                }
-                else
-                {
-                    _combo = 0;
-                    _earlyText.text = "";
-                    _lateText.text = "late";
-                    //StartCoroutine(DeleteLog());
-                    CircleEffect(false);
-                }
+                Judgement_late();
+            }
+        }
 
+        void JudgeMent_early()
+        {
+            _evaluationPuaseTime = (nxtRng + _evaluationDifferenceTime) - _shootDspTime;
+            StartCoroutine(PauseEvaluation(_evaluationPuaseTime));
+            var differenceTime = nxtRng - _shootDspTime;
+
+            //判定処理
+            if (differenceTime < _succesDifferenceTime)
+            {
+                _combo ++;
+                totalPoints += (int)(1000 * (0.9f+(0.1*_combo)));
+                StartCoroutine(PointTextEffect());
+                _earlyText.text = "perfect";
+                _lateText.text = "perfect";
+                StartCoroutine(DeleteLog());
+                CircleEffect(true);
+            }
+            else
+            {
+                _combo = 0;
+                _earlyText.text = "early";
+                _lateText.text = "";
+                StartCoroutine(DeleteLog());
+                CircleEffect(false);
+            }
+        }
+
+        void Judgement_late()
+        {
+            _evaluationPuaseTime = (_pastRng + _evaluationDifferenceTime) - _shootDspTime;
+            StartCoroutine(PauseEvaluation(_evaluationPuaseTime));
+            var differenceTime = _shootDspTime - _pastRng;
+            if (differenceTime < _succesDifferenceTime) //成功
+            {
+                _combo ++;
+                totalPoints += (int)(1000 * (0.9f+(0.1*_combo)));
+                StartCoroutine(PointTextEffect());
+                _earlyText.text = "perfect";
+                _lateText.text = "perfect";
+                //StartCoroutine(DeleteLog());
+                CircleEffect(true);
+            }
+            else
+            {
+                _combo = 0;
+                _earlyText.text = "";
+                _lateText.text = "late";
+                //StartCoroutine(DeleteLog());
+                CircleEffect(false);
             }
         }
 
@@ -215,45 +226,6 @@ namespace NRKernal
         {
             if (_success)
             {
-                /*
-                switch (_combo % 6)
-                {
-                    case 1 :
-                        circleParticle_glay.Play();
-                        _currentParticle = circleParticle_glay;
-                        break;
-                    case 2:
-                        _currentParticle.Clear();
-                        _currentParticle.Pause();
-                        circleParticle_green.Play();
-                        _currentParticle = circleParticle_green;
-                        break;
-                    case 3 :
-                        _currentParticle.Clear();
-                        _currentParticle.Pause();
-                        circleParticle_yellow.Play();
-                        _currentParticle = circleParticle_yellow;
-                        break;
-                    case 4:
-                        _currentParticle.Clear();
-                        _currentParticle.Pause();
-                        circleParticle_pink.Play();
-                        _currentParticle = circleParticle_pink;
-                        break;
-                    case 5 :
-                        _currentParticle.Clear();
-                        _currentParticle.Pause();
-                        circleParticle_blue.Play();
-                        _currentParticle = circleParticle_blue;
-                        break;
-                    case 0:
-                        _currentParticle.Clear();
-                        _currentParticle.Pause();
-                        circleParticle_red.Play();
-                        _currentParticle = circleParticle_red;
-                        break;
-                }
-                */
                 circleParticle_blue.Play();
                 _currentParticle = circleParticle_blue;
             }
@@ -263,6 +235,14 @@ namespace NRKernal
                 _currentParticle.Pause();
             }
             
+        }
+
+        void Mistake()
+        {
+            if (_nootsManager.isMistake)
+            {
+                CircleEffect(false);
+            }
         }
 
         IEnumerator PauseEvaluation(double _waitTime)
