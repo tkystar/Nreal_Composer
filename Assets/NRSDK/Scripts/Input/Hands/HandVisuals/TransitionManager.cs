@@ -1,5 +1,8 @@
 //using UnityEditor.Search;
 
+using System.Configuration;
+using System.Diagnostics;
+
 namespace NRKernal
 {
 
@@ -254,6 +257,8 @@ namespace NRKernal
             mainSound.clip = startBGM;
             mainSound.Play();
         }
+        
+
 
     }
 }

@@ -6,34 +6,19 @@ namespace NRKernal
     using System.Collections.Generic;
     using UnityEngine;
 
-    public class SushiDestroy : MonoBehaviour
+    public class SushiManager : MonoBehaviour , ICreateCollisionEffect
     {
         public bool isBeat;
         public bool isEnter;
-        // Start is called before the first frame update
-        void Start()
+        
+        public void CreateEffect(Vector3 _pos)
         {
-           
+            this.transform.position = _pos;
+            this.transform.rotation = Quaternion.Euler(0, -60, 0);
+            Rigidbody sushiRB = this.GetComponent<Rigidbody>();
+            if(sushiRB == null) return;
+            sushiRB.AddForce(Vector3.up * 30);
         }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
-        /*
-        private void OnTriggerStay(Collider other)
-        {
-            isEnter = true;
-            if (isBeat)
-            {
-                if(other.gameObject.tag == "Player") Destroy(other.gameObject);
-                isBeat = false;
-                Debug.Log("OnTriggerStay");
-            }
-        }
-    */
         private void OnTriggerStay(Collider other)
         {
             if (isBeat)
