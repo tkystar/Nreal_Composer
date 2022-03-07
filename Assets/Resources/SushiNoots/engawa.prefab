@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6166077504648794828}
   - component: {fileID: 8127718740868009115}
   - component: {fileID: -214377106351123584}
+  - component: {fileID: 936228269408923870}
   m_Layer: 0
   m_Name: engawa
   m_TagString: Untagged
@@ -99,3 +100,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &936228269408923870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6246414088182569716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d49cdc50f54534986823f6eb3f1b48cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

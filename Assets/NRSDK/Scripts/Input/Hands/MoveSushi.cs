@@ -11,21 +11,8 @@ namespace NRKernal
     {
         private float _speed;
         private double deltaDistance;
-
         private bool isMove;
-        // Start is called before the first frame update
-        void Start()
-        {
-            
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-            //this.transform.position += (float)_speed * new Vector3(1, 0, 0);
-            
-        }
-
+       
         private void FixedUpdate()
         {
             if(isMove)

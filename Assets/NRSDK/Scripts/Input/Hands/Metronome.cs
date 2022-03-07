@@ -17,7 +17,7 @@ namespace NRKernal
         [SerializeField] private float _succesDifferenceTime;
         [SerializeField] private float _evaluationDifferenceTime;
         [SerializeField] private float _startTiming;
-        [SerializeField] private SushiDestroy _sushiManager;
+        [SerializeField] private SushiDestroy _sushiDestroy;
         [SerializeField]private NootsManager _nootsManager;
         public String latestState;
         public GameObject pointsTextObj;
@@ -101,7 +101,6 @@ namespace NRKernal
             var beatInterval = 60d / bpm;
             elapsedDspTime = AudioSettings.dspTime - _metronomeStartDspTime;
             var beats = System.Math.Floor(elapsedDspTime / beatInterval) - 1;
-
             return _metronomeStartDspTime + (beats + 1d) * beatInterval;
         }
 
@@ -118,9 +117,9 @@ namespace NRKernal
             _ring.Play();
             if (!_evaluationNow) return;
 
-            _sushiManager.isBeat = true;
+            _sushiDestroy.isBeat = true;
             StartCoroutine(CollisionReset());
-            Debug.Log("_sushiDestroy.isBeat" +_sushiManager.isBeat);
+            Debug.Log("_sushiDestroy.isBeat" + _sushiDestroy.isBeat);
             _shootDspTime = AudioSettings.dspTime;
             nxtRng = NextRingTime();
             _pastRng = PastRingTime();
@@ -177,7 +176,6 @@ namespace NRKernal
                 StartCoroutine(PointTextEffect());
                 _earlyText.text = "perfect";
                 _lateText.text = "perfect";
-                //StartCoroutine(DeleteLog());
                 CircleEffect(true);
             }
             else
@@ -185,7 +183,6 @@ namespace NRKernal
                 _combo = 0;
                 _earlyText.text = "";
                 _lateText.text = "late";
-                //StartCoroutine(DeleteLog());
                 CircleEffect(false);
             }
         }
@@ -198,7 +195,6 @@ namespace NRKernal
 
                 if (nxtRng < AudioSettings.dspTime + _buffer)
                 {
-                    //_ring.PlayScheduled(nxtRng);
                     if (elapsedDspTime > 16)
                     {
                         _timingVisualize.CreateNoots(); 
@@ -252,7 +248,7 @@ namespace NRKernal
         {
             yield return new WaitForSeconds(0.2f);
 
-            _sushiManager.isBeat = false;
+            _sushiDestroy.isBeat = false;
         }
 
         IEnumerator DeleteLog()

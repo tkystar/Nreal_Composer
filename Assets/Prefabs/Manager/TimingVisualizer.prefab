@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 494446394916485256}
   - component: {fileID: 494446394916485255}
+  - component: {fileID: 494446394162414722}
   m_Layer: 0
   m_Name: TimingVisualizer
   m_TagString: Untagged
@@ -45,6 +46,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitPosObj: {fileID: 0}
   spawnPosObj: {fileID: 0}
-  _metrnome: {fileID: 0}
-  noot: {fileID: 5679363381332261213, guid: d6adf665499c6430780818fa224814f8, type: 3}
-  _distance_per_frame: 0
+  noot: {fileID: 3197391554426408367, guid: d9d857dc0105146ecac523dae671a818, type: 3}
+  _speed: 20
+  _moveSushi: {fileID: 1012621831592707317, guid: d6adf665499c6430780818fa224814f8, type: 3}
+--- !u!114 &494446394162414722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494446394916485254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56378996645174b009a775732c734f9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

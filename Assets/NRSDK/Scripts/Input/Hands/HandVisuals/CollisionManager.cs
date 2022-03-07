@@ -13,9 +13,10 @@ namespace NRKernal
     {
         
         private Text _logText;
-        [SerializeField] private Metronome _metronome;
+        private Metronome _metronome;
         public GameObject soundManager;
-        public GameObject[] sushiPrefab;
+        //public GameObject transitionManager;
+        private GameObject[] sushiPrefab;
         private GameObject _sushi;
         private GameObject explosionParticle;
         //public GameObject numTextObj;
@@ -23,15 +24,19 @@ namespace NRKernal
         public int num;
         private bool Collidable = true;
         private GameObject _triggerObj;
-        private ICreateCollisionEffect _iCreateCollisionEffect;
+        private Vector3 _hitPos;
+        public ICreateCollisionEffect _iCreateCollisionEffect;
         private void Awake()
         {
             //NOTE:editor上でアタッチできないため、文字列を使用
             _metronome = GameObject.Find("SoundManager").GetComponent<Metronome>();
+            //_metronome = soundManager.GetComponent<Metronome>();
             explosionParticle = Resources.Load<GameObject>("CollisionParticle");
-            _iCreateCollisionEffect = GameObject.Find("GameTransitionManager").GetComponent<ICreateCollisionEffect>();
+            //_iCreateCollisionEffect = GameObject.Find("GameTransitionManager").GetComponent<ICreateCollisionEffect>();
+            //_iCreateCollisionEffect = this.gameObject.GetComponent(typeof(ICreateCollisionEffect));
+            //_iCreateCollisionEffect = this.gameObject.GetComponent<ICreateCollisionEffect>();
+            //_iCreateCollisionEffect = this.gameObject.GetComponent<ICreateCollisionEffect>();
             Collidable = true;
-
             sushiPrefab = Resources.LoadAll<GameObject>("SushiNoots");
         }
 
@@ -41,10 +46,10 @@ namespace NRKernal
             
             //num++;
             _metronome.EarlyorLate();
-            Vector3 _hitPos = other.ClosestPointOnBounds(this.transform.position);
+            _hitPos = other.ClosestPointOnBounds(this.transform.position);
             //_triggerObj = other.gameObject;
             //CollisionEffect(_hitPos);
-            CreateCollisionEffect();
+            CreateCollisionEffect(_hitPos);
         }
 
         private void Update()
@@ -59,13 +64,14 @@ namespace NRKernal
         }
 
 
-        void CreateCollisionEffect()
+        void CreateCollisionEffect(Vector3 _hitPos)
         {
             var sushi_num = UnityEngine.Random.Range(0, sushiPrefab.Length);
-            _sushi = Instantiate(sushiPrefab[sushi_num]);
-            Instantiate(explosionParticle);
+            GameObject _sishiParticle = Instantiate(sushiPrefab[sushi_num]);
+            GameObject _particle = Instantiate(explosionParticle);
+            _sishiParticle.GetComponent<ICreateCollisionEffect>().CreateEffect(_hitPos);
+            _particle.GetComponent<ICreateCollisionEffect>().CreateEffect(_hitPos);
             
-            _iCreateCollisionEffect.CreateEffect(Vector3.one);
         }
         
         //NOTE インターフェースを用いてリファクタリングしているため、非アクティブにしている。
