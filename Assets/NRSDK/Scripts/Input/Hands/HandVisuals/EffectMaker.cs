@@ -7,7 +7,7 @@ public interface ICreateCollisionEffect
 }
 
 
-public class Sample : MonoBehaviour
+public class EffectMaker : MonoBehaviour
 {
     
 }

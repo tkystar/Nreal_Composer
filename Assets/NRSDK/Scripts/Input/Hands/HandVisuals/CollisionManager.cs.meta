@@ -5,9 +5,8 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - _metronome: {instanceID: 0}
-  - soundManager: {instanceID: 0}
-  - sushi: {fileID: 5679363381332261213, guid: d6adf665499c6430780818fa224814f8, type: 3}
-  - explosionParticle: {fileID: 136674, guid: 8d3a7fbc62f810c43b8c42fdb2978ef4, type: 3}
+  - soundManager: {fileID: 4113812075978730003, guid: 6e8d6392564504c3e84c61874af93684, type: 3}
+  - transitionManager: {fileID: 6597828890427451777, guid: 506dc1f9f521a4832a5d23aae8d0e25d, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

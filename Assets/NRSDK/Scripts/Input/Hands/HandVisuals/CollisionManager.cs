@@ -15,6 +15,7 @@ namespace NRKernal
         private Text _logText;
         [SerializeField] private Metronome _metronome;
         public GameObject soundManager;
+        public GameObject transitionManager;
         public GameObject[] sushiPrefab;
         private GameObject _sushi;
         private GameObject explosionParticle;
@@ -27,11 +28,12 @@ namespace NRKernal
         private void Awake()
         {
             //NOTE:editor上でアタッチできないため、文字列を使用
-            _metronome = GameObject.Find("SoundManager").GetComponent<Metronome>();
+            //_metronome = GameObject.Find("SoundManager").GetComponent<Metronome>();
+            _metronome = soundManager.GetComponent<Metronome>();
             explosionParticle = Resources.Load<GameObject>("CollisionParticle");
-            _iCreateCollisionEffect = GameObject.Find("GameTransitionManager").GetComponent<ICreateCollisionEffect>();
+            //_iCreateCollisionEffect = GameObject.Find("GameTransitionManager").GetComponent<ICreateCollisionEffect>();
+            _iCreateCollisionEffect = transitionManager.GetComponent<ICreateCollisionEffect>();
             Collidable = true;
-
             sushiPrefab = Resources.LoadAll<GameObject>("SushiNoots");
         }
 

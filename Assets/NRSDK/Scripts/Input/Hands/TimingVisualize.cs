@@ -16,7 +16,7 @@ namespace NRKernal
         private double _nxtRng;
         public GameObject noot;
         private Rigidbody _nootRB;
-        private double _distance;
+        //private double _distance;
         private double _bpm;
         private double _time;
         public double _speed;
@@ -30,9 +30,7 @@ namespace NRKernal
         // Start is called before the first frame update
         void Start()
         {
-            _hitPos = hitPosObj.transform.position;
-            _spawnPos = spawnPosObj.transform.position;
-            _distance = (_hitPos - _spawnPos).magnitude;
+            
         }
 
         // Update is called once per frame
@@ -51,10 +49,17 @@ namespace NRKernal
 
         public void GetDividedDistance(double bpm)
         {
-            _bpm = bpm;
-            _time = 60d / _bpm;
+            //_bpm = bpm;
+            _time = 60d / bpm;
             _divided_num = _time / 0.02;
-            _divided_dis = _distance / _divided_num;
+            _divided_dis = GetSushiMovingDistance() / _divided_num;
+        }
+        
+        private double GetSushiMovingDistance()
+        {
+            _hitPos = hitPosObj.transform.position;
+            _spawnPos = spawnPosObj.transform.position;
+            return (_hitPos - _spawnPos).magnitude;
         }
 
         IEnumerator WaitCreateNootsisCalled()

@@ -260,12 +260,10 @@ namespace NRKernal
         public class JointVisual
         {
             public JointVisualInfo jointVisualInfo;
-
             private GameObject m_VisualGO;
             private Vector3 m_JointScale;
             private MeshRenderer m_Renderer;
             private SphereCollider m_Collider;
-            
             private Rigidbody _indexRB;
             [SerializeField] private CollisionManager collision;
             private NRHandCapsuleVisual nrHandCapsuleVisual;
@@ -277,8 +275,6 @@ namespace NRKernal
                 m_VisualGO.transform.SetParent(rootGO.transform);
                 m_Collider = m_VisualGO.GetComponent<SphereCollider>();
                 m_Collider.isTrigger = true;
-                //m_VisualGO.AddComponent<ColliderVisualizer>();
-                //m_Collider.radius *= 5;
                 if (m_Collider)
                 {
                     m_Collider.enabled = false;
@@ -299,20 +295,16 @@ namespace NRKernal
                 if (isIndexTip && isRightHand)
                 {
                     m_Collider.enabled = true;
-                    //m_Renderer.material = jointVisualInfo.indexjointMat;
                     m_Collider.radius *= 6;
                     m_VisualGO.AddComponent<CollisionManager>();
                     _indexRB = m_VisualGO.AddComponent<Rigidbody>();
                     _indexRB.useGravity = false;
-                    Debug.Log("Yes");
                 }
 
                 if (isMiddleProximal && isLeftHand)
                 {
                     m_Collider.enabled = true;
-                    //m_Renderer.material = jointVisualInfo.indexjointMat;
                     m_Collider.radius *= 8;
-                    Debug.Log("No");
                 }
                 
             }

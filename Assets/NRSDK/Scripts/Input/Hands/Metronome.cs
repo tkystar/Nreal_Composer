@@ -101,7 +101,6 @@ namespace NRKernal
             var beatInterval = 60d / bpm;
             elapsedDspTime = AudioSettings.dspTime - _metronomeStartDspTime;
             var beats = System.Math.Floor(elapsedDspTime / beatInterval) - 1;
-
             return _metronomeStartDspTime + (beats + 1d) * beatInterval;
         }
 
@@ -177,7 +176,6 @@ namespace NRKernal
                 StartCoroutine(PointTextEffect());
                 _earlyText.text = "perfect";
                 _lateText.text = "perfect";
-                //StartCoroutine(DeleteLog());
                 CircleEffect(true);
             }
             else
@@ -185,7 +183,6 @@ namespace NRKernal
                 _combo = 0;
                 _earlyText.text = "";
                 _lateText.text = "late";
-                //StartCoroutine(DeleteLog());
                 CircleEffect(false);
             }
         }
@@ -198,7 +195,6 @@ namespace NRKernal
 
                 if (nxtRng < AudioSettings.dspTime + _buffer)
                 {
-                    //_ring.PlayScheduled(nxtRng);
                     if (elapsedDspTime > 16)
                     {
                         _timingVisualize.CreateNoots(); 
