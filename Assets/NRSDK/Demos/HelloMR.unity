@@ -5089,10 +5089,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22cf6736963034371954e1613dc25d3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _metronome: {fileID: 1612478164}
   soundManager: {fileID: 1612478163}
-  transitionManager: {fileID: 0}
-  sushiPrefab: []
   num: 0
 --- !u!4 &167605004
 Transform:
@@ -5401,67 +5398,6 @@ LightingSettings:
   m_PVRFilteringAtrousPositionSigmaDirect: 0.5
   m_PVRFilteringAtrousPositionSigmaIndirect: 2
   m_PVRFilteringAtrousPositionSigmaAO: 1
---- !u!1001 &327456857
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1102444925028110628, guid: d9d857dc0105146ecac523dae671a818, type: 3}
-      propertyPath: m_RootOrder
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 1102444925028110628, guid: d9d857dc0105146ecac523dae671a818, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.076
-      objectReference: {fileID: 0}
-    - target: {fileID: 1102444925028110628, guid: d9d857dc0105146ecac523dae671a818, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 1102444925028110628, guid: d9d857dc0105146ecac523dae671a818, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.997
-      objectReference: {fileID: 0}
-    - target: {fileID: 1102444925028110628, guid: d9d857dc0105146ecac523dae671a818, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.87811345
-      objectReference: {fileID: 0}
-    - target: {fileID: 1102444925028110628, guid: d9d857dc0105146ecac523dae671a818, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1102444925028110628, guid: d9d857dc0105146ecac523dae671a818, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.47845253
-      objectReference: {fileID: 0}
-    - target: {fileID: 1102444925028110628, guid: d9d857dc0105146ecac523dae671a818, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1102444925028110628, guid: d9d857dc0105146ecac523dae671a818, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1102444925028110628, guid: d9d857dc0105146ecac523dae671a818, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -57.169
-      objectReference: {fileID: 0}
-    - target: {fileID: 1102444925028110628, guid: d9d857dc0105146ecac523dae671a818, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3197391554426408367, guid: d9d857dc0105146ecac523dae671a818, type: 3}
-      propertyPath: m_Name
-      value: MaguroNoot 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3197391554426408367, guid: d9d857dc0105146ecac523dae671a818, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d9d857dc0105146ecac523dae671a818, type: 3}
 --- !u!1 &328663573 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 239907231831626247, guid: 7ec921dbff3634d01a6554e29d583312, type: 3}
@@ -6380,6 +6316,17 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 19804268, guid: 3e142e58a407a7048856096aab4c9f5e, type: 3}
   m_PrefabInstance: {fileID: 643077533}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &825460923 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2950253839366579717, guid: 0767fe518c9bc4523af7f63bf8e1c072, type: 3}
+  m_PrefabInstance: {fileID: 2359700673965218464}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01989a0e3338541c090921962b195fa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &855725968
 GameObject:
   m_ObjectHideFlags: 0
@@ -6525,7 +6472,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1581093954426074, guid: ad152f08ed7eb6e4abd93376a0203e38, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4808320353365586, guid: ad152f08ed7eb6e4abd93376a0203e38, type: 3}
       propertyPath: m_RootOrder
@@ -6996,6 +6943,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 248422689674110899, guid: 7ec921dbff3634d01a6554e29d583312, type: 3}
   m_PrefabInstance: {fileID: 248422690788758756}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1118860122 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 248422689674110909, guid: 7ec921dbff3634d01a6554e29d583312, type: 3}
+  m_PrefabInstance: {fileID: 248422690788758756}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118860119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &1120318188 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 19861502, guid: 01f1e1f1177f76d499251acb5b14b63a, type: 3}
@@ -17337,7 +17295,7 @@ Transform:
   - {fileID: 894669000}
   - {fileID: 1769834031}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2072517155 stripped
 GameObject:
@@ -17518,7 +17476,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 494446394162414722, guid: 4702e4727435a4546a8f08d39876f61e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4702e4727435a4546a8f08d39876f61e, type: 3}
 --- !u!114 &1064999597129155035 stripped
 MonoBehaviour:
@@ -17713,6 +17672,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1477714317}
     - target: {fileID: 4113812075978730004, guid: 6e8d6392564504c3e84c61874af93684, type: 3}
+      propertyPath: _nootsManager
+      value: 
+      objectReference: {fileID: 496804337622897740, guid: d9d857dc0105146ecac523dae671a818, type: 3}
+    - target: {fileID: 4113812075978730004, guid: 6e8d6392564504c3e84c61874af93684, type: 3}
+      propertyPath: _sushiDestroy
+      value: 
+      objectReference: {fileID: 825460923}
+    - target: {fileID: 4113812075978730004, guid: 6e8d6392564504c3e84c61874af93684, type: 3}
       propertyPath: pointsTextObj
       value: 
       objectReference: {fileID: 405176123}
@@ -17881,6 +17848,10 @@ PrefabInstance:
       propertyPath: circleParticle
       value: 
       objectReference: {fileID: 1200830911}
+    - target: {fileID: 6597828890427451782, guid: 506dc1f9f521a4832a5d23aae8d0e25d, type: 3}
+      propertyPath: FinishAppButton
+      value: 
+      objectReference: {fileID: 1118860122}
     - target: {fileID: 6597828890427451782, guid: 506dc1f9f521a4832a5d23aae8d0e25d, type: 3}
       propertyPath: explainUI_part1
       value: 

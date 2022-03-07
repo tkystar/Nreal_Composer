@@ -25,7 +25,7 @@ namespace NRKernal
         public Button ReplayButton;
         public Button GotoExplainModeButton;
         public Button NextExplainButton;
-        //public Button GotoStartModeButtonfromResultMode;
+        public Button FinishAppButton;
         public Button GotoStartModeButtonfromExplainMode;
         public Button PinchGestureConfirmButton;
         public Button BothHandsConfirmButton;
@@ -86,7 +86,7 @@ namespace NRKernal
             ReplayButton.onClick.AddListener(()=>PlayMode());
             GotoExplainModeButton.onClick.AddListener(()=>GotoExplainMode());
             NextExplainButton.onClick.AddListener(()=>GotoNextExplain());
-            //GotoStartModeButtonfromResultMode.onClick.AddListener();
+            FinishAppButton.onClick.AddListener(()=>ReLoad());
             GotoStartModeButtonfromExplainMode.onClick.AddListener(()=>StartMain());
             PinchGestureConfirmButton.onClick.AddListener(()=> DisplayPrepareInfo());
             BothHandsConfirmButton.onClick.AddListener(()=>StartMain());
@@ -195,6 +195,7 @@ namespace NRKernal
             startUI.SetActive(true);
             pintchUI.SetActive(true);
             scoreUI.SetActive(false);
+            StartCoroutine(GameStartBGM());
         }
 
         IEnumerator DisplayResult()
@@ -213,8 +214,7 @@ namespace NRKernal
             returnBtn.SetActive(false);
             replayBtn.SetActive(false);
             yield return new WaitForSeconds(2);
-            var score = _metronome.totalPoints;
-            _tesultText.text = score.ToString();
+            _tesultText.text = _metronome.totalPoints.ToString();
             applause.Play();
             yield return new WaitForSeconds(3.5f);
             returnBtn.SetActive(true);

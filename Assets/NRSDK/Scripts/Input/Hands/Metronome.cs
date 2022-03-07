@@ -17,7 +17,7 @@ namespace NRKernal
         [SerializeField] private float _succesDifferenceTime;
         [SerializeField] private float _evaluationDifferenceTime;
         [SerializeField] private float _startTiming;
-        [SerializeField] private SushiDestroy _sushiManager;
+        [SerializeField] private SushiDestroy _sushiDestroy;
         [SerializeField]private NootsManager _nootsManager;
         public String latestState;
         public GameObject pointsTextObj;
@@ -117,9 +117,9 @@ namespace NRKernal
             _ring.Play();
             if (!_evaluationNow) return;
 
-            _sushiManager.isBeat = true;
+            _sushiDestroy.isBeat = true;
             StartCoroutine(CollisionReset());
-            Debug.Log("_sushiDestroy.isBeat" +_sushiManager.isBeat);
+            Debug.Log("_sushiDestroy.isBeat" + _sushiDestroy.isBeat);
             _shootDspTime = AudioSettings.dspTime;
             nxtRng = NextRingTime();
             _pastRng = PastRingTime();
@@ -248,7 +248,7 @@ namespace NRKernal
         {
             yield return new WaitForSeconds(0.2f);
 
-            _sushiManager.isBeat = false;
+            _sushiDestroy.isBeat = false;
         }
 
         IEnumerator DeleteLog()
