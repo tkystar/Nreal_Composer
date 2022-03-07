@@ -21,7 +21,14 @@ namespace NRKernal
         public AudioClip resultBGM;
         public AudioClip playBGM;
         public AudioSource applause;
-        public Button[] buttons;
+        public Button GotoPlaymodeButton;
+        public Button ReplayButton;
+        public Button GotoExplainModeButton;
+        public Button NextExplainButton;
+        //public Button GotoStartModeButtonfromResultMode;
+        public Button GotoStartModeButtonfromExplainMode;
+        public Button PinchGestureConfirmButton;
+        public Button BothHandsConfirmButton;
         public GameObject scoreUI;
         public GameObject resultTextObj;
         public GameObject inGameUI;
@@ -47,16 +54,18 @@ namespace NRKernal
         // Start is called before the first frame update
         void Start()
         {
-            foreach (var item in buttons)
-            {
-                var name = item.name;
-                Debug.Log("BtnName " + name);
-                item.onClick.AddListener(() => OnClicked(name));
-            }
-
             _metronome = soundManager.GetComponent<Metronome>();
             mainSound = soundManager.GetComponent<AudioSource>();
             mainSound.clip = startBGM;
+            ButtonMethodMapping();
+            StartActiveSetting();
+            _tesultText = resultTextObj.GetComponent<Text>();
+            StartCoroutine(StartDelay());
+            StartCoroutine(GameStartBGM());
+        }
+
+        void StartActiveSetting()
+        {
             pintchUI.SetActive(true);
             bothHandsUI.SetActive(false);
             scoreUI.SetActive(false);
@@ -67,12 +76,21 @@ namespace NRKernal
             explainUI.SetActive(false);
             mainSound.loop = true;
             target.SetActive(false);
-            _tesultText = resultTextObj.GetComponent<Text>();
             lazer_L.SetActive(true);
             lazer_R.SetActive(true);
-            //GameStart();
-            StartCoroutine(StartDelay());
-            StartCoroutine(GameStartBGM());
+        }
+
+        void ButtonMethodMapping()
+        {
+            GotoPlaymodeButton.onClick.AddListener(()=>PlayMode());
+            ReplayButton.onClick.AddListener(()=>PlayMode());
+            GotoExplainModeButton.onClick.AddListener(()=>GotoExplainMode());
+            NextExplainButton.onClick.AddListener(()=>GotoNextExplain());
+            //GotoStartModeButtonfromResultMode.onClick.AddListener();
+            GotoStartModeButtonfromExplainMode.onClick.AddListener(()=>StartMain());
+            PinchGestureConfirmButton.onClick.AddListener(()=> DisplayPrepareInfo());
+            BothHandsConfirmButton.onClick.AddListener(()=>StartMain());
+
         }
 
         // Update is called once per frame
@@ -84,8 +102,8 @@ namespace NRKernal
             if (Input.GetKeyDown(KeyCode.Space)) GameStart();
             if (Input.GetKeyDown(KeyCode.R)) ReLoad();
             if (Input.GetKeyDown(KeyCode.S)) StartMain();
-            if (Input.GetKeyDown(KeyCode.E)) ExplainMode1();
-            if (Input.GetKeyDown(KeyCode.N)) ExplainMode2();
+            if (Input.GetKeyDown(KeyCode.E)) GotoExplainMode();
+            if (Input.GetKeyDown(KeyCode.N)) GotoNextExplain();
 
             //if(NRInput.IsTouching()) GameStart();
             //if(NRInput.GetButton(ControllerButton.TRIGGER)) GameStart();
@@ -95,48 +113,7 @@ namespace NRKernal
                 GameFinish();
             }
         }
-
-        private void OnClicked(string key)
-        {
-            if (key == "StartBtn")
-            {
-                GameStart();
-            }
-            else if (key == "EndGameBtn")
-            {
-                ReLoad();
-            }
-            else if (key == "GotoPlayModeBtn")
-            {
-                PlayMode();
-            }
-            else if (key == "RePlayBtn")
-            {
-                PlayMode();
-            }
-            else if (key == "ExplainModeBtn")
-            {
-                ExplainMode1();
-
-            }
-            else if (key == "NextExplainBtn")
-            {
-                ExplainMode2();
-            }
-            else if (key == "explainFinBtn")
-            {
-                StartMain();
-            }
-            else if (key == "PinchConfirmBtn")
-            {
-                DisplayPrepareInfo();
-            }
-            else if (key == "BothHandsBtn")
-            {
-                StartMain();
-            }
-        }
-
+        
         private void PlayMode()
         {
             startUI.SetActive(false);
@@ -157,14 +134,14 @@ namespace NRKernal
         {
             
         }
-        private void　ExplainMode1()
+        private void　GotoExplainMode()
         {
             startUI.SetActive(false);
             explainUI.SetActive(true);
             explainUI_part1.SetActive(true);
             explainUI_part2.SetActive(false);
         }
-        private void　ExplainMode2()
+        private void　GotoNextExplain()
         {
             explainUI_part1.SetActive(false);
             explainUI_part2.SetActive(true);
@@ -215,16 +192,9 @@ namespace NRKernal
 
         private void ReLoad()
         {
-            /*
-            startUI.SetActive(true);
-            scoreUI.SetActive(false);
-            mainSound.Pause();
-            StartCoroutine(GameStartBGM());
-            */
             startUI.SetActive(true);
             pintchUI.SetActive(true);
             scoreUI.SetActive(false);
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         IEnumerator DisplayResult()
