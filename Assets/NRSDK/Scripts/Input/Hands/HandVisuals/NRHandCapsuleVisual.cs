@@ -95,18 +95,6 @@ namespace NRKernal
                 m_VisualGO = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
                 m_VisualGO.transform.SetParent(rootGO.transform);
                 m_Collider = m_VisualGO.GetComponent<CapsuleCollider>();
-                //NOTE: 遅延による当たり判定されない気持ち悪さを解消するため,コライダーを大きく設定している。
-                //m_Collider.height *= 1.1f;
-                //m_Collider.radius *= 1.1f;
-                
-                //handSpeedTextObj = GameObject.Find("HandSpeedText");
-               // m_handSpeedText = handSpeedTextObj.GetComponent<Text>();
-                //handDirectionTextObj_x = GameObject.Find("HandDirectionText_x");
-                //handDirectionTextObj_y = GameObject.Find("HandDirectionText_y");
-                //m_handDirectionText_x = handDirectionTextObj_x.GetComponent<Text>();
-               // m_handDirectionText_y = handDirectionTextObj_y.GetComponent<Text>();
-                //handeffect = GameObject.Find("HandEffect").GetComponent<HandEffect>();
-                //m_handDifferenceText = GameObject.Find("HandDifferenceText").GetComponent<Text>();
                 metronome = GameObject.Find("SoundManager").GetComponent<Metronome>();
                 
                 if (m_Collider)
@@ -133,102 +121,15 @@ namespace NRKernal
                 if (capsuleVisualInfo.shouldRender)
                 {
                     DrawCapsuleVisual(capsuleVisualInfo.startPos, capsuleVisualInfo.endPos, capsuleVisualInfo.capsuleRadius);
-                    
                 }
                 else
                 {
                     m_VisualGO.SetActive(false);
                 }
-
-                //人差し指の先のCapsuleVisualの場合、速度を取得する
-                if(capsuleVisualInfo.endHandJointID == HandJointID.IndexTip)
-                {
-                    GetHandSpeed_accurate();
-                    //GetIndexHandDirection();
-                    //m_Collider.height *= 1.5f;
-                    //m_Collider.radius *= 1.5f;
-                    //m_VisualGO.AddComponent<CollisionManager>();
-                }
-            }
-
-
-            public void GetHandSpeed_accurate()
-            {
-                currentTime += Time.deltaTime;
-                currentTime_small += Time.deltaTime;
-
                 
-                    if(currentTime_small > span_small)
-                    {
-                        currentTime_small = 0f;
-                        _difference = m_VisualGO.transform.position - latestPos;
-                        GetIndexHandDirection(_difference);
-                        totalDistance_per_span += _difference.magnitude;
-                        latestPos = m_VisualGO.transform.position;
-                        
-                        if(currentTime > measureSpeed_span)
-                        {
-                            currentTime = 0f;
-                            indexfingerSpeed = totalDistance_per_span / Time.deltaTime;
-                            //m_handSpeedText.text = indexfingerSpeed.ToString("N2");  
-                            totalDistance_per_span = 0f;
-                        }
-                    }
-                    
-                    
-                                   
             }
-
-            public void GetIndexHandDirection(Vector3 difference)
-            {
-                //m_handDifferenceText.text = difference.ToString();
-                if (difference.y > 0 && Mathf.Abs(difference.y) > nrHandCapsuleVisual.noiseDifference)
-                {
-                    if (_latestState_y == "Down")
-                    {
-                        //m_handDirectionText_y.text = "Up";
-                        handeffect.AppearParticle();
-                    }
-                    _latestState_y = "Up";
-                }
-                else if (difference.y < 0 && Mathf.Abs(difference.y) > nrHandCapsuleVisual.noiseDifference)
-                {
-                    if (_latestState_y == "Up")
-                    {
-                        //m_handDirectionText_y.text = "Down";
-                        handeffect.AppearParticle();
-                    }
-                    _latestState_y = "Down";
-                }
-                /*
-                if (difference.x > 0 && Mathf.Abs(difference.x) > nrHandCapsuleVisual.noiseDifference)
-                {
-                    if (_latestState_x == "Left")
-                    {
-                        m_handDirectionText_x.text = "Right";
-                        handeffect.AppearParticle();
-                    }
-                    _latestState_x = "Left";
-                }
-                else if (difference.x < 0 && Mathf.Abs(difference.x) > nrHandCapsuleVisual.noiseDifference)
-                {
-                    if (_latestState_x == "Right")
-                    {
-                        m_handDirectionText_x.text = "Left";
-                        handeffect.AppearParticle();
-                    }
-                    _latestState_x = "Right";
-                }
-                */
-            }
-
-            /*
-            public void DirectionChange()
-            {
-                nrHandCapsuleVisual.directionChangeSound.Play();
-            }
-            */
-
+            
+            
             private void DrawCapsuleVisual(Vector3 a, Vector3 b, float radius)
             {
                 m_VisualGO.SetActive(true);
@@ -341,8 +242,6 @@ namespace NRKernal
         public Material indexjointMat;
         public float jointRadius = 0.005f;
         public bool showJoint = true;
-        //public GameObject handSpeedTextObj;
-       // [SerializeField] private CollisionManager _collisionManager;
         private List<CapsuleVisual> m_CapsuleVisuals;
         private List<JointVisual> m_JointVisuals;
 

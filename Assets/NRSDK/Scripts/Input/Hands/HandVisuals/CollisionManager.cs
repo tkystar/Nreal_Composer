@@ -11,15 +11,12 @@ namespace NRKernal
 
     public class CollisionManager : MonoBehaviour
     {
-        
         private Text _logText;
         private Metronome _metronome;
         public GameObject soundManager;
-        //public GameObject transitionManager;
         private GameObject[] sushiPrefab;
         private GameObject _sushi;
         private GameObject explosionParticle;
-        //public GameObject numTextObj;
         private Text _numText;
         public int num;
         private bool Collidable = true;
@@ -30,36 +27,24 @@ namespace NRKernal
         {
             //NOTE:editor上でアタッチできないため、文字列を使用
             _metronome = GameObject.Find("SoundManager").GetComponent<Metronome>();
-            //_metronome = soundManager.GetComponent<Metronome>();
             explosionParticle = Resources.Load<GameObject>("CollisionParticle");
-            //_iCreateCollisionEffect = GameObject.Find("GameTransitionManager").GetComponent<ICreateCollisionEffect>();
-            //_iCreateCollisionEffect = this.gameObject.GetComponent(typeof(ICreateCollisionEffect));
-            //_iCreateCollisionEffect = this.gameObject.GetComponent<ICreateCollisionEffect>();
-            //_iCreateCollisionEffect = this.gameObject.GetComponent<ICreateCollisionEffect>();
-            Collidable = true;
             sushiPrefab = Resources.LoadAll<GameObject>("SushiNoots");
+            Collidable = true;
         }
 
         
         private void OnTriggerEnter(Collider other)
         {
-            
-            //num++;
             _metronome.EarlyorLate();
             _hitPos = other.ClosestPointOnBounds(this.transform.position);
-            //_triggerObj = other.gameObject;
-            //CollisionEffect(_hitPos);
             CreateCollisionEffect(_hitPos);
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             if (Input.GetKeyDown(KeyCode.A))
             {
-                //num ++;
                 _metronome.EarlyorLate();
-                //CollisionEffect(Vector3.one);
-
             }
         }
 

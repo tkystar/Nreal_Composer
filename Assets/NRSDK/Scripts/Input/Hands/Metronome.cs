@@ -91,16 +91,16 @@ namespace NRKernal
         {
             beatInterval = 60d / bpm;
             elapsedDspTime = AudioSettings.dspTime - _metronomeStartDspTime;
-            var beats = System.Math.Floor(elapsedDspTime / beatInterval);
+            double beats = System.Math.Floor(elapsedDspTime / beatInterval);
 
             return _metronomeStartDspTime + (beats + 1d) * beatInterval;
         }
 
         double PastRingTime()
         {
-            var beatInterval = 60d / bpm;
+            double beatInterval = 60d / bpm;
             elapsedDspTime = AudioSettings.dspTime - _metronomeStartDspTime;
-            var beats = System.Math.Floor(elapsedDspTime / beatInterval) - 1;
+            double beats = System.Math.Floor(elapsedDspTime / beatInterval) - 1;
             return _metronomeStartDspTime + (beats + 1d) * beatInterval;
         }
 
@@ -119,7 +119,6 @@ namespace NRKernal
 
             _sushiDestroy.isBeat = true;
             StartCoroutine(CollisionReset());
-            Debug.Log("_sushiDestroy.isBeat" + _sushiDestroy.isBeat);
             _shootDspTime = AudioSettings.dspTime;
             nxtRng = NextRingTime();
             _pastRng = PastRingTime();
